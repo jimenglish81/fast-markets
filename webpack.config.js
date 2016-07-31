@@ -1,13 +1,20 @@
+const pkg = require('./package.json');
 const { resolve } = require('path');
+const curry = require('lodash/curry');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const isTest = process.env.NODE_ENV === 'test'
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const filterExists = (a) => a.filter(Boolean);
+const ifVal = (cond, val) => !!cond ? val : undefined;
 
 module.exports = (env) => {
+  const ifProd = curry(ifVal)(env.prod);
+
   return {
     entry: {
-      app: './js/app.js',
-      vendor: ['lodash', 'react', 'react-dom'],
+      app: './js/index.js',
+      css: './styles/base.less',
+      vendor: Object.keys(pkg.dependencies),
     },
     output: {
       filename: 'bundle.[name].[chunkhash].js',
@@ -17,22 +24,49 @@ module.exports = (env) => {
     context: resolve(__dirname, 'src'),
     devtool: env.prod ? 'source-map' : 'eval',
     bail: env.prod,
+    devServer: {
+      quiet: false,
+    },
+    eslint: {
+      configFile: '.eslintrc'
+    },
     module: {
       loaders: [
         {
+          test: /\.less$/,
+          loader: 'style!css!autoprefixer!less',
+        },
+        {
           test: /\.js$/,
-          loader: 'babel',
-          exclude: /node_modules/
+          loader: 'babel!eslint',
+          exclude: /node_modules/,
         },
       ],
     },
-    plugins: [
+    plugins: filterExists([
         new HtmlWebpackPlugin({
           template: './index.html',
         }),
-        isTest ? undefined : new webpack.optimize.CommonsChunkPlugin({
+        ifProd(new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
-        }),
-    ].filter((b) => !!b),
+        })),
+        ifProd(new webpack.optimize.DedupePlugin()),
+        ifProd(new webpack.LoaderOptionsPlugin({
+          minimize: true,
+          debug: false,
+        })),
+        ifProd(new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: '"production"',
+          },
+          VERSION: JSON.stringify(pkg.version),
+        })),
+        ifProd(new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            screw_ie8: true,
+            warnings: false,
+          },
+        })),
+    ]),
   };
 };

@@ -1,1 +1,1 @@
-React starter kit WIP
+Little IG project
