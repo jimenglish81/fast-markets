@@ -1,17 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, hashHistory } from 'react-router';
-import reduxThunk from 'redux-thunk';
-import App from './components/app';
-import reducers from './reducers';
-import routes from './routes';
+import { render } from 'react-dom';
+import configureStore from './configure-store';
+import Root from './components/root';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = configureStore();
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={hashHistory} routes={routes} />
-  </Provider>
+render(
+  <Root store={store} />
   , document.querySelector('.container'));

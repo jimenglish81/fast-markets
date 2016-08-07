@@ -28,18 +28,14 @@ export function requestLogout() {
   };
 }
 
-export function login(session) {
-  return {
-    type: AUTH_USER,
-    payload: session,
-  };
-}
+export const login = (session) => ({
+  type: AUTH_USER,
+  payload: session,
+});
 
-export function logout() {
-  return {
-    type: UNAUTH_USER,
-  };
-}
+export const logout = () => ({
+  type: UNAUTH_USER,
+});
 
 export function authError(error) {
   return {
