@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { requestLogout } from '../actions';
 import { Link } from 'react-router';
+import { isAuthenticated } from '../reducers';
 
 class Header extends Component {
   constructor(props) {
@@ -45,9 +46,9 @@ Header.propTypes = {
   isAuthenticated: React.PropTypes.bool,
 };
 
-function mapStateToProps({ auth: { isAuthenticated } }) {
+function mapStateToProps(state) {
   return {
-    isAuthenticated,
+    isAuthenticated: isAuthenticated(state),
   };
 }
 

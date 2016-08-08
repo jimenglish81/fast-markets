@@ -12,3 +12,7 @@ export default (state={}, action) => {
       return state;
   }
 }
+
+export const isAuthenticated = ({ isAuthenticated }) => {
+  return !!isAuthenticated;
+}

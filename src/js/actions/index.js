@@ -1,6 +1,6 @@
 import { auth } from '../client/api';
 import { LOGIN, AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
-import { hashHistory } from 'react-router';
+import { hashHistory, push } from 'react-router';
 
 export function requestLogin(identifier, password) {
   return (dispatch) => {
