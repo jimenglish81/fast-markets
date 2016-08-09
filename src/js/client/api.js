@@ -16,6 +16,16 @@ export function auth(identifier, password, encryptedPassword=false) {
   return doPost(`${BASE}session`, headers, null, data, ['CST', 'X-SECURITY-TOKEN']);
 }
 
+export function unauth() {
+  const headers = {
+    'X-IG-API-KEY': KEY,
+    'CST': cst,
+    'X-SECURITY-TOKEN': xst,
+  };
+
+  return doDelete(`${BASE}session`, headers);
+}
+
 export function getSprints(cst, xst) {
   const headers = {
     'X-IG-API-KEY': KEY,
