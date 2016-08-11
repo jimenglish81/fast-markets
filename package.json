@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "doc": "esdoc -c .esdocrc",
     "validate": "npm-run-all --parallel validate-webpack:* test",
     "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
