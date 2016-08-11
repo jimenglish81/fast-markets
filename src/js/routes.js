@@ -9,6 +9,7 @@ const WrappedRequireAuth = RequireAuth('login');
 export default (
   <Route path="/" component={App}>
     <Route path="login" component={Login} />
+    <Route path="ticket" component={Sprints} />
     <Route path="sprints" component={WrappedRequireAuth(Sprints)} />
   </Route>
 );

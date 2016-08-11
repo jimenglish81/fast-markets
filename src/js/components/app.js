@@ -6,6 +6,9 @@ const App = (props) => {
     <div>
       <Header />
       {props.children}
+      <footer>
+        <p>powered by IG</p>
+      </footer>
     </div>
   );
 }

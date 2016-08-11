@@ -13,7 +13,7 @@ module.exports = (env) => {
   return {
     entry: {
       app: './js/index.js',
-      css: './styles/base.less',
+      css: './styles/app.less',
       vendor: Object.keys(pkg.dependencies),
     },
     output: {

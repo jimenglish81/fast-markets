@@ -1,5 +1,5 @@
 const webpackConfig = require('./webpack.config')({ test: true });
-const TEST_FILES = 'tests/**/*.test.js';
+const TEST_FILES = 'src/**/*.test.js';
 
 module.exports = function(config) {
   config.set({
@@ -15,12 +15,15 @@ module.exports = function(config) {
     webpackMiddleware: {
       noInfo: true,
     },
+    phantomjsLauncher: {
+      exitOnResourceError: true
+    },
     reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: true,
     concurrency: Infinity,
   })
