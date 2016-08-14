@@ -1,0 +1,1 @@
+import { applyPartialRight } from './index';

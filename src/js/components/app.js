@@ -7,7 +7,7 @@ const App = (props) => {
       <Header />
       {props.children}
       <footer>
-        <p>powered by IG</p>
+        <p>Powered by IG</p>
       </footer>
     </div>
   );

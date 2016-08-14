@@ -1,15 +1,22 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/app';
-import Login from './components/auth/login';
+import Auth from './containers/auth/auth';
+import CheckAuth from './containers/auth/check-auth';
 import Sprints from './components/sprints';
-import RequireAuth from './components/require-auth';
-const WrappedRequireAuth = RequireAuth('login');
+import CookieSessionStore from './session-stores/cookie';
+import CheckSession from './containers/auth/check-session';
+
+const session = new CookieSessionStore();
+const AuthenticatedRoute = CheckAuth('login', (isAuth) => !isAuth);
+const UnauthenticatedRoute = CheckAuth('sprints', (isAuth) => isAuth)(Auth);
+const injectSession = (Component) => (<Component session={session} />);
+const InitialRoute = CheckSession(session)(UnauthenticatedRoute);
 
 export default (
   <Route path="/" component={App}>
-    <Route path="login" component={Login} />
-    <Route path="ticket" component={Sprints} />
-    <Route path="sprints" component={WrappedRequireAuth(Sprints)} />
+    <IndexRoute component={InitialRoute} />
+    <Route path="login" component={InitialRoute} />
+    <Route path="sprints" component={AuthenticatedRoute(Sprints)} />
   </Route>
 );

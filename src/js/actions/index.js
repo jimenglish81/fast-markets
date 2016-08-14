@@ -1,45 +1,56 @@
-import { auth } from '../client/api';
-import { LOGIN, AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
+import { auth, unauth, restore } from '../client/api';
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  AUTH_ERROR
+} from './types';
 import { hashHistory, push } from 'react-router';
 
-export function requestLogin(identifier, password) {
+export function requestAuthUser(identifier, password) {
   return (dispatch) => {
-    auth(identifier, password)
+    return auth(identifier, password)
       .then((session) => {
-        // TODO - persist state? cookie store
-        dispatch(login(session));
-        // TODO - navigation more central?
-        hashHistory.push('sprints');
+        dispatch(authUser(session));
+        return session;
       }).catch(() => {
         dispatch(authError('Auth failed.'));
       });
   };
 }
 
-export function requestLogout() {
+export function requestRestoreUser(cst, xst) {
+  return (dispatch) => {
+    restore(cst, xst)
+      .then((session) => {
+        dispatch(authUser(session));
+      }).catch(() => {
+        dispatch(authError('Auth failed.'));
+      });
+  };
+}
+
+export function requestUnauthUser(cst, xst) {
   return (dispatch) => {
     const fn = () => {
-      dispatch(logout());
+      dispatch(unauthUser());
     };
 
-    unauth()
+    unauth(cst, xst)
       .then(fn)
       .catch(fn);
   };
 }
 
-export const login = (session) => ({
+export const authUser = (session) => ({
   type: AUTH_USER,
   payload: session,
 });
 
-export const logout = () => ({
+export const unauthUser = () => ({
   type: UNAUTH_USER,
 });
 
-export function authError(error) {
-  return {
-    type: AUTH_ERROR,
-    payload: error,
-  };
-}
+export const authError = (error) => ({
+  type: AUTH_ERROR,
+  payload: error,
+});

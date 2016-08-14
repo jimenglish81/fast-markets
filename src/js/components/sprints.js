@@ -1,5 +1,5 @@
 import React from 'react';
-import Ticket from './ticket/ticket';
+import Ticket from '../containers/ticket/ticket';
 import {
   Sparklines,
   SparklinesLine,

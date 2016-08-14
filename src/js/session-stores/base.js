@@ -1,16 +1,9 @@
 export default class Base {
-  constructor() {
-  }
+  constructor() {}
 
-  persist() {
-    return RSVP.reject();
-  }
+  persist() {}
 
-  restore() {
-    return RSVP.reject();
-  }
+  restore() {}
 
-  clear() {
-    return RSVP.reject();
-  }
+  clear() {}
 }

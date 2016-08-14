@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, routerShape } from 'react-router';
-import { isAuthenticated } from '../reducers';
+import { isAuthenticated } from '../../reducers';
 
-export default (unauthenticatedRoute) => (ComposedComponent) => {
-  class RequireAuth extends Component {
+export default (route, checkFn) => (ComposedComponent) => {
+  class CheckAuth extends Component {
     componentWillMount() {
-      if (!this.props.isAuthenticated) {
-        this.props.router.push(unauthenticatedRoute);
+      if (checkFn(this.props.isAuthenticated)) {
+        this.props.router.push(route);
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!nextProps.isAuthenticated) {
-        this.props.router.push(unauthenticatedRoute);
+      if (checkFn(nextProps.isAuthenticated)) {
+        this.props.router.push(route);
       }
     }
 
@@ -24,7 +24,7 @@ export default (unauthenticatedRoute) => (ComposedComponent) => {
     }
   }
 
-  RequireAuth.propTypes = {
+  CheckAuth.propTypes = {
     isAuthenticated: PropTypes.bool,
     router: routerShape.isRequired,
   };
@@ -35,5 +35,5 @@ export default (unauthenticatedRoute) => (ComposedComponent) => {
     };
   }
 
-  return withRouter(connect(mapStateToProps)(RequireAuth));
+  return withRouter(connect(mapStateToProps)(CheckAuth));
 }

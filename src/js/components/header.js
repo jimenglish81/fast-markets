@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { requestLogout } from '../actions';
+import { requestUnauthUser} from '../actions';
 import { Link } from 'react-router';
 import { isAuthenticated } from '../reducers';
 
@@ -11,7 +11,7 @@ class Header extends Component {
   }
 
   _handleLogout() {
-    this.props.requestLogout();
+    this.props.requestUnauthUser();
   }
 
   renderItems() {
@@ -42,7 +42,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  requestLogout: React.PropTypes.func.isRequired,
+  requestUnauthUser: React.PropTypes.func.isRequired,
   isAuthenticated: React.PropTypes.bool,
 };
 
@@ -52,4 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { requestLogout })(Header);
+export default connect(mapStateToProps, { requestUnauthUser })(Header);

@@ -158,6 +158,35 @@ input::selection {
   background-color: @inputHighlightBackground;
   color: @inputHighlightColor;
 }
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+label {
+  display: inline-block;
+}
+input {
+  margin: 0;
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+  text-align: left;
+  line-height: 1em;
+  font-family: @pageFont;
+  padding: .3em .5em;
+  background:  @input-background-color;
+  border: 1px solid @input-border-color;
+  color: @input-color;
+  border-radius: .3rem;
+  transition: box-shadow .1s ease,border-color .1s ease;
+  box-shadow: none;
+}
+input:focus {
+    border-color: @input-border-color-focus;
+    box-shadow: none;
+}
 
 /*******************************
              Columns
@@ -184,35 +213,7 @@ input::selection {
   width: 33.333333333%
 }
 
-
 /*** TEMP ***/
-label {
-  display: inline-block;
-}
-input {
-  margin: 0;
-  max-width: 100%;
-  flex: 1 0 auto;
-  outline: 0;
-  -webkit-tap-highlight-color: rgba(255,255,255,0);
-  text-align: left;
-  line-height: 1.2142em;
-  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-  padding: .67861429em 1em;
-  background: #FFF;
-  border: 1px solid rgba(34,36,38,.15);
-  color: rgba(0,0,0,.87);
-  border-radius: .28571429rem;
-  transition: box-shadow .1s ease,border-color .1s ease;
-  box-shadow: none;
-}
-
-input:focus {
-    border-color: #85B7D9;
-    background: #FFF;
-    color: rgba(0,0,0,.8);
-    box-shadow: none;
-}
 
 button {
   cursor: pointer;
@@ -266,10 +267,6 @@ button:active {
   background-color: #222;
   border-bottom: 1px solid #080808;
   font-size: 14px;
-}
-
-.field-group {
-  margin-bottom: 10px;
 }
 
 .login-form {

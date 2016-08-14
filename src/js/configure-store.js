@@ -10,7 +10,7 @@ const configureStore = () => {
     middlewares.push(logger);
   }
 
-  const createStoreWithMiddleware =  applyMiddleware(...middlewares)(createStore);
+  const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
   const store = createStoreWithMiddleware(reducers);
 
   return store;
