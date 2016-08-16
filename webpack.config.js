@@ -17,7 +17,7 @@ module.exports = (env) => {
       vendor: Object.keys(pkg.dependencies),
     },
     output: {
-      filename: 'bundle.[name].[chunkhash].js',
+      filename: 'bundle.[name].[hash].js',
       path: resolve(__dirname, 'dist'),
       pathinfo: !env.prod,
     },
@@ -47,6 +47,7 @@ module.exports = (env) => {
         new HtmlWebpackPlugin({
           template: './index.html',
         }),
+        new webpack.HotModuleReplacementPlugin(),
         ifProd(new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
         })),

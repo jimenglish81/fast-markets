@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormGroup } from '../common/form';
 
+// TODO - hard code one minute
 const TicketForm = () => {
   return (
     <section className="ticket">
