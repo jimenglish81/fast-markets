@@ -9,7 +9,7 @@ const AuthForm = (props) => {
   return (
     <div className="login-form">
       <form onSubmit={props.onFormSubmit}>
-        <FormGroup label="Username">
+        <FormGroup>
           <input
             placeholder="Username"
             className="form-control"
@@ -17,7 +17,7 @@ const AuthForm = (props) => {
             value={props.identifier}
           />
         </FormGroup>
-        <FormGroup label="Password">
+        <FormGroup>
           <input
             type="password"
             placeholder="Password"

@@ -17,8 +17,7 @@ class Auth extends Component {
   _handleFormSubmit(evt) {
     evt.preventDefault();
     const { identifier, password } = this.state;
-    this.props.requestAuthUser(identifier, password)
-      .then((session) => this.props.onAuth(session));
+    this.props.requestAuthUser(identifier, password);
   }
 
   _handleInputChange(key, value) {
@@ -43,7 +42,6 @@ class Auth extends Component {
 }
 
 Auth.propTypes = {
-  onAuth: React.PropTypes.func.isRequired,
   requestAuthUser: React.PropTypes.func.isRequired,
   error: React.PropTypes.string,
 };

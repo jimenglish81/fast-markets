@@ -5,11 +5,14 @@ import {
   AUTH_ERROR
 } from './types';
 import { hashHistory, push } from 'react-router';
+import connect from '../client/streaming';
 
 export function requestAuthUser(identifier, password) {
   return (dispatch) => {
     return auth(identifier, password)
       .then((session) => {
+
+        connect(session.lightstreamerEndpoint, session.currentAccountId, session['CST'], session['X-SECURITY-TOKEN']);
         dispatch(authUser(session));
         return session;
       }).catch(() => {

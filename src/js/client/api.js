@@ -29,10 +29,6 @@ export function auth(identifier, password, encryptedPassword=false) {
   return doPost(`${BASE}session`, createHeaders(), null, data, ['CST', 'X-SECURITY-TOKEN']);
 }
 
-// export function restore(cst, xst) {
-//   return doGet(`${BASE}session`, createHeaders(cst, xst));
-// }
-
 export function unauth(cst, xst) {
   return doDelete(`${BASE}session`, createHeaders(cst, xst));
 }

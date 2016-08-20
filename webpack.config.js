@@ -47,7 +47,6 @@ module.exports = (env) => {
         new HtmlWebpackPlugin({
           template: './index.html',
         }),
-        new webpack.HotModuleReplacementPlugin(),
         ifProd(new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
         })),
