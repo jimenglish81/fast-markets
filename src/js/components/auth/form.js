@@ -11,8 +11,8 @@ const AuthForm = (props) => {
       <form onSubmit={props.onFormSubmit}>
         <FormGroup>
           <input
+            autoFocus
             placeholder="Username"
-            className="form-control"
             onChange={inputChange('identifier')}
             value={props.identifier}
           />
@@ -21,17 +21,18 @@ const AuthForm = (props) => {
           <input
             type="password"
             placeholder="Password"
-            className="form-control"
             onChange={inputChange('password')}
             value={props.password}
           />
         </FormGroup>
         <FormError error={props.error} />
-        <button
-          action="submit"
-          className="btn">
-          Sign in
-        </button>
+        <FormGroup>
+          <button
+            action="submit"
+            className="btn btn-primary">
+            Sign in
+          </button>
+        </FormGroup>
       </form>
     </div>
   );

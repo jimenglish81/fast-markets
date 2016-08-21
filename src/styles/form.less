@@ -1,0 +1,32 @@
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+}
+
+input {
+  margin: 0;
+  max-width: 100%;
+  flex: 1 0 auto;
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+  text-align: left;
+  line-height: 1em;
+  font-family: @pageFont;
+  padding: 1em 1.2em;
+  background:  @input-background-color;
+  border: 1px solid @input-border-color;
+  color: @input-color;
+  border-radius: .3rem;
+  transition: box-shadow .1s ease,border-color .1s ease;
+  box-shadow: none;
+}
+
+input:focus {
+    border-color: @input-border-color-focus;
+    box-shadow: none;
+}

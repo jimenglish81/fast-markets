@@ -1,11 +1,14 @@
+@import './palette.less';
+
 /*******************************
              Base
 *******************************/
 @background: #505155;
-@textColor: rgba(0,0,0,.87);
+@textColor: rgba(0, 0, 0,.8);
+@smallPrintColor: #f0f0f0;
 @pageFont: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-@logoFont: 'Oswald', sans-serif;
-@logoColor: #FBDB0C;
+@logoFont: 'Alegreya Sans SC', cursive;
+@logoColor: @primary;
 
 /*******************************
              Links
@@ -37,7 +40,13 @@
 @googleBodySubset: 'latin';
 @googleBodyFontRequest: '@{googleBodyFontName}:@{googleBodyFontSizes}&subset=@{googleBodySubset}';
 
-@googleLogoFontName: 'Oswald';
+@googleLogoFontName: 'Alegreya+Sans+SC';
 @googleLogoFontSizes: '700';
 @googleLogoSubset: 'latin';
 @googleLogoFontRequest: '@{googleLogoFontName}:@{googleLogoFontSizes}&subset=@{googleLogoSubset}';
+
+/*******************************
+             Statuses
+*******************************/
+@market-status-dealable: #55ae3a;
+@market-status-undealable: #cd3333;

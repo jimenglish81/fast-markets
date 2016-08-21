@@ -5,25 +5,25 @@ import {
 } from '../actions/types';
 import { Map } from 'immutable';
 
-export default (state={}, action) => {
-  switch (action.type) {
+export default (state={}, { payload, type }) => {
+  switch (type) {
     case AUTH_USER:
       return {
-        session: action.payload,
+        session: payload,
+        cst: payload.CST,
+        xst: payload['X-SECURITY-TOKEN'],
         isAuthenticated: true,
         error: null,
       };
     case UNAUTH_USER:
       return {
-        ...state,
         session: null,
         isAuthenticated: false,
       };
     case AUTH_ERROR:
       return {
-        ...state,
         isAuthenticated: false,
-        error: action.payload,
+        error: payload,
       };
     default:
       return state;

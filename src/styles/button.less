@@ -1,0 +1,58 @@
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: 0;
+  border: none;
+  vertical-align: baseline;
+  font-family: @pageFont;
+  padding: 1em 1.2em;
+  text-transform: none;
+  text-shadow: none;
+  font-weight: 700;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  border-radius: .3rem;
+  box-shadow: 0 0 0 1px transparent inset,0 0 0 0 rgba(34, 36, 38, .15) inset;
+  user-select: none;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  position: relative;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  border-radius: .3rem;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transform-origin: 50%;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+.btn:hover:before {
+  transform: scaleX(1);
+}
+
+.btn-primary {
+  background: @primary;
+  color: @textColor;
+}
+
+.btn-primary:before {
+  background: @secondary;
+}
+
+.btn-primary:hover {
+  color: rgba(0, 0, 0, 1);
+}

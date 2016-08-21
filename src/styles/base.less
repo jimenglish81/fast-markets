@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=@{googleBodyFontRequest}');
 @import url('https://fonts.googleapis.com/css?family=@{googleLogoFontRequest}');
 
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Anaheim|Codystar|Crushed|Pompiere|Raleway+Dots|Source+Sans+Pro');
-
 /*******************************
              Base
 *******************************/
@@ -96,38 +94,29 @@ h5:last-child {
 }
 
 /*******************************
-             Logo
-*******************************/
-
-.logo {
-  font-family: 'Alegreya Sans SC', cursive;
-  margin: 0;
-  color: @logoColor;
-}
-
-/*******************************
              Text
 *******************************/
-
 p {
   margin: 0em 0em 1em;
   line-height: 1.4285em;
 }
+
 p:first-child {
   margin-top: 0;
 }
+
 p:last-child {
   margin-bottom: 0;
 }
 
-/*-------------------
-        Links
---------------------*/
-
+/*******************************
+          Links
+*******************************/
 a {
   color: @linkColor;
   text-decoration: none;
 }
+
 a:hover {
   color: @linkHoverColor;
   text-decoration: underline;
@@ -137,205 +126,35 @@ a:hover {
 /*******************************
           Highlighting
 *******************************/
-
-/* Site */
 ::-webkit-selection {
   background-color: @highlightBackground;
   color: @highlightColor;
 }
+
 ::-moz-selection {
   background-color: @highlightBackground;
   color: @highlightColor;
 }
+
 ::selection {
   background-color: @highlightBackground;
   color: @highlightColor;
 }
 
-/*******************************
-             Form
-*******************************/
 textarea::-webkit-selection,
 input::-webkit-selection {
   background-color: @inputHighlightBackground;
   color: @inputHighlightColor;
 }
+
 textarea::-moz-selection,
 input::-moz-selection {
   background-color: @inputHighlightBackground;
   color: @inputHighlightColor;
 }
+
 textarea::selection,
 input::selection {
   background-color: @inputHighlightBackground;
   color: @inputHighlightColor;
-}
-.form-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-label {
-  display: inline-block;
-}
-input {
-  margin: 0;
-  max-width: 100%;
-  flex: 1 0 auto;
-  outline: 0;
-  -webkit-tap-highlight-color: rgba(255,255,255,0);
-  text-align: left;
-  line-height: 1em;
-  font-family: @pageFont;
-  padding: .8em 1em;
-  background:  @input-background-color;
-  border: 1px solid @input-border-color;
-  color: @input-color;
-  border-radius: .3rem;
-  transition: box-shadow .1s ease,border-color .1s ease;
-  box-shadow: none;
-}
-input:focus {
-    border-color: @input-border-color-focus;
-    box-shadow: none;
-}
-
-/*******************************
-             Columns
-*******************************/
-.no-gutter > [class*=col-] {
-  padding-right: 0;
-  padding-left: 0;
-}
-.col_group {
-  display: flex;
-}
-.col_1, .col_2, .col_3 {
-  min-height: 1px;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.col_1 {
-  width: 100%;
-}
-.col_2 {
-  width: 50%;
-}
-.col_3 {
-  width: 33.333333333%
-}
-
-/*** TEMP ***/
-
-footer {
-  left: 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  color: #F0F0F0;
-}
-
-button {
-  cursor: pointer;
-  display: inline-block;
-  min-height: 1em;
-  outline: 0;
-  border: none;
-  vertical-align: baseline;
-  background: #FBDB0C;
-  color: rgba(0,0,0,.6);
-  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-  margin: 0 .25em 0 0;
-  padding: .78571429em 1.5em;
-  text-transform: none;
-  text-shadow: none;
-  font-weight: 700;
-  line-height: 1em;
-  font-style: normal;
-  text-align: center;
-  text-decoration: none;
-  border-radius: .28571429rem;
-  box-shadow: 0 0 0 1px transparent inset,0 0 0 0 rgba(34,36,38,.15) inset;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transition-property: color;
-  transition-duration: 0.3s;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  position: relative;
-}
-
-.btn:before {
-    content: "";
-    position: absolute;
-    border-radius: .28571429rem;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #FFE303;
-    transform: scaleX(0);
-    transform-origin: 50%;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-
-.btn:hover:before {
-  transform: scaleX(1);
-}
-
-.btn:hover {
-    color: black;
-}
-
-/*button:hover {
-    background-color: #CACBCD;
-    background-image: none;
-    box-shadow: 0 0 0 1px transparent inset,0 0 0 0 rgba(34,36,38,.15) inset;
-    color: rgba(0,0,0,.8);
-}
-
-button:active {
-  background-color: #BABBBC;
-  background-image: '';
-  color: rgba(0,0,0,.9);
-  box-shadow: 0 0 0 1px transparent inset,none;
-}
-*/
-.nav {
-  line-height: 20px;
-  padding: 10px;
-  color: #9d9d9d;
-  background-color: #1F1F1F;
-  font-size: 14px;
-}
-
-.login-form {
-  margin: 0 auto;
-  max-width: 500px;
-  padding: 30px;
-}
-
-.login-form input {
-  width: 100%;
-}
-
-.form-control {
-  text-align: left;
-  padding-left: 5px;
-}
-
-.sparkline {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
 }

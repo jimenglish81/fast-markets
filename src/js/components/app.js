@@ -3,9 +3,11 @@ import Header from './header';
 
 const App = (props) => {
   return (
-    <div>
+    <div className="minute-markets">
       <Header />
-      {props.children}
+      <div className="minute-markets-body">
+        {props.children}
+      </div>
       <footer>
         <p>Powered by IG</p>
       </footer>
