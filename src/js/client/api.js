@@ -35,6 +35,18 @@ export function unauth(cst, xst) {
 
 // TODO - sort out traversal
 export function getSprints(cst, xst) {
-  return doGet(`${BASE}marketnavigation/381909`, createHeaders(cst, xst))
-              .then((resp) => console.log(resp.markets));
+  // const headers = createHeaders(cst, xst);
+  //
+  // doGet(`${BASE}marketnavigation`, headers)
+  //   .then(() => )
+  // return doGet(`${BASE}marketnavigation/381909`, createHeaders(cst, xst))
+  //             .then((resp) => console.log(resp.markets));
+}
+
+export function getChartData(cst, xst, epic) {
+  const headers = createHeaders(cst, xst);
+  const url = `${BASE}chart/snapshot/${epic}/1/SECOND/combined/300?format=json&siteId=igi&locale=en_GB`;
+
+  return doGet(url, headers)
+              .then((resp) => console.log(resp));
 }

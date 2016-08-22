@@ -5,13 +5,11 @@ const MarketDropdownOption = (props) => {
   const {
     market,
     onClick,
-    selected=false,
   } = props;
 
   return (
     <div
       className="market-dropdown-item"
-      selected={selected}
       onClick={() => onClick(market)}>
       <MarketName
         status={market.status}
@@ -24,7 +22,6 @@ const MarketDropdownOption = (props) => {
 MarketDropdownOption.propTypes = {
   market: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
-  selected: PropTypes.bool,
 };
 
 export default MarketDropdownOption;

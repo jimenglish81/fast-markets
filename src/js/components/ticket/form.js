@@ -1,11 +1,31 @@
 import React from 'react';
 import { FormGroup } from '../common/form';
+import MarketDropdown from '../market/dropdown';
 
-// TODO - hard code one minute
+const markets = [
+  {
+    epic: 'W.IP',
+    status: 'dealable',
+    name: 'FTSE',
+  },
+  {
+    epic: 'V.IP',
+    status: 'undealable',
+    name: 'Google',
+  }
+]
+
 const TicketForm = () => {
   return (
     <section className="ticket">
       <form className="ticket-form">
+        <FormGroup>
+          <MarketDropdown
+            markets={markets}
+            selectedMarket={markets[0]}
+            onClick={() => console.log(arguments)}
+          />
+        </FormGroup>
         <FormGroup label="Stake">
           <input
             placeholder="Min: 1"
@@ -15,34 +35,6 @@ const TicketForm = () => {
             step="any"
             type="number"
           />
-        </FormGroup>
-        <FormGroup label="Expiry">
-          <div className="expiry">
-            <label>
-              <input
-                name="expiry"
-                type="radio"
-                value="1"
-              />
-              <span>1</span>
-            </label>
-            <label>
-              <input
-                name="expiry"
-                type="radio"
-                value="2"
-              />
-              <span>2</span>
-            </label>
-            <label>
-              <input
-                name="expiry"
-                type="radio"
-                value="5"
-              />
-              <span>5</span>
-            </label>
-          </div>
         </FormGroup>
         <FormGroup label="Direction">
           <label>
