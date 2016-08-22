@@ -58,7 +58,7 @@ class MarketDropdown extends Component {
     const className = `market-dropdown${this.state.isOpen ? ' market-dropdown--open' : ''}`;
 
     return (
-      <div className="market-dropdown" ref={(el) => this._element = el}>
+      <div className={className} ref={(el) => this._element = el}>
         <div className="market-dropdown-selected" onMouseDown={this.onMouseDown}>
           <MarketName
             status={selectedMarket.status}

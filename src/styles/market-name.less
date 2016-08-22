@@ -29,9 +29,26 @@
 .market-dropdown {
   position: relative;
 }
-.market-dropdown--open {
 
+.market-dropdown-arrow {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 0;
+  content: ' ';
+  display: block;
+  height: 0;
+  margin-top: -ceil(2.5);
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  width: 0
 }
+
+.market-dropdown--open .market-dropdown-arrow {
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+
 .market-dropdown-menu {
   background-color: white;
   box-sizing: border-box;
