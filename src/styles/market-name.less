@@ -1,60 +1,74 @@
+/*******************************
+          Market Name
+*******************************/
 .market-name {
   align-items: center;
   display: flex;
   flex-direction: row;
 }
 
-.market-status {
+.market-name--status {
   display: inline-block;
   height: 8px;
   width: 8px;
 }
 
-.market-status-dealable {
-  background: @market-status-dealable;
+.market-name--status--dealable {
+  background-color: @market-status-dealable;
 }
 
-.market-status-undealable {
-  background: @market-status-undealable;
+.market-name--status--undealable {
+  background-color: @market-status-undealable;
 }
 
-.market-name_title {
+.market-name--title {
   overflow-x: hidden;
+  padding-left: 5px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-left: 5px;
 }
 
-/* temp */
+/*******************************
+        Market Dropdown
+*******************************/
 .market-dropdown {
+  cursor: pointer;
   position: relative;
 }
 
-.market-dropdown-arrow {
+.market-dropdown__selected {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 2px 4px;
+}
+
+.market-dropdown .market-name {
+  width: 95%;
+}
+
+.market-dropdown__arrow {
   border-color: #999 transparent transparent;
   border-style: solid;
   border-width: 5px 5px 0;
   content: ' ';
   display: block;
   height: 0;
-  margin-top: -ceil(2.5);
-  position: absolute;
-  right: 10px;
-  top: 14px;
-  width: 0
+  width: 5%;
 }
 
-.market-dropdown--open .market-dropdown-arrow {
+.market-dropdown--open .market-dropdown__arrow {
   border-color: transparent transparent #999;
   border-width: 0 5px 5px;
 }
 
-.market-dropdown-menu {
-  background-color: white;
+.market-dropdown__menu {
+  background-color: rgba(70, 71, 75, .2);
   box-sizing: border-box;
   margin-top: -1px;
   max-height: 200px;
   overflow-y: auto;
+  padding: 2px 4px;
   position: absolute;
   top: 100%;
   width: 100%;

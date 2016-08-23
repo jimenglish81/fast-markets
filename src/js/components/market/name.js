@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
 const MarketName = (props) => {
-  const className = 'market-name_status market-status';
-  const statusClassName = `${className} market-status-${props.status}`;
+  const className = 'market-name--status';
+  const statusClassName = `${className} market-name--status--${props.status}`;
   const statusTitle = 'look up in obj';
 
   return (
@@ -12,7 +12,7 @@ const MarketName = (props) => {
         title={statusTitle}>
       </span>
       <strong
-        className="market-name_title"
+        className="market-name--title"
         title={props.marketName}>
         {props.marketName}
       </strong>

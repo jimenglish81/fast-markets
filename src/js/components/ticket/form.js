@@ -2,28 +2,15 @@ import React from 'react';
 import { FormGroup } from '../common/form';
 import MarketDropdown from '../market/dropdown';
 
-const markets = [
-  {
-    epic: 'W.IP',
-    status: 'dealable',
-    name: 'FTSE',
-  },
-  {
-    epic: 'V.IP',
-    status: 'undealable',
-    name: 'Google',
-  }
-]
-
-const TicketForm = () => {
+const TicketForm = (props) => {
   return (
     <section className="ticket">
       <form className="ticket-form">
         <FormGroup>
           <MarketDropdown
-            markets={markets}
-            selectedMarket={markets[0]}
-            onClick={() => console.log(arguments)}
+            markets={props.markets}
+            selectedMarket={props.selectedMarket}
+            onClick={props.onSelectMarket}
           />
         </FormGroup>
         <FormGroup label="Stake">

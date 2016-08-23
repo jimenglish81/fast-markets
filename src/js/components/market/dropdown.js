@@ -10,6 +10,7 @@ class MarketDropdown extends Component {
     };
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
+    this.onMarketClick = this.onMarketClick.bind(this);
   }
 
   componentDidMount () {
@@ -35,10 +36,16 @@ class MarketDropdown extends Component {
     });
   }
 
+  onMarketClick(market) {
+    this.props.onClick(market);
+    this.setState({
+      isOpen: false,
+    });
+  }
+
   renderItems() {
     const {
       markets,
-      onClick,
       selectedMarket
     } = this.props;
 
@@ -46,7 +53,7 @@ class MarketDropdown extends Component {
       return (
         <MarketDropdownOption
           key={market.epic}
-          onClick={onClick}
+          onClick={this.onMarketClick}
           market={market}
         />
       );
@@ -59,14 +66,14 @@ class MarketDropdown extends Component {
 
     return (
       <div className={className} ref={(el) => this._element = el}>
-        <div className="market-dropdown-selected" onMouseDown={this.onMouseDown}>
+        <div className="market-dropdown__selected" onMouseDown={this.onMouseDown}>
           <MarketName
             status={selectedMarket.status}
             marketName={selectedMarket.name}
           />
-        <span className="market-dropdown-arrow" />
+        <span className="market-dropdown__arrow" />
         </div>
-        {this.state.isOpen ? <div className="market-dropdown-menu">{this.renderItems()}</div> : null}
+        {this.state.isOpen ? <div className="market-dropdown__menu">{this.renderItems()}</div> : null}
       </div>
     );
   }
