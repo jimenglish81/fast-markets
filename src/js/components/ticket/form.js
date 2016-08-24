@@ -24,27 +24,10 @@ const TicketForm = (props) => {
           />
         </FormGroup>
         <FormGroup label="Direction">
-          <label>
-            <input
-              name="direction"
-              type="radio"
-              value="above"
-            />
-            <span>above</span>
-          </label>
+          <button className="btn btn--price btn--price--above">above</button>
           <div>1234.56</div>
-          <label>
-            <input
-              name="direction"
-              type="radio"
-              value="below"
-            />
-            <span>below</span>
-          </label>
+          <button className="btn btn--price btn--price--below">below</button>
         </FormGroup>
-        <button>
-          submit
-        </button>
       </form>
     </section>
   );

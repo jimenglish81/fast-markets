@@ -11,6 +11,7 @@
   text-shadow: none;
   font-weight: 700;
   line-height: 1em;
+  color: @textColor;
   font-style: normal;
   text-align: center;
   text-decoration: none;
@@ -22,6 +23,10 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   position: relative;
+}
+
+.btn:hover {
+  color: rgba(0, 0, 0, 1);
 }
 
 .btn:before {
@@ -46,13 +51,32 @@
 
 .btn-primary {
   background: @primary;
-  color: @textColor;
 }
 
 .btn-primary:before {
   background: @secondary;
 }
 
-.btn-primary:hover {
-  color: rgba(0, 0, 0, 1);
+
+/* temp */
+.btn--price,
+.btn--price:hover {
+  color: @smallPrintColor;
+}
+
+.btn--price--above {
+  background: @deal-primary;
+}
+
+.btn--price--above:before {
+  background: #4DBD33;
+}
+
+.btn--price--below {
+  background: @deal-secondary;
+  color: @smallPrintColor;
+}
+
+.btn--price--below:before {
+  background: #DB2929;
 }
