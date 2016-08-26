@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import AuthForm from '../../components/auth/form';
-import { requestAuthUser } from '../../actions';
+import { authUser } from '../../actions';
 
 class Auth extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Auth extends Component {
   _handleFormSubmit(evt) {
     evt.preventDefault();
     const { identifier, password } = this.state;
-    this.props.requestAuthUser(identifier, password);
+    this.props.authUser(identifier, password);
   }
 
   _handleInputChange(key, value) {
@@ -42,7 +42,7 @@ class Auth extends Component {
 }
 
 Auth.propTypes = {
-  requestAuthUser: React.PropTypes.func.isRequired,
+  authUser: React.PropTypes.func.isRequired,
   error: React.PropTypes.string,
 };
 
@@ -52,4 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { requestAuthUser })(Auth);
+export default connect(mapStateToProps, { authUser })(Auth);

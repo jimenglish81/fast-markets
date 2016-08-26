@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/app';
 import Auth from './containers/auth/auth';
 import CheckAuth from './containers/auth/check-auth';
-import Sprints from './components/sprints';
+import Sprints from './containers/sprints';
 
 const AuthenticatedRoute = CheckAuth('login', (isAuth) => !isAuth);
 const UnauthenticatedRoute = CheckAuth('sprints', (isAuth) => isAuth)(Auth);

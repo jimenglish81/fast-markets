@@ -1,59 +1,54 @@
-import { auth, unauth, restore } from '../client/api';
+import { API_CALL } from '../middlewares/api';
 import {
-  AUTH_USER,
-  UNAUTH_USER,
-  AUTH_ERROR
+  auth,
+  unauth,
+  sprints
+} from '../client/api';
+import {
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+
+  UNAUTH_REQUEST,
+  UNAUTH_SUCCESS,
+  UNAUTH_FAILURE,
+
+  MARKETS_REQUEST,
+  MARKETS_SUCCESS,
+  MARKETS_FAILURE,
+
+  SELECT_MARKET
 } from './types';
 import { hashHistory, push } from 'react-router';
 import connect from '../client/streaming';
+//connect(session.lightstreamerEndpoint, session.currentAccountId, session['CST'], session['X-SECURITY-TOKEN']);
 
-export function requestAuthUser(identifier, password) {
-  return (dispatch) => {
-    return auth(identifier, password)
-      .then((session) => {
 
-        connect(session.lightstreamerEndpoint, session.currentAccountId, session['CST'], session['X-SECURITY-TOKEN']);
-        dispatch(authUser(session));
-        return session;
-      }).catch(() => {
-        dispatch(authError('Auth failed.'));
-      });
-  };
-}
-
-export function requestRestoreUser(cst, xst) {
-  return (dispatch) => {
-    restore(cst, xst)
-      .then((session) => {
-        dispatch(authUser(session));
-      }).catch(() => {
-        dispatch(authError('Auth failed.'));
-      });
-  };
-}
-
-export function requestUnauthUser(cst, xst) {
-  return (dispatch) => {
-    const fn = () => {
-      dispatch(unauthUser());
-    };
-
-    unauth(cst, xst)
-      .then(fn)
-      .catch(fn);
-  };
-}
-
-export const authUser = (session) => ({
-  type: AUTH_USER,
-  payload: session,
+export const authUser = (identifier, password) => ({
+  [API_CALL]: {
+    apiMethod: () => auth(identifier, password),
+    authenticated: false,
+    types: [AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE],
+  },
 });
 
 export const unauthUser = () => ({
-  type: UNAUTH_USER,
+  [API_CALL]: {
+    apiMethod: unauth,
+    authenticated: true,
+    types: [UNAUTH_REQUEST, UNAUTH_SUCCESS, UNAUTH_FAILURE],
+  },
 });
 
-export const authError = (error) => ({
-  type: AUTH_ERROR,
-  payload: error,
+export const fetchMarkets = () => ({
+  [API_CALL]: {
+    apiMethod: sprints,
+    authenticated: true,
+    types: [MARKETS_REQUEST, MARKETS_SUCCESS, MARKETS_FAILURE],
+  },
+});
+
+export const selectMarket = (market) => ({
+  type: SELECT_MARKET,
+  payload: market,
 });

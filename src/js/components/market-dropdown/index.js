@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import MarketDropdownOption from './dropdown-option';
+import MarketDropdownOption from './option';
 import MarketName from './name';
 
 class MarketDropdown extends Component {

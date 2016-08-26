@@ -1,3 +1,13 @@
-export const AUTH_USER = 'AUTH_USER';
-export const UNAUTH_USER = 'AUTH_USER';
-export const AUTH_ERROR = 'AUTH_ERROR';
+export const AUTH_REQUEST = 'AUTH_REQUEST';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILURE = 'AUTH_FAILURE';
+
+export const UNAUTH_REQUEST = 'UNAUTH_REQUEST';
+export const UNAUTH_SUCCESS = 'UNAUTH_SUCCESS';
+export const UNAUTH_FAILURE = 'UNAUTH_FAILURE';
+
+export const MARKETS_REQUEST = 'MARKETS_SUCCESS';
+export const MARKETS_SUCCESS = 'MARKETS_SUCCESS';
+export const MARKETS_FAILURE = 'MARKETS_FAILURE';
+
+export const SELECT_MARKET = 'SELECT_MARKET';

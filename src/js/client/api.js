@@ -2,7 +2,6 @@ import { KEY } from '../secret';
 import { doGet, doPost, doDelete } from './request';
 
 const BASE = 'https://web-api.ig.com/gateway/deal/';
-
 const createHeaders = (cst, xst) => {
   const headers = {
     'X-IG-API-KEY': KEY,
@@ -34,13 +33,19 @@ export function unauth(cst, xst) {
 }
 
 // TODO - sort out traversal
-export function getSprints(cst, xst) {
-  // const headers = createHeaders(cst, xst);
-  //
-  // doGet(`${BASE}marketnavigation`, headers)
-  //   .then(() => )
-  // return doGet(`${BASE}marketnavigation/381909`, createHeaders(cst, xst))
-  //             .then((resp) => console.log(resp.markets));
+// 357975
+//    381908
+//        381909
+function marketNavigation(cst, xst, id) {
+  const headers = createHeaders(cst, xst);
+  const url = `${BASE}marketnavigation${id ? `/${id}` : ''}`;
+
+  return doGet(`${BASE}marketnavigation`, headers);
+}
+
+// TODO - parse markets into appropriate.
+export function sprints(cst, xst) {
+  return marketNavigation(cst, xst, '381909');
 }
 
 export function getChartData(cst, xst, epic) {

@@ -1,18 +1,10 @@
 import React from 'react';
 import { FormGroup } from '../common/form';
-import MarketDropdown from '../market/dropdown';
 
 const TicketForm = (props) => {
   return (
     <section className="ticket">
       <form className="ticket-form">
-        <FormGroup>
-          <MarketDropdown
-            markets={props.markets}
-            selectedMarket={props.selectedMarket}
-            onClick={props.onSelectMarket}
-          />
-        </FormGroup>
         <FormGroup label="Stake">
           <input
             placeholder="Min: 1"

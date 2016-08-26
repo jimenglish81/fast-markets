@@ -1,61 +1,50 @@
-// middleware/api.js
-// TODO - talk to api client
-const BASE_URL = 'http://localhost:3001/api/'
+// TODO - move to store/session object.
+let cst;
+let xst;
 
-function callApi(endpoint, authenticated) {
-
-  let token = localStorage.getItem('id_token') || null
-  let config = {}
-
+function callApi(apiMethod, authenticated) {
   if(authenticated) {
-    if(token) {
-      config = {
-        headers: { 'Authorization': `Bearer ${token}` }
-      }
+    if (cst && xst) {
+      return apiMethod(cst, xst);
+    } else {
+      return Promise.reject(`Unauthenticated for '${apiMethod.name}'.`);
     }
-    else {
-      throw "No token saved!"
-    }
+  } else {
+    return apiMethod().then((resp) => {
+      cst = resp['CST'] || cst;
+      xst = resp['X-SECURITY-TOKEN'] || xst;
+
+      return resp;
+    });
   }
 
-  return fetch(BASE_URL + endpoint, config)
-    .then(response =>
-      response.text().then(text => ({ text, response }))
-    ).then(({ text, response }) => {
-      if (!response.ok) {
-        return Promise.reject(text)
-      }
-
-      return text
-    }).catch(err => console.log(err))
+  return
 }
 
-export const CALL_API = Symbol('Call API')
+export const API_CALL = Symbol('apiCall');
 
-export default store => next => action => {
+export default (store) => (next) => (action) => {
+  const apiAction = action[API_CALL];
 
-  const callAPI = action[CALL_API]
-
-  // So the middleware doesn't get applied to every single action
-  if (typeof callAPI === 'undefined') {
-    return next(action)
+  if (!apiAction) {
+    return next(action);
   }
 
-  let { endpoint, types, authenticated } = callAPI
+  const {
+    apiMethod,
+    types: [requestType, successType, errorType],
+    authenticated
+  } = apiAction;
 
-  const [ requestType, successType, errorType ] = types
-
-  // Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
-  return callApi(endpoint, authenticated).then(
-    response =>
+  return callApi(apiMethod, authenticated).then(
+    (response) =>
       next({
-        response,
-        authenticated,
-        type: successType
+        type: successType,
+        payload: response,
       }),
-    error => next({
-      error: error.message || 'There was an error.',
-      type: errorType
+    (error) => next({
+      type: errorType,
+      error,
     })
   )
 }

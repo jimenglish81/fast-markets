@@ -1,28 +1,32 @@
 import {
-  AUTH_USER,
-  UNAUTH_USER,
-  AUTH_ERROR
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  UNAUTH_REQUEST,
+  UNAUTH_SUCCESS,
+  UNAUTH_FAILURE
 } from '../actions/types';
 import { Map } from 'immutable';
 
-export default (state={}, { payload, type }) => {
+export default (state={ isAuthenticated: false }, { payload, type }) => {
   switch (type) {
-    case AUTH_USER:
+    case AUTH_SUCCESS:
       return {
-        session: payload,
-        cst: payload.CST,
-        xst: payload['X-SECURITY-TOKEN'],
         isAuthenticated: true,
+        session: payload,
         error: null,
       };
-    case UNAUTH_USER:
+    case UNAUTH_SUCCESS:
+    case UNAUTH_FAILURE:
       return {
+        isAuthenticated: false,
         session: null,
-        isAuthenticated: false,
+        error: null,
       };
-    case AUTH_ERROR:
+    case AUTH_FAILURE:
       return {
         isAuthenticated: false,
+        session: null,
         error: payload,
       };
     default:

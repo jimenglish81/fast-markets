@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { requestUnauthUser} from '../actions';
+import { unauthUser} from '../actions';
 import { Link } from 'react-router';
 import { isAuthenticated } from '../reducers';
 
+// TODO - container?
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class Header extends Component {
   }
 
   _handleLogout() {
-    this.props.requestUnauthUser();
+    this.props.unauthUser();
   }
 
   renderItems() {
@@ -43,7 +44,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  requestUnauthUser: React.PropTypes.func.isRequired,
+  unauthUser: React.PropTypes.func.isRequired,
   isAuthenticated: React.PropTypes.bool,
 };
 
@@ -53,4 +54,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { requestUnauthUser })(Header);
+export default connect(mapStateToProps, { unauthUser })(Header);

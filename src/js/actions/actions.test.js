@@ -6,7 +6,7 @@ import {
 import {
   AUTH_USER,
   UNAUTH_USER,
-  AUTH_ERROR
+  AUTH_FAILURE
 } from './types';
 
 describe('an action test', function() {
@@ -25,7 +25,7 @@ describe('an action test', function() {
   it(`can create 'authError' action`, function() {
     const payload = 'error';
     const action = authError(payload);
-    expect(action.type).to.equal(AUTH_ERROR);
+    expect(action.type).to.equal(AUTH_FAILURE);
     expect(action.payload).to.equal(payload);
   });
 });
