@@ -12,8 +12,8 @@ const MarketDropdownOption = (props) => {
       className="market-dropdown-item"
       onClick={() => onClick(market)}>
       <MarketName
-        status={market.status}
-        marketName={market.name}
+        status={market.marketStatus}
+        name={market.instrumentName}
       />
     </div>
   );

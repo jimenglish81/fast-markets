@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 
 const MarketName = (props) => {
+  const status = props.status === 'OPEN' ?
+                    'dealable' : 'undealable';
   const className = 'market-name--status';
-  const statusClassName = `${className} market-name--status--${props.status}`;
+  const statusClassName = `${className} market-name--status--${status}`;
   const statusTitle = 'look up in obj';
 
   return (
@@ -13,8 +15,8 @@ const MarketName = (props) => {
       </span>
       <strong
         className="market-name--title"
-        title={props.marketName}>
-        {props.marketName}
+        title={props.name}>
+        {props.name}
       </strong>
     </div>
   );
@@ -22,8 +24,7 @@ const MarketName = (props) => {
 
 MarketName.propTypes = {
   status: PropTypes.string.isRequired,
-  statusTitle: PropTypes.string.isRequired,
-  marketName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default MarketName;

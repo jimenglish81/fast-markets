@@ -18,6 +18,16 @@ const createHeaders = (cst, xst) => {
   return headers;
 };
 
+const parseMarketNavigationResp = ({ markets }) => {
+  return markets.map((market) => {
+    return _.pick(market, [
+      'epic',
+      'instrumentName',
+      'marketStatus',
+    ]);
+  });
+};
+
 export function auth(identifier, password, encryptedPassword=false) {
   const data = {
     identifier,
@@ -36,17 +46,29 @@ export function unauth(cst, xst) {
 // 357975
 //    381908
 //        381909
-function marketNavigation(cst, xst, id) {
+function marketNavigation(id, cst, xst) {
   const headers = createHeaders(cst, xst);
   const url = `${BASE}marketnavigation${id ? `/${id}` : ''}`;
 
-  return doGet(`${BASE}marketnavigation`, headers);
+  return doGet(url, headers);
 }
 
-// TODO - parse markets into appropriate.
 export function sprints(cst, xst) {
-  return marketNavigation(cst, xst, '381909');
+  return marketNavigation('381909', cst, xst)
+          .then(parseMarketNavigationResp);
 }
+
+export function market(cst, xst, epic) {
+  const headers = {
+    ...createHeaders(cst, xst),
+    version: 3,
+  };
+  const url = `${BASE}markets/${epic}`;
+
+  return doGet(url, headers);
+}
+
+
 
 export function getChartData(cst, xst, epic) {
   const headers = createHeaders(cst, xst);

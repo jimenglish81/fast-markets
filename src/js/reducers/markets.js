@@ -8,10 +8,9 @@ import {
 export default (state={}, { payload, type }) => {
   switch (type) {
     case MARKETS_SUCCESS:
-      const markets = { payload };
       return {
-        markets,
-        selectedMarket: zmarkets[0],
+        markets: payload,
+        selectedMarket: payload[0],
       };
     case SELECT_MARKET:
       return {

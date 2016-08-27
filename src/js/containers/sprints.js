@@ -21,7 +21,7 @@ class Sprints extends Component {
 
   render() {
     const { selectedMarket } = this.props;
-
+debugger;
     return conditionalRender(selectedMarket, (
       <div>
         <MarketDropdown />

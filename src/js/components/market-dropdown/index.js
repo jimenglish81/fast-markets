@@ -68,8 +68,8 @@ class MarketDropdown extends Component {
       <div className={className} ref={(el) => this._element = el}>
         <div className="market-dropdown__selected" onMouseDown={this.onMouseDown}>
           <MarketName
-            status={selectedMarket.status}
-            marketName={selectedMarket.name}
+            status={selectedMarket.marketStatus}
+            name={selectedMarket.instrumentName}
           />
         <span className="market-dropdown__arrow" />
         </div>
