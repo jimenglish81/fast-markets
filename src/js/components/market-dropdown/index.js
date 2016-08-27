@@ -49,15 +49,17 @@ class MarketDropdown extends Component {
       selectedMarket
     } = this.props;
 
-    return _.without(markets, selectedMarket).map((market) => {
-      return (
-        <MarketDropdownOption
-          key={market.epic}
-          onClick={this.onMarketClick}
-          market={market}
-        />
-      );
-    });
+    return markets
+      .filter(({ epic }) => selectedMarket.epic !== epic)
+      .map((market) => {
+        return (
+          <MarketDropdownOption
+            key={market.epic}
+            onClick={this.onMarketClick}
+            market={market}
+          />
+        );
+      });
   }
 
   render() {

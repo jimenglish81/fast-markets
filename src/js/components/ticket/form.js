@@ -16,9 +16,11 @@ const TicketForm = (props) => {
           />
         </FormGroup>
         <FormGroup label="Direction">
-          <button className="btn btn--price btn--price--above">above</button>
-          <div>1234.56</div>
-          <button className="btn btn--price btn--price--below">below</button>
+          <div>
+            <button className="btn btn--price btn--price--above">above</button>
+            <div>1234.56</div>
+            <button className="btn btn--price btn--price--below">below</button>
+          </div>
         </FormGroup>
       </form>
     </section>

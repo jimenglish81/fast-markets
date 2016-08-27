@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { KEY } from '../secret';
 import { doGet, doPost, doDelete } from './request';
 
@@ -26,6 +27,14 @@ const parseMarketNavigationResp = ({ markets }) => {
       'marketStatus',
     ]);
   });
+};
+
+const parseMarketResp = ({ instrument, snapshot }) => {
+  return {
+    epic: instrument.epic,
+    instrumentName: instrument.name,
+    marketStatus: snapshot.marketStatus,
+  };
 };
 
 export function auth(identifier, password, encryptedPassword=false) {
@@ -58,14 +67,15 @@ export function sprints(cst, xst) {
           .then(parseMarketNavigationResp);
 }
 
-export function market(cst, xst, epic) {
+export function market(epic, cst, xst) {
   const headers = {
     ...createHeaders(cst, xst),
     version: 3,
   };
   const url = `${BASE}markets/${epic}`;
 
-  return doGet(url, headers);
+  return doGet(url, headers)
+          .then(parseMarketResp);
 }
 
 

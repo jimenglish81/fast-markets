@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectMarket } from '../../actions';
+import { selectEpic } from '../../actions';
 import Dropdown from '../../components/market-dropdown';
 
 class MarketDropdown extends Component {
@@ -8,14 +8,14 @@ class MarketDropdown extends Component {
     const {
       markets,
       selectedMarket,
-      selectMarket
+      selectEpic
     } = this.props;
 
     return (
       <Dropdown
         markets={markets}
         selectedMarket={selectedMarket}
-        onClick={selectMarket}
+        onClick={selectEpic}
       />
     );
   }
@@ -24,7 +24,7 @@ class MarketDropdown extends Component {
 MarketDropdown.propTypes = {
   markets: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedMarket: PropTypes.object.isRequired,
-  selectMarket: PropTypes.func.isRequired,
+  selectEpic: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -41,4 +41,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { selectMarket })(MarketDropdown);
+export default connect(mapStateToProps, { selectEpic })(MarketDropdown);

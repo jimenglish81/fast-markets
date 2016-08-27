@@ -10,7 +10,7 @@ const MarketDropdownOption = (props) => {
   return (
     <div
       className="market-dropdown-item"
-      onClick={() => onClick(market)}>
+      onClick={() => onClick(market.epic)}>
       <MarketName
         status={market.marketStatus}
         name={market.instrumentName}

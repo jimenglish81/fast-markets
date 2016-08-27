@@ -11,9 +11,10 @@ function callApi(apiMethod, authenticated) {
     }
   } else {
     return apiMethod().then((resp) => {
-      cst = resp['CST'] || cst;
-      xst = resp['X-SECURITY-TOKEN'] || xst;
-
+      if (resp) {
+        cst = resp['CST'] || cst;
+        xst = resp['X-SECURITY-TOKEN'] || xst;
+      }
       return resp;
     });
   }

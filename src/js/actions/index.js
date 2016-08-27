@@ -2,7 +2,8 @@ import { API_CALL } from '../middlewares/api';
 import {
   auth,
   unauth,
-  sprints
+  sprints,
+  market
 } from '../client/api';
 import {
   AUTH_REQUEST,
@@ -17,7 +18,11 @@ import {
   MARKETS_SUCCESS,
   MARKETS_FAILURE,
 
-  SELECT_MARKET
+  MARKET_REQUEST,
+  MARKET_SUCCESS,
+  MARKET_FAILURE,
+
+  SELECT_EPIC
 } from './types';
 import { hashHistory, push } from 'react-router';
 import connect from '../client/streaming';
@@ -48,7 +53,15 @@ export const fetchMarkets = () => ({
   },
 });
 
-export const selectMarket = (market) => ({
-  type: SELECT_MARKET,
-  payload: market,
+export const fetchMarket = (epic) => ({
+  [API_CALL]: {
+    apiMethod: market.bind(null, epic),
+    authenticated: true,
+    types: [MARKET_REQUEST, MARKET_SUCCESS, MARKET_FAILURE],
+  },
+});
+
+export const selectEpic = (epic) => ({
+  type: SELECT_EPIC,
+  payload: epic,
 });

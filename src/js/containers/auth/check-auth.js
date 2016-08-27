@@ -18,6 +18,11 @@ export default (route, checkFn) => (ComposedComponent) => {
     }
 
     render() {
+      // TODO - could this be a loader?
+      if (checkFn(this.props.isAuthenticated)) {
+        return null;
+      }
+
       return (
         <ComposedComponent { ...this.props} />
       );

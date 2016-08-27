@@ -1,18 +1,24 @@
+import _ from 'lodash';
 import {
-  MARKETS_REQUEST,
   MARKETS_SUCCESS,
-  MARKETS_FAILURE,
-  SELECT_MARKET
+  MARKET_SUCCESS,
+  SELECT_EPIC,
 } from '../actions/types';
 
 export default (state={}, { payload, type }) => {
   switch (type) {
     case MARKETS_SUCCESS:
       return {
+        ...state,
         markets: payload,
-        selectedMarket: payload[0],
+        selectedEpic: _.chain(payload).head().get('epic').value(),
       };
-    case SELECT_MARKET:
+    case SELECT_EPIC:
+      return {
+        ...state,
+        selectedEpic: payload,
+      };
+    case MARKET_SUCCESS:
       return {
         ...state,
         selectedMarket: payload,
