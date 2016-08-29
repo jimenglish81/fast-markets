@@ -4,7 +4,7 @@ import {
   unauth,
   sprints,
   market
-} from '../client/api';
+} from '../clients/api';
 import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
@@ -22,16 +22,15 @@ import {
   MARKET_SUCCESS,
   MARKET_FAILURE,
 
-  SELECT_EPIC
+  SELECT_EPIC,
+
+  MARKET_UPDATE,
 } from './types';
 import { hashHistory, push } from 'react-router';
-import connect from '../client/streaming';
-//connect(session.lightstreamerEndpoint, session.currentAccountId, session['CST'], session['X-SECURITY-TOKEN']);
-
 
 export const authUser = (identifier, password) => ({
   [API_CALL]: {
-    apiMethod: () => auth(identifier, password),
+    apiMethod: auth.bind(null, identifier, password),
     authenticated: false,
     types: [AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE],
   },
@@ -64,4 +63,12 @@ export const fetchMarket = (epic) => ({
 export const selectEpic = (epic) => ({
   type: SELECT_EPIC,
   payload: epic,
+});
+
+export const marketUpdate = (epic, updates) => ({
+  type: MARKET_UPDATE,
+  payload: {
+    epic,
+    updates,
+  },
 });

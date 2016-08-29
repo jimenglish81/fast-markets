@@ -15,3 +15,5 @@ export const MARKET_SUCCESS = 'MARKET_SUCCESS';
 export const MARKET_FAILURE = 'MARKET_FAILURE';
 
 export const SELECT_EPIC = 'SELECT_EPIC';
+
+export const MARKET_UPDATE = 'MARKET_UPDATE';

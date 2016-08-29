@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { FormGroup } from '../common/form';
 
 const TicketForm = (props) => {
@@ -18,13 +18,17 @@ const TicketForm = (props) => {
         <FormGroup label="Direction">
           <div>
             <button className="btn btn--price btn--price--above">above</button>
-            <div>1234.56</div>
+            <div>{props.market.strike}</div>
             <button className="btn btn--price btn--price--below">below</button>
           </div>
         </FormGroup>
       </form>
     </section>
   );
-}
+};
+
+TicketForm.propTypes = {
+  market: PropTypes.object.isRequired,
+};
 
 export default TicketForm;

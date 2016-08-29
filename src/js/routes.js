@@ -12,7 +12,6 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={UnauthenticatedRoute} />
     <Route path="login" component={UnauthenticatedRoute} />
-    <Route path="ticket" component={Sprints} />
     <Route path="sprints" component={AuthenticatedRoute(Sprints)} />
   </Route>
 );

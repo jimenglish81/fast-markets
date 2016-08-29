@@ -1,18 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import TicketForm from '../../components/ticket/form';
 
 class Ticket extends Component {
-  // move to a relect
-  _calculatePayout() {
-    const payout = props.premium / props.odds;
-    return isNaN(payout) ? null : payout;
-  }
-
   render() {
     return (
-      <TicketForm />
+      <TicketForm
+        market={this.props.selectedMarket}
+      />
     );
   }
 }
 
-export default Ticket;
+Ticket.propTypes = {
+  selectedMarket: PropTypes.object.isRequired,
+};
+
+function mapStateToProps(state) {
+  const {
+    markets: {
+      selectedMarket,
+    },
+  } = state;
+
+  return {
+    selectedMarket,
+  };
+}
+
+export default connect(mapStateToProps)(Ticket);

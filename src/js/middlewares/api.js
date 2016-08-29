@@ -1,8 +1,5 @@
-// TODO - move to store/session object.
-let cst;
-let xst;
-
-function callApi(apiMethod, authenticated) {
+function callApi(apiMethod, authenticated, sessionStore) {
+  const { cst, xst } = sessionStore.read();
   if(authenticated) {
     if (cst && xst) {
       return apiMethod(cst, xst);
@@ -12,8 +9,10 @@ function callApi(apiMethod, authenticated) {
   } else {
     return apiMethod().then((resp) => {
       if (resp) {
-        cst = resp['CST'] || cst;
-        xst = resp['X-SECURITY-TOKEN'] || xst;
+        sessionStore.write({
+          cst: resp['CST'] || cst,
+          xst: resp['X-SECURITY-TOKEN'] || xst,
+        });
       }
       return resp;
     });
@@ -24,7 +23,7 @@ function callApi(apiMethod, authenticated) {
 
 export const API_CALL = Symbol('apiCall');
 
-export default (store) => (next) => (action) => {
+export default (sessionStore) => (store) => (next) => (action) => {
   const apiAction = action[API_CALL];
 
   if (!apiAction) {
@@ -37,7 +36,7 @@ export default (store) => (next) => (action) => {
     authenticated
   } = apiAction;
 
-  return callApi(apiMethod, authenticated).then(
+  return callApi(apiMethod, authenticated, sessionStore).then(
     (response) =>
       next({
         type: successType,
@@ -47,5 +46,5 @@ export default (store) => (next) => (action) => {
       type: errorType,
       error,
     })
-  )
+  );
 }

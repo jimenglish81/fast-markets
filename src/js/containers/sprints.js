@@ -10,7 +10,7 @@ import MarketDropdown from '../containers/market-dropdown';
 import Ticket from './ticket';
 import { conditionalRender } from '../utils';
 
-// TODO does MarketDropdown need to be a container
+// TODO does MarketDropdown need to be a container? Loading could be market?
 class Sprints extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +28,7 @@ class Sprints extends Component {
       this.setState({
         isLoading: true,
       });
+
       this.props.fetchMarket(selectedEpic)
         .then(() => this.setState({ isLoading: false }));
     }
@@ -42,6 +43,8 @@ class Sprints extends Component {
         <Ticket />
         <Chart />
       </div>
+    ), (
+      <div>loading...</div>
     ));
   }
 }
