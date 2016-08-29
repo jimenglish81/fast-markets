@@ -79,7 +79,6 @@ export function market(epic, cst, xst) {
 }
 
 
-
 export function getChartData(cst, xst, epic) {
   const headers = createHeaders(cst, xst);
   const url = `${BASE}chart/snapshot/${epic}/1/SECOND/combined/300?format=json&siteId=igi&locale=en_GB`;
