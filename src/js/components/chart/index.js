@@ -82,6 +82,23 @@ const Chart = () => {
     }
   ];
 
+  // TODO - chart subscription
+  // this.lsClient.subscribe(
+  //   ['CHART:FM.D.GBPJPY24.GBPJPY24.IP:TICK'],
+  //   ['BID', 'UTM'],
+  //   'DISTINCT',
+  //   (itemUpdate) => {
+  //     const [,epic] = itemUpdate.getItemName().split(':');
+  //     let updates = {};
+  //
+  //     itemUpdate.forEachChangedField((fid, pos, value) => {
+  //       updates[fid] = value;
+  //     });
+  //
+  //     console.log(updates);
+  //   }
+  // );
+
   data.forEach(function (d) {
     d.date = d3.timeParse("%Y%m%d")(d.date);
   });

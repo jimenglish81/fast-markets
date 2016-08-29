@@ -42,6 +42,10 @@ export default class LsClient {
     return subscription;
   }
 
+  unsubscribe(subscription) {
+    this._client.unsubscribe(subscription);
+  }
+
   disconnect() {
     this._client.disconnect();
   }

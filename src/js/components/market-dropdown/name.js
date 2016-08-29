@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const MarketName = (props) => {
-  const status = props.status === 'OPEN' ?
+  const status = props.status === 'TRADEABLE' ?
                     'dealable' : 'undealable';
   const className = 'market-name--status';
   const statusClassName = `${className} market-name--status--${status}`;
