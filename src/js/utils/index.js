@@ -35,3 +35,7 @@ export const objectToQueryParams = (target) => {
 export const conditionalRender = (cond, node, empty=null) => {
   return cond ? node : empty;
 };
+
+export const generateDealReference = (accountId, timestamp) => {
+  return '1234567890';
+};

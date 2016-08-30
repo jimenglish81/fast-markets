@@ -29,11 +29,13 @@ const parseMarketNavigationResp = ({ markets }) => {
   });
 };
 
-const parseMarketResp = ({ instrument, snapshot }) => {
+const parseMarketResp = ({ instrument, snapshot, dealingRules }) => {
   return {
     epic: instrument.epic,
     instrumentName: instrument.name,
     marketStatus: snapshot.marketStatus,
+    strike: snapshot.bid,
+    minDealSize: dealingRules.minDealSize.value
   };
 };
 
@@ -77,6 +79,13 @@ export function market(epic, cst, xst) {
   return doGet(url, headers)
           .then(parseMarketResp);
 }
+
+export function createTrade(data, cst, xst) {
+  const url = `${BASE}positions/sprintmarkets`;
+
+  return doPost(url, createHeaders(cst, xst), null, data);
+}
+
 
 
 export function getChartData(cst, xst, epic) {

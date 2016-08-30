@@ -3,7 +3,8 @@ import {
   auth,
   unauth,
   sprints,
-  market
+  market,
+  createTrade
 } from '../clients/api';
 import {
   AUTH_REQUEST,
@@ -21,6 +22,10 @@ import {
   MARKET_REQUEST,
   MARKET_SUCCESS,
   MARKET_FAILURE,
+
+  TRADE_REQUEST,
+  TRADE_SUCCESS,
+  TRADE_FAILURE,
 
   SELECT_EPIC,
 
@@ -57,6 +62,14 @@ export const fetchMarket = (epic) => ({
     apiMethod: market.bind(null, epic),
     authenticated: true,
     types: [MARKET_REQUEST, MARKET_SUCCESS, MARKET_FAILURE],
+  },
+});
+
+export const submitTrade = (data) => ({
+  [API_CALL]: {
+    apiMethod: createTrade.bind(null, data),
+    authenticated: true,
+    types: [TRADE_REQUEST, TRADE_SUCCESS, TRADE_FAILURE],
   },
 });
 
