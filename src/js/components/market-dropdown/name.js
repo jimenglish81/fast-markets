@@ -1,11 +1,16 @@
 import React, { PropTypes } from 'react';
+const titles = {
+
+};
 
 const MarketName = (props) => {
-  const status = props.status === 'TRADEABLE' ?
+  const isTradeable = props.status === 'TRADEABLE';
+  const status = isTradeable ?
                     'dealable' : 'undealable';
   const className = 'market-name--status';
   const statusClassName = `${className} market-name--status--${status}`;
-  const statusTitle = 'look up in obj';
+  const statusTitle = isTradeable ?
+                    'Market Open' : 'Market Closed';
 
   return (
     <div className="market-name">

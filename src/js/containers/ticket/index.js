@@ -15,9 +15,12 @@ class Ticket extends Component {
 
   onSubmit(direction) {
     const { size } = this.state;
-    const { selectedMarket } = this.props;
+    const {
+      accountId,
+      selectedMarket
+    } = this.props;
     const data = {
-      dealReference: generateDealReference(),
+      dealReference: generateDealReference(accountId),
       direction,
       epic: selectedMarket.epic,
       expiryPeriod: 'TWO_MINUTES',
@@ -46,12 +49,16 @@ class Ticket extends Component {
 }
 
 Ticket.propTypes = {
+  accountId: PropTypes.string.isRequired,
   selectedMarket: PropTypes.object.isRequired,
   submitTrade: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   const {
+    session: {
+      accountId,
+    },
     markets: {
       selectedMarket,
     },

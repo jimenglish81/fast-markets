@@ -10,8 +10,8 @@ function callApi(apiMethod, authenticated, sessionStore) {
     return apiMethod().then((resp) => {
       if (resp) {
         sessionStore.write({
-          cst: resp['CST'] || cst,
-          xst: resp['X-SECURITY-TOKEN'] || xst,
+          cst: resp.cst|| cst,
+          xst: resp.xst || xst,
         });
       }
       return resp;

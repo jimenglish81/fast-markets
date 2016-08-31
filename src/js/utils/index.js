@@ -36,6 +36,12 @@ export const conditionalRender = (cond, node, empty=null) => {
   return cond ? node : empty;
 };
 
-export const generateDealReference = (accountId, timestamp) => {
-  return '1234567890';
+/**
+ * Generate unique deal reference.
+ * @param {String} accountId IG account id.
+ * @param {number} timestamp Current DataTime
+ * @returns {String}
+ */
+export const generateDealReference = (accountId, timestamp=new Date().getTime()) => {
+  return `MM-${timestamp}-${accountId}`;
 };

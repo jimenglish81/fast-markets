@@ -19,6 +19,22 @@ const createHeaders = (cst, xst) => {
   return headers;
 };
 
+const parseSessionResp = (session) => {
+  const {
+    accountId: currentAccountId,
+    ['CST']: cst,
+    lightstreamerEndpoint,
+    ['X-SECURITY-TOKEN']: xst,
+  } = session;
+
+  return {
+    accountId,
+    cst,
+    lightstreamerEndpoint,
+    xst,
+  };
+};
+
 const parseMarketNavigationResp = ({ markets }) => {
   return markets.map((market) => {
     return _.pick(market, [
@@ -46,7 +62,8 @@ export function auth(identifier, password, encryptedPassword=false) {
     encryptedPassword,
   };
 
-  return doPost(`${BASE}session`, createHeaders(), null, data, ['CST', 'X-SECURITY-TOKEN']);
+  return doPost(`${BASE}session`, createHeaders(), null, data, ['CST', 'X-SECURITY-TOKEN'])
+        .then(parseSessionResp);
 }
 
 export function unauth(cst, xst) {
