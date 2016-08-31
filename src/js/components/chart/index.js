@@ -125,17 +125,17 @@ const node = ReactFauxDOM.createElement('svg');
     .domain(d3.extent(counts));
 
   const yAxis = d3.axisRight()
-    .scale(yScale);
+    .scale(yScale)
+    .tickSize(-width, 0, 0);
 
   const xAxis = d3.axisBottom()
     .scale(xScale)
 
-    //.ticks(d3.timeMinute.every(15))
-
   el.append('g')
     .attr('className', 'sparkline')
   	.attr('transform', 'translate(' + width + ', 0)')
-  	.call(yAxis);
+  	.call(yAxis)
+
 
   el.append('g')
     .attr('className', 'sparkline')
@@ -154,59 +154,9 @@ const node = ReactFauxDOM.createElement('svg');
     .append('path')
     .datum(data)
     .attr('className', 'sparkline')
-    .attr('d', line)
+    .attr('d', line);
 
   return node.toReact()
 }
 
 export default Chart;
-//
-// const Chart = () => {
-//   const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-//   const width = 800 - margin.left - margin.right;
-//   const height = 400 - margin.top - margin.bottom;
-//   var data=[
-//         {day:'02-11-2016',count:180},
-//         {day:'02-12-2016',count:250},
-//         {day:'02-13-2016',count:150},
-//         {day:'02-14-2016',count:496},
-//         {day:'02-15-2016',count:140},
-//         {day:'02-16-2016',count:380},
-//         {day:'02-17-2016',count:100},
-//         {day:'02-18-2016',count:150}
-//     ];
-//
-//   data.forEach(function (d) {
-//     d.day = d3.timeParse("%m-%d-%Y")(d.day);
-//   });
-//
-//   const dates = _.map(data, 'day');
-//   const counts = _.map(data, 'count');
-//
-//   const xScale = d3.scaleTime()
-//     .range([0, width])
-//     .domain(d3.extent(dates));
-//
-//   const yScale = d3.scaleLinear()
-//     .range([height, 0])
-//     .domain(d3.extent(counts));
-//
-//   const line = d3.line()
-//     //.interpolate('bundle')
-//     .x(function (d) {
-//       return xScale(d.day);
-//     })
-//     .y(function (d) {
-//       return yScale(d.count);
-//     });
-//
-//     return (
-//       <svg width={width} height={height}>
-//         <g>
-//           <path className="line shadow" d={line(data)} strokeLinecap="round"/>
-//          </g>
-//        </svg>
-//     );
-// }
-//
-// export default Chart;
