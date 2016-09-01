@@ -21,7 +21,7 @@ const createHeaders = (cst, xst) => {
 
 const parseSessionResp = (session) => {
   const {
-    accountId: currentAccountId,
+    currentAccountId: accountId,
     ['CST']: cst,
     lightstreamerEndpoint,
     ['X-SECURITY-TOKEN']: xst,
