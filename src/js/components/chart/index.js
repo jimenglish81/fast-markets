@@ -4,9 +4,6 @@ import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
 
 const Chart = () => {
-  const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-  const width = 800 - (margin.left + margin.right);
-  const height = 400 - (margin.top + margin.bottom);
   const data = [
     {
     "date": "Tue Jan 28 1986 11:00:00",
@@ -99,6 +96,10 @@ const Chart = () => {
   //   }
   // );
 
+  const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+  const width = 800 - (margin.left + margin.right);
+  const height = 400 - (margin.top + margin.bottom);
+
   data.forEach(function (d) {
     d.date = d3.timeParse('%a %b %d %Y %H:%M:%S')(d.date);
   });
@@ -162,6 +163,14 @@ const node = ReactFauxDOM.createElement('svg');
     .datum(data)
     .attr('className', 'sparkline')
     .attr('d', line);
+
+  const lastValue = data[data.length - 1].count;
+  el.append("text")
+	  .attr("transform", "translate(" + (width-20) + "," + yScale(lastValue) + ")")
+		.attr("dy", ".35em")
+		.attr("text-anchor", "start")
+    .attr('className', 'sparkline')
+		.text(lastValue);
 
   return node.toReact()
 }
