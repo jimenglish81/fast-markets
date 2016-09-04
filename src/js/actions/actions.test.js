@@ -4,9 +4,7 @@ import {
   authError
 } from './index';
 import {
-  AUTH_USER,
-  UNAUTH_USER,
-  AUTH_FAILURE
+
 } from './types';
 
 describe('an action test', function() {

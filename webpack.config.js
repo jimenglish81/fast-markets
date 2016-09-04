@@ -42,7 +42,18 @@ module.exports = (env) => {
           loader: 'babel!eslint',
           exclude: /node_modules/,
         },
+        {
+          test: /\.json$/,
+          loader: 'json'
+        },
       ],
+    },
+    externals: {
+     'jsdom': 'window',
+     'cheerio': 'window',
+     'react/addons': true,
+     'react/lib/ExecutionEnvironment': true,
+     'react/lib/ReactContext': true,
     },
     plugins: filterExists([
         new HtmlWebpackPlugin({

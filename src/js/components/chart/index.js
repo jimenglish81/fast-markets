@@ -3,99 +3,98 @@ import React from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
 
+const data = [
+  {
+  "date": "Tue Jan 28 1986 11:00:00",
+  "count": 18
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:01",
+  "count": 26
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:02",
+  "count": 27
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:03",
+  "count": 14
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:04",
+  "count": 23
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:05",
+  "count": 14
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:06",
+  "count": 26
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:07",
+  "count": 34
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:08",
+  "count": 27
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:09",
+  "count": 23
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:10",
+  "count": 14
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:11",
+  "count": 28
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:12",
+  "count": 33
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:13",
+  "count": 33
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:14",
+  "count": 17
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:15",
+  "count": 14
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:16",
+  "count": 29
+  },
+  {
+  "date": "Tue Jan 28 1986 11:00:17",
+  "count": 28
+  }
+];
+// TODO - chart subscription
+// this.lsClient.subscribe(
+//   ['CHART:FM.D.GBPJPY24.GBPJPY24.IP:TICK'],
+//   ['BID', 'UTM'],
+//   'DISTINCT',
+//   (itemUpdate) => {
+//     const [,epic] = itemUpdate.getItemName().split(':');
+//     let updates = {};
+//
+//     itemUpdate.forEachChangedField((fid, pos, value) => {
+//       updates[fid] = value;
+//     });
+//
+//     console.log(updates);
+//   }
+// );
+
 const Chart = () => {
-  const data = [
-    {
-    "date": "Tue Jan 28 1986 11:00:00",
-    "count": 18
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:01",
-    "count": 26
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:02",
-    "count": 27
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:03",
-    "count": 14
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:04",
-    "count": 23
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:05",
-    "count": 14
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:06",
-    "count": 26
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:07",
-    "count": 34
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:08",
-    "count": 27
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:09",
-    "count": 23
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:10",
-    "count": 14
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:11",
-    "count": 28
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:12",
-    "count": 33
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:13",
-    "count": 33
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:14",
-    "count": 17
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:15",
-    "count": 14
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:16",
-    "count": 29
-    },
-    {
-    "date": "Tue Jan 28 1986 11:00:17",
-    "count": 28
-    }
-  ];
-
-  // TODO - chart subscription
-  // this.lsClient.subscribe(
-  //   ['CHART:FM.D.GBPJPY24.GBPJPY24.IP:TICK'],
-  //   ['BID', 'UTM'],
-  //   'DISTINCT',
-  //   (itemUpdate) => {
-  //     const [,epic] = itemUpdate.getItemName().split(':');
-  //     let updates = {};
-  //
-  //     itemUpdate.forEachChangedField((fid, pos, value) => {
-  //       updates[fid] = value;
-  //     });
-  //
-  //     console.log(updates);
-  //   }
-  // );
-
   const margin = { top: 20, right: 20, bottom: 40, left: 40 };
   const width = 800 - (margin.left + margin.right);
   const height = 400 - (margin.top + margin.bottom);
@@ -135,6 +134,7 @@ const node = ReactFauxDOM.createElement('svg');
 
   const xAxis = d3.axisBottom()
     .scale(xScale)
+    //.ticks(2, "s")
     .tickFormat(function(d) {
       return d3.timeFormat("%Ss")(d);
     });
@@ -165,8 +165,18 @@ const node = ReactFauxDOM.createElement('svg');
     .attr('d', line);
 
   const lastValue = data[data.length - 1].count;
-  el.append("text")
-	  .attr("transform", "translate(" + (width-20) + "," + yScale(lastValue) + ")")
+  const g = el.append("g")
+  .attr('width', 50)
+  .attr('height', 16)
+    .attr("transform", "translate(" + (width - 50) + "," + (yScale(lastValue) - 8) + ")");
+
+    g.append("rect")
+      .attr('width', 50)
+      .attr('height', 16)
+
+  g.append("text")
+    .attr("x", 16)
+    .attr("y",  8)
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
     .attr('className', 'sparkline')

@@ -4,7 +4,7 @@ const TEST_FILES = 'src/**/*.test.js';
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
       TEST_FILES,
     ],
