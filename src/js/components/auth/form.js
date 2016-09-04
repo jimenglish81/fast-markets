@@ -1,6 +1,16 @@
 import React, { PropTypes } from 'react';
 import { FormError, FormGroup } from '../common/form';
 
+/**
+ * Authentication form for app.
+ * @param {Object} props
+ * @param {String} [props.identifier]
+ * @param {String} [props.password]
+ * @param {String} [props.error]
+ * @param {Function} props.onFormSubmit
+ * @param {Function} props.oonInputChange
+ * @return {Element}
+ */
 const AuthForm = (props) => {
   const inputChange = (key) => ({ target }) => {
     props.onInputChange(key, target.value);
