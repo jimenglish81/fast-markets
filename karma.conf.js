@@ -6,6 +6,7 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['mocha', 'chai', 'sinon-chai'],
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       TEST_FILES,
     ],
     preprocessors: {

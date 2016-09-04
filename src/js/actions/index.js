@@ -33,6 +33,12 @@ import {
 } from './types';
 import { hashHistory, push } from 'react-router';
 
+/**
+ * API action to authenticate user.
+ * @param {String} identifier
+ * @param {String} password
+ * @return {Object}
+ */
 export const authUser = (identifier, password) => ({
   [API_CALL]: {
     apiMethod: auth.bind(null, identifier, password),
@@ -41,6 +47,12 @@ export const authUser = (identifier, password) => ({
   },
 });
 
+/**
+ * API action to unauthenticate user.
+ * @param {String} identifier
+ * @param {String} password
+ * @return {Object}
+ */
 export const unauthUser = () => ({
   [API_CALL]: {
     apiMethod: unauth,
@@ -49,6 +61,10 @@ export const unauthUser = () => ({
   },
 });
 
+/**
+ * API action to fetch all Sprint Markets.
+ * @return {Object}
+ */
 export const fetchMarkets = () => ({
   [API_CALL]: {
     apiMethod: sprints,
@@ -57,6 +73,11 @@ export const fetchMarkets = () => ({
   },
 });
 
+/**
+ * API action to fetch a given market.
+ * @param {String} epic
+ * @return {Object}
+ */
 export const fetchMarket = (epic) => ({
   [API_CALL]: {
     apiMethod: market.bind(null, epic),
@@ -65,6 +86,11 @@ export const fetchMarket = (epic) => ({
   },
 });
 
+/**
+ * API action to create a trade.
+ * @param {Object} data
+ * @return {Object}
+ */
 export const submitTrade = (data) => ({
   [API_CALL]: {
     apiMethod: createTrade.bind(null, data),
@@ -73,11 +99,22 @@ export const submitTrade = (data) => ({
   },
 });
 
+/**
+ * Action to select a given epic.
+ * @param {String} epic
+ * @return {Object}
+ */
 export const selectEpic = (epic) => ({
   type: SELECT_EPIC,
   payload: epic,
 });
 
+/**
+ * Action to request an update a given epic.
+ * @param {String} epic
+ * @param {Object} updates
+ * @return {Object}
+ */
 export const marketUpdate = (epic, updates) => ({
   type: MARKET_UPDATE,
   payload: {
