@@ -18,6 +18,7 @@ describe('<MarketDropdownOption />', () => {
                             market={market}
                             onClick={spy}
                           />);
+
     expect(wrapper.find('MarketName')).to.have.lengthOf(1);
   });
 
@@ -26,6 +27,7 @@ describe('<MarketDropdownOption />', () => {
                             market={market}
                             onClick={spy}
                           />);
+
     wrapper.find('[data-market-dropdown-item]').simulate('click');
     expect(spy).to.have.been.calledOnce;
   });

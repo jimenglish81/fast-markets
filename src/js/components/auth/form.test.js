@@ -22,7 +22,7 @@ describe('<AuthForm />', () => {
                               onFormSubmit={_.noop}
                               onInputChange={_.noop}
                             />);
-            
+
     expect(wrapper.find('input').at(0).prop('placeholder')).to.equal('Username');
     expect(wrapper.find('input').at(1).prop('placeholder')).to.equal('Password');
   });
@@ -45,6 +45,7 @@ describe('<AuthForm />', () => {
                               onInputChange={spy}
                             />);
     const identifierInput = wrapper.find('input').at(0);
+
     identifierInput.simulate('change', {
       target: {
         value: 'foo',
@@ -61,6 +62,7 @@ describe('<AuthForm />', () => {
                               onInputChange={spy}
                             />);
     const identifierInput = wrapper.find('input').at(1);
+
     identifierInput.simulate('change', {
       target: {
         value: 'bar',

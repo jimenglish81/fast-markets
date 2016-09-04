@@ -33,6 +33,7 @@ describe('<MarketDropdown />', () => {
                             selectedMarket={selectedMarket}
                             onClick={_.noop}
                           />);
+
     expect(wrapper.find('MarketName')).to.have.lengthOf(1);
     expect(wrapper.find('MarketName').text()).to.have.equal(selectedMarket.instrumentName);
   });
