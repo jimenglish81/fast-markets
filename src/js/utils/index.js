@@ -28,7 +28,7 @@ export const objectToQueryParams = (target) => {
 /**
  * Conditionally render a React component.
  * @param {Boolean} cond Condition to evaluate.
- * @param {Element} element React element to render.
+ * @param {Element} node React element to render.
  * @param {Object} [empty=null] Empty content to render.
  * @returns {Element|String}
  */

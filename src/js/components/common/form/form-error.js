@@ -1,10 +1,16 @@
 import React, { PropTypes } from 'react';
 import { conditionalRender } from '../../../utils';
 
+/**
+ * Display a form error.
+ * @param {Object} props
+ * @param {String} [props.error]
+ * @return {Element}
+ */
 const FormError = (props) => {
   return (
     conditionalRender(props.error, (
-      <div>
+      <div data-form-error>
         <strong>{props.error}</strong>
       </div>
     ))
