@@ -1,5 +1,21 @@
 const webpackConfig = require('./webpack.config')({ test: true });
+const  _ = require('lodash');
 const TEST_FILES = 'src/**/*.test.js';
+
+//TODO - move from being postloader
+const convertToKarmaWebpack = function(config) {
+  return _.assign({}, config, {
+    module: _.assign({}, config.module, {
+      postLoaders: [
+        {
+          test: /\.(js)$/,
+          exclude: /(test|node_modules)\//,
+          loader: 'istanbul-instrumenter'
+        }
+      ]
+    })
+  });
+};
 
 module.exports = function(config) {
   config.set({
@@ -12,14 +28,17 @@ module.exports = function(config) {
     preprocessors: {
       [TEST_FILES]: ['webpack'],
     },
-    webpack: webpackConfig,
+    webpack: convertToKarmaWebpack(webpackConfig),
     webpackMiddleware: {
       noInfo: true,
     },
     phantomjsLauncher: {
       exitOnResourceError: true
     },
-    reporters: ['progress'],
+    reporters: [ 'progress', 'coverage' ],
+    coverageReporter: {
+      type: 'text'
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
