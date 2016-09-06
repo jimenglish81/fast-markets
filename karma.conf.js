@@ -9,7 +9,7 @@ const convertToKarmaWebpack = function(config) {
       postLoaders: [
         {
           test: /\.(js)$/,
-          exclude: /(test|node_modules)\//,
+          exclude: /(test|node_modules|\.test\.(js)$)/,
           loader: 'istanbul-instrumenter'
         }
       ]
@@ -32,17 +32,18 @@ module.exports = function(config) {
     webpackMiddleware: {
       noInfo: true,
     },
+    plugins: ['karma-*'],
     phantomjsLauncher: {
       exitOnResourceError: true
     },
-    reporters: [ 'progress', 'coverage' ],
+    reporters: [ 'mocha', 'coverage' ],
     coverageReporter: {
       type: 'text'
     },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['PhantomJS'],
     singleRun: true,
     concurrency: Infinity,
