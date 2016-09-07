@@ -1,14 +1,18 @@
 import { auth } from './api';
 
 describe('auth api call', function() {
-  let server;
+  let xhr;
+  let requests = [];
 
   beforeEach(() => {
-    server = sinon.fakeServer.create();
+    xhr = sinon.useFakeXMLHttpRequest();
+    xhr.onCreate = function (xhr) {
+      requests.push(xhr);
+    };
   });
 
   afterEach(() => {
-    server.restore();
+    xhr.restore();
   })
 
   describe('auth api call', () => {
@@ -28,9 +32,6 @@ describe('auth api call', function() {
       const password = 'password';
       const encryptedPassword = false;
 
-      server.respondWith('POST', /.*\/session$/,
-          [ 200, { CST: cst, ['X-SECURITY-TOKEN']: xst }, JSON.stringify(resp) ]);
-
       auth(identifier, password, encryptedPassword)
         .then((resp) => {
           expect(resp).to.deep.equal({
@@ -39,10 +40,25 @@ describe('auth api call', function() {
             lightstreamerEndpoint,
             xst,
           });
+          expect(requests[0].requestBody).to.equal(
+            JSON.stringify({
+              identifier,
+              password,
+              encryptedPassword,
+            })
+          );
+
           done();
         });
 
-      server.respond();
+      requests[0].respond(
+        200,
+        {
+          CST: cst,
+          ['X-SECURITY-TOKEN']: xst,
+        }, 
+        JSON.stringify(resp)
+      );
     });
   });
 });
