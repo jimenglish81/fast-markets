@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import fetch from 'isomorphic-fetch';
 import { KEY } from '../secret';
 import { doGet, doPost, doDelete } from './request';
 

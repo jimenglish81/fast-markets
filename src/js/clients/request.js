@@ -44,11 +44,11 @@ function checkStatus(response) {
 function request(url, headers={}, params=null, data=null, responseHeaders=[], method='GET') {
   const request = {
     method,
-    headers: new Headers({
+    headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       ...headers,
-    }),
+    },
   };
 
   if (data) {
