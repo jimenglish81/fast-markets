@@ -1,19 +1,20 @@
-export const AUTH_REQUEST = 'AUTH_REQUEST';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-export const AUTH_FAILURE = 'AUTH_FAILURE';
+/* @flow */
+export const AUTH_REQUEST: string = 'AUTH_REQUEST';
+export const AUTH_SUCCESS: string = 'AUTH_SUCCESS';
+export const AUTH_FAILURE: string = 'AUTH_FAILURE';
 
-export const UNAUTH_REQUEST = 'UNAUTH_REQUEST';
-export const UNAUTH_SUCCESS = 'UNAUTH_SUCCESS';
-export const UNAUTH_FAILURE = 'UNAUTH_FAILURE';
+export const UNAUTH_REQUEST: string = 'UNAUTH_REQUEST';
+export const UNAUTH_SUCCESS: string = 'UNAUTH_SUCCESS';
+export const UNAUTH_FAILURE: string = 'UNAUTH_FAILURE';
 
-export const MARKETS_REQUEST = 'MARKETS_SUCCESS';
-export const MARKETS_SUCCESS = 'MARKETS_SUCCESS';
-export const MARKETS_FAILURE = 'MARKETS_FAILURE';
+export const MARKETS_REQUEST: string = 'MARKETS_SUCCESS';
+export const MARKETS_SUCCESS: string = 'MARKETS_SUCCESS';
+export const MARKETS_FAILURE: string = 'MARKETS_FAILURE';
 
-export const MARKET_REQUEST = 'MARKET_SUCCESS';
-export const MARKET_SUCCESS = 'MARKET_SUCCESS';
-export const MARKET_FAILURE = 'MARKET_FAILURE';
+export const MARKET_REQUEST: string = 'MARKET_SUCCESS';
+export const MARKET_SUCCESS: string = 'MARKET_SUCCESS';
+export const MARKET_FAILURE: string = 'MARKET_FAILURE';
 
-export const SELECT_EPIC = 'SELECT_EPIC';
+export const SELECT_EPIC: string = 'SELECT_EPIC';
 
-export const MARKET_UPDATE = 'MARKET_UPDATE';
+export const MARKET_UPDATE: string = 'MARKET_UPDATE';

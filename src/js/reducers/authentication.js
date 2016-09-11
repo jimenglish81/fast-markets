@@ -27,7 +27,7 @@ export default (state={ isAuthenticated: false }, { payload, type }) => {
       return {
         isAuthenticated: false,
         session: null,
-        error: payload,
+        error: payload || 'generic error',
       };
     default:
       return state;

@@ -35,7 +35,6 @@ const AuthForm = (props) => {
             value={props.password}
           />
         </FormGroup>
-        <FormError error={props.error} />
         <FormGroup>
           <button
             action="submit"
@@ -43,6 +42,7 @@ const AuthForm = (props) => {
             Sign in
           </button>
         </FormGroup>
+        <FormError error={props.error} />
       </form>
     </div>
   );

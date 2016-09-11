@@ -1,3 +1,4 @@
+/* @flow */
 import { API_CALL } from '../middlewares/api';
 import {
   auth,
@@ -6,6 +7,7 @@ import {
   market,
   createTrade
 } from '../clients/api';
+
 import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
@@ -23,15 +25,10 @@ import {
   MARKET_SUCCESS,
   MARKET_FAILURE,
 
-  TRADE_REQUEST,
-  TRADE_SUCCESS,
-  TRADE_FAILURE,
-
   SELECT_EPIC,
 
   MARKET_UPDATE,
 } from './types';
-import { hashHistory, push } from 'react-router';
 
 /**
  * API action to authenticate user.
@@ -39,7 +36,8 @@ import { hashHistory, push } from 'react-router';
  * @param {String} password
  * @return {Object}
  */
-export const authUser = (identifier, password) => ({
+export const authUser = (identifier: string, password: string):
+  { [API_CALL: string]: { apiMethod: Function, authenticated: boolean, types: string[] } } => ({
   [API_CALL]: {
     apiMethod: auth.bind(null, identifier, password),
     authenticated: false,
@@ -53,7 +51,8 @@ export const authUser = (identifier, password) => ({
  * @param {String} password
  * @return {Object}
  */
-export const unauthUser = () => ({
+export const unauthUser = ():
+  { [API_CALL: string]: { apiMethod: Function, authenticated: boolean, types: string[] } } => ({
   [API_CALL]: {
     apiMethod: unauth,
     authenticated: true,
@@ -65,7 +64,8 @@ export const unauthUser = () => ({
  * API action to fetch all Sprint Markets.
  * @return {Object}
  */
-export const fetchMarkets = () => ({
+export const fetchMarkets = ():
+  { [API_CALL: string]: { apiMethod: Function, authenticated: boolean, types: string[] } } => ({
   [API_CALL]: {
     apiMethod: sprints,
     authenticated: true,
@@ -78,7 +78,8 @@ export const fetchMarkets = () => ({
  * @param {String} epic
  * @return {Object}
  */
-export const fetchMarket = (epic) => ({
+export const fetchMarket = (epic: string):
+  { [API_CALL: string]: { apiMethod: Function, authenticated: boolean, types: string[] } } => ({
   [API_CALL]: {
     apiMethod: market.bind(null, epic),
     authenticated: true,
@@ -91,20 +92,21 @@ export const fetchMarket = (epic) => ({
  * @param {Object} data
  * @return {Object}
  */
-export const submitTrade = (data) => ({
-  [API_CALL]: {
-    apiMethod: createTrade.bind(null, data),
-    authenticated: true,
-    types: [TRADE_REQUEST, TRADE_SUCCESS, TRADE_FAILURE],
-  },
-});
+// export const submitTrade = (data) => ({
+//   [API_CALL]: {
+//     apiMethod: createTrade.bind(null, data),
+//     authenticated: true,
+//     types: [TRADE_REQUEST, TRADE_SUCCESS, TRADE_FAILURE],
+//   },
+// });
 
 /**
  * Action to select a given epic.
  * @param {String} epic
  * @return {Object}
  */
-export const selectEpic = (epic) => ({
+export const selectEpic = (epic: string):
+  { type: string, payload: string } => ({
   type: SELECT_EPIC,
   payload: epic,
 });
@@ -115,7 +117,8 @@ export const selectEpic = (epic) => ({
  * @param {Object} updates
  * @return {Object}
  */
-export const marketUpdate = (epic, updates) => ({
+export const marketUpdate = (epic: string, updates: Object):
+  { type: string, payload: { epic: string, updates: Object } } => ({
   type: MARKET_UPDATE,
   payload: {
     epic,

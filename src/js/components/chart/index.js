@@ -182,7 +182,7 @@ const node = ReactFauxDOM.createElement('svg');
     .attr('className', 'sparkline')
 		.text(lastValue);
 
-  return node.toReact()
+  return node.toReact();
 }
 
 export default Chart;

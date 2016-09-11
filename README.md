@@ -8,3 +8,4 @@ Little IG project
 - submitting deal
 - fix logout (UNAUTH_FAILED)
 - fix bug with log out and log back in
+- add custom TYPES for flow
