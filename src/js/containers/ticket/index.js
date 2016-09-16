@@ -56,9 +56,6 @@ Ticket.propTypes = {
 
 function mapStateToProps(state) {
   const {
-    session: {
-      accountId,
-    },
     markets: {
       selectedMarket,
     },

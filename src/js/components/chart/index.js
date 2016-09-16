@@ -3,80 +3,6 @@ import React from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
 
-const data = [
-  {
-  "date": "Tue Jan 28 1986 11:00:00",
-  "count": 18
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:01",
-  "count": 26
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:02",
-  "count": 27
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:03",
-  "count": 14
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:04",
-  "count": 23
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:05",
-  "count": 14
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:06",
-  "count": 26
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:07",
-  "count": 34
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:08",
-  "count": 27
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:09",
-  "count": 23
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:10",
-  "count": 14
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:11",
-  "count": 28
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:12",
-  "count": 33
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:13",
-  "count": 33
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:14",
-  "count": 17
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:15",
-  "count": 14
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:16",
-  "count": 29
-  },
-  {
-  "date": "Tue Jan 28 1986 11:00:17",
-  "count": 28
-  }
-];
 // TODO - chart subscription
 // this.lsClient.subscribe(
 //   ['CHART:FM.D.GBPJPY24.GBPJPY24.IP:TICK'],
@@ -94,19 +20,25 @@ const data = [
 //   }
 // );
 
-const Chart = () => {
+const Chart = (props) => {
   const margin = { top: 20, right: 20, bottom: 40, left: 40 };
   const width = 800 - (margin.left + margin.right);
   const height = 400 - (margin.top + margin.bottom);
 
-  data.forEach(function (d) {
-    d.date = d3.timeParse('%a %b %d %Y %H:%M:%S')(d.date);
-  });
+  // const data = raw.map(({ timestamp, closePrice: { bid: price } }) => ({
+  //   timestamp,
+  //   price,
+  // }));
 
-  const dates = _.map(data, 'date');
-  const counts = _.map(data, 'count');
+  const data = props.dataPoints.map(({ timestamp, price }) => ({
+    timestamp: d3.timeParse('%Y/%m/%d %H:%M:%S')(timestamp),
+    price,
+  }));
 
-const node = ReactFauxDOM.createElement('svg');
+  const dates = _.map(data, 'timestamp');
+  const prices = _.map(data, 'price');
+
+  const node = ReactFauxDOM.createElement('svg');
   const el = d3.select(node)
     .attr('data', data)
     .attr('height', height + margin.top + margin.bottom)
@@ -121,12 +53,11 @@ const node = ReactFauxDOM.createElement('svg');
     .range([0, width])
     .domain(d3.extent(dates))
 
-  xScale.ticks(d3.timeSecond.every(1))
-
+  //xScale.ticks(d3.timeSecond.every(1))
 
   const yScale = d3.scaleLinear()
     .range([height, 0])
-    .domain(d3.extent(counts))
+    .domain(d3.extent(prices))
 
   const yAxis = d3.axisRight()
     .scale(yScale)
@@ -135,9 +66,9 @@ const node = ReactFauxDOM.createElement('svg');
   const xAxis = d3.axisBottom()
     .scale(xScale)
     //.ticks(2, "s")
-    .tickFormat(function(d) {
-      return d3.timeFormat("%Ss")(d);
-    });
+    // .tickFormat(function(d) {
+    //   return d3.timeFormat("%Ss")(d);
+    // });
 
   el.append('g')
     .attr('className', 'sparkline')
@@ -152,10 +83,10 @@ const node = ReactFauxDOM.createElement('svg');
 
   const line = d3.line()
     .x(function (d) {
-      return xScale(d.date);
+      return xScale(d.timestamp);
     })
     .y(function (d) {
-      return yScale(d.count);
+      return yScale(d.price);
     });
 
   el.append('g')
@@ -164,10 +95,10 @@ const node = ReactFauxDOM.createElement('svg');
     .attr('className', 'sparkline')
     .attr('d', line);
 
-  const lastValue = data[data.length - 1].count;
+  const lastValue = data[data.length - 1].price;
   const g = el.append("g")
-  .attr('width', 50)
-  .attr('height', 16)
+    .attr('width', 50)
+    .attr('height', 16)
     .attr("transform", "translate(" + (width - 50) + "," + (yScale(lastValue) - 8) + ")");
 
     g.append("rect")

@@ -15,6 +15,11 @@ export const MARKET_REQUEST: string = 'MARKET_SUCCESS';
 export const MARKET_SUCCESS: string = 'MARKET_SUCCESS';
 export const MARKET_FAILURE: string = 'MARKET_FAILURE';
 
+export const CHART_REQUEST: string = 'CHART_REQUEST';
+export const CHART_SUCCESS: string = 'CHART_SUCCESS';
+export const CHART_FAILURE: string = 'CHART_FAILURE';
+
 export const SELECT_EPIC: string = 'SELECT_EPIC';
 
 export const MARKET_UPDATE: string = 'MARKET_UPDATE';
+export const CHART_UPDATE: string = 'CHART_UPDATE';

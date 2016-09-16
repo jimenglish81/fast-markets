@@ -5,7 +5,7 @@ import {
   fetchMarkets,
   fetchMarket
 } from '../actions';
-import Chart from '../components/chart';
+import Chart from '../containers/chart';
 import MarketDropdown from '../containers/market-dropdown';
 import Ticket from './ticket';
 import { conditionalRender } from '../utils';

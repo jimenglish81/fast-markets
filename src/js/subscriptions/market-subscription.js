@@ -1,6 +1,8 @@
-export default class MarketSubscription {
+import AbstractSubscription from './abstract-subscription';
+
+export default class MarketSubscription extends AbstractSubscription {
   constructor(lsClient, fids, schema) {
-    this.lsClient = lsClient;
+    super(lsClient);
     this.fids = fids;
     this.schema = schema;
   }
@@ -18,24 +20,12 @@ export default class MarketSubscription {
         let updates = {};
 
         itemUpdate.forEachChangedField((fid, pos, value) => {
-          const key = this.schema[pos-1];
+          const key = this.schema[pos - 1];
           updates[key] = value;
         });
 
         onItemUpdate(epic, updates);
       }
     );
-  }
-
-  unsubscribe() {
-    if (this.subscription) {
-      this.lsClient.unsubscribe(this.subscription);
-      this.subscription = null;
-    }
-  }
-
-  destroy() {
-    this.unsubscribe();
-    this.lsClient = null;
   }
 }

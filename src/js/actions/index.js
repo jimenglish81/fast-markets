@@ -5,6 +5,7 @@ import {
   unauth,
   sprints,
   market,
+  chart,
   createTrade
 } from '../clients/api';
 
@@ -25,9 +26,14 @@ import {
   MARKET_SUCCESS,
   MARKET_FAILURE,
 
+  CHART_REQUEST,
+  CHART_SUCCESS,
+  CHART_FAILURE,
+
   SELECT_EPIC,
 
   MARKET_UPDATE,
+  CHART_UPDATE,
 } from './types';
 
 /**
@@ -88,6 +94,20 @@ export const fetchMarket = (epic: string):
 });
 
 /**
+ * API action to fetch a given market.
+ * @param {String} epic
+ * @return {Object}
+ */
+export const fetchChart = (epic: string):
+  { [API_CALL: string]: { apiMethod: Function, authenticated: boolean, types: string[] } } => ({
+  [API_CALL]: {
+    apiMethod: chart.bind(null, epic),
+    authenticated: true,
+    types: [CHART_REQUEST, CHART_SUCCESS, CHART_FAILURE],
+  },
+});
+
+/**
  * API action to create a trade.
  * @param {Object} data
  * @return {Object}
@@ -124,4 +144,14 @@ export const marketUpdate = (epic: string, updates: Object):
     epic,
     updates,
   },
+});
+
+/**
+ * Action to request an update a given epic.
+ * @param {Object} updates
+ * @return {Object}
+ */
+export const chartUpdate = (update: Object) => ({
+  type: CHART_UPDATE,
+  payload: update,
 });

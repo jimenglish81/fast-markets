@@ -56,6 +56,14 @@ const parseMarketResp = ({ instrument, snapshot, dealingRules }) => {
   };
 };
 
+const parseChartResp = (epic) => ({ prices }) => ({
+  epic,
+  dataPoints: prices.map(({ snapshotTime: timestamp, closePrice: { bid: price } }) => ({
+    timestamp,
+    price,
+  }))
+});
+
 export function auth(identifier, password, encryptedPassword=false) {
   const data = {
     identifier,
@@ -98,18 +106,19 @@ export function market(epic, cst, xst) {
           .then(parseMarketResp);
 }
 
+export function chart(epic, cst, xst) {
+  const headers = {
+    ...createHeaders(cst, xst),
+    version: 2,
+  };
+  const url = `${BASE}prices/${epic}/SECOND/300`;
+
+  return doGet(url, headers)
+          .then(parseChartResp(epic));
+}
+
 export function createTrade(data, cst, xst) {
   const url = `${BASE}positions/sprintmarkets`;
 
   return doPost(url, createHeaders(cst, xst), null, data);
-}
-
-
-
-export function getChartData(cst, xst, epic) {
-  const headers = createHeaders(cst, xst);
-  const url = `${BASE}chart/snapshot/${epic}/1/SECOND/combined/300?format=json&siteId=igi&locale=en_GB`;
-
-  return doGet(url, headers)
-              .then((resp) => console.log(resp));
 }
