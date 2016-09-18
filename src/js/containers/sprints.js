@@ -38,10 +38,14 @@ class Sprints extends Component {
     const { isLoading } = this.state;
 
     return conditionalRender(!isLoading, (
-      <div>
-        <MarketDropdown />
-        <Ticket />
-        <Chart />
+      <div className="sprints">
+        <div className="sprints__trades">
+          <MarketDropdown />
+          <Ticket />
+        </div>
+        <div className="sprints__chart">
+          CHART
+        </div>
       </div>
     ), (
       <div>loading...</div>

@@ -36,6 +36,10 @@ export default (sessionStore) => (store) => (next) => (action) => {
     authenticated
   } = apiAction;
 
+  next({
+    type: requestType,
+  });
+
   return callApi(apiMethod, authenticated, sessionStore).then(
     (response) =>
       next({

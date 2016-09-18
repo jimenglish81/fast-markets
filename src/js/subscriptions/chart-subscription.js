@@ -1,4 +1,3 @@
-import * as d3 from 'd3';
 import AbstractSubscription from './abstract-subscription';
 
 export default class ChartSubscription extends AbstractSubscription {

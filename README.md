@@ -4,7 +4,6 @@ Little IG project
 // TODOs
 - auth validation
 - streaming (middleswares?)
-- chart streaming (comment in chart.js)
 - submitting deal
 - fix logout (UNAUTH_FAILED)
 - fix bug with log out and log back in

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { generateDealReference } from '../../utils';
 import { submitTrade } from '../../actions';
-import TicketForm from '../../components/ticket/form';
+import TicketForm from '../../components/ticket';
 
 class Ticket extends Component {
   constructor(props) {

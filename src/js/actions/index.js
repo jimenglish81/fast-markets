@@ -30,6 +30,10 @@ import {
   CHART_SUCCESS,
   CHART_FAILURE,
 
+  TRADE_REQUEST,
+  TRADE_SUCCESS,
+  TRADE_FAILURE,
+
   SELECT_EPIC,
 
   MARKET_UPDATE,
@@ -112,13 +116,13 @@ export const fetchChart = (epic: string):
  * @param {Object} data
  * @return {Object}
  */
-// export const submitTrade = (data) => ({
-//   [API_CALL]: {
-//     apiMethod: createTrade.bind(null, data),
-//     authenticated: true,
-//     types: [TRADE_REQUEST, TRADE_SUCCESS, TRADE_FAILURE],
-//   },
-// });
+export const submitTrade = (data) => ({
+  [API_CALL]: {
+    apiMethod: createTrade.bind(null, data),
+    authenticated: true,
+    types: [TRADE_REQUEST, TRADE_SUCCESS, TRADE_FAILURE],
+  },
+});
 
 /**
  * Action to select a given epic.
@@ -151,7 +155,19 @@ export const marketUpdate = (epic: string, updates: Object):
  * @param {Object} updates
  * @return {Object}
  */
-export const chartUpdate = (update: Object) => ({
+export const chartUpdate = (update: Object):
+{ type: string, payload: Object } => ({
   type: CHART_UPDATE,
   payload: update,
+});
+
+/**
+ * Action to request an update a given epic.
+ * @param {Object} confirm
+ * @return {Object}
+ */
+export const confirmRecieved = (confirm: Object):
+{ type: string, payload: Object } => ({
+  type: CONFIRM_RECIEVED,
+  payload: confirm,
 });

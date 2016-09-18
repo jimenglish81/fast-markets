@@ -3,23 +3,6 @@ import React from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
 
-// TODO - chart subscription
-// this.lsClient.subscribe(
-//   ['CHART:FM.D.GBPJPY24.GBPJPY24.IP:TICK'],
-//   ['BID', 'UTM'],
-//   'DISTINCT',
-//   (itemUpdate) => {
-//     const [,epic] = itemUpdate.getItemName().split(':');
-//     let updates = {};
-//
-//     itemUpdate.forEachChangedField((fid, pos, value) => {
-//       updates[fid] = value;
-//     });
-//
-//     console.log(updates);
-//   }
-// );
-
 const Chart = (props) => {
   const margin = { top: 20, right: 20, bottom: 40, left: 40 };
   const width = 800 - (margin.left + margin.right);
@@ -96,10 +79,10 @@ const Chart = (props) => {
     .attr('d', line);
 
   const lastValue = data[data.length - 1].price;
-  const g = el.append("g")
+  const g = el.append('g')
     .attr('width', 50)
     .attr('height', 16)
-    .attr("transform", "translate(" + (width - 50) + "," + (yScale(lastValue) - 8) + ")");
+    .attr('transform', "translate(" + (width - 50) + "," + (yScale(lastValue) - 8) + ")");
 
     g.append("rect")
       .attr('width', 50)

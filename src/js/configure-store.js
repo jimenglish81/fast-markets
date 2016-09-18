@@ -4,12 +4,14 @@ import logger from './middlewares/logger';
 import api from './middlewares/api';
 import streamMarkets from './middlewares/stream-markets';
 import streamChart from './middlewares/stream-chart';
+import streamTrade from './middlewares/stream-trade';
 import connectLs from './middlewares/connect-ls';
 import reducers from './reducers';
 import Session from './session-stores/session';
 import LsClient from './clients/ls-client';
 import MarketSubscription from './subscriptions/market-subscription';
 import ChartSubscription from './subscriptions/chart-subscription';
+import TradeSubscription from './subscriptions/trade-subscription';
 
 const configureStore = () => {
   const sessionStore = new Session();
@@ -19,15 +21,17 @@ const configureStore = () => {
         ['MARKET_STATE', 'STRIKE_PRICE', 'ODDS'],
         ['marketStatus', 'strike', 'odds']
       );
-  const chartSubscription = new ChartSubscription(
-        lsClient
-      );
+  const chartSubscription = new ChartSubscription(lsClient);
+  const tradeSubscription = new TradeSubscription(lsClient);
+
   const middlewares = [
     reduxThunk,
     api(sessionStore),
     connectLs(lsClient),
     streamMarkets(marketsSubscription),
     streamChart(chartSubscription),
+    streamTrade(tradeSubscription),
+    logger,
   ];
 
   if (process.env.NODE_ENV !== 'production') {

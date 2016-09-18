@@ -12,8 +12,6 @@ const UnauthenticatedRoute = CheckAuth('sprints', (isAuth) => isAuth)(Auth);
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={UnauthenticatedRoute} />
-    // TODO - temp route while working on chart.
-    <Route path="chart" component={Chart} />
     <Route path="login" component={UnauthenticatedRoute} />
     <Route path="sprints" component={AuthenticatedRoute(Sprints)} />
   </Route>

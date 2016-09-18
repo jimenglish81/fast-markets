@@ -5,12 +5,14 @@ const TicketForm = (props) => {
   const inputChange = ({ target }) => {
     props.onSizeChange(target.value);
   };
-
   const createSubmitHandler = (direction) => (evt) => {
     evt.preventDefault();
     props.onSubmit(direction);
   };
-  const { minDealSize, strike } = props;
+  const {
+    minDealSize,
+    strike
+  } = props;
 
   return (
     <section className="ticket">
@@ -28,10 +30,18 @@ const TicketForm = (props) => {
           />
         </FormGroup>
         <FormGroup label="Direction">
-          <div>
-            <button className="btn btn--price btn--price--above" onClick={createSubmitHandler('BUY')}>above</button>
+          <div className="ticket-form__direction">
+            <button
+              className="btn btn--price btn--price--above"
+              onClick={createSubmitHandler('BUY')}>
+              above
+            </button>
             <div>{strike}</div>
-            <button className="btn btn--price btn--price--below" onClick={createSubmitHandler('SELL')}>below</button>
+            <button
+              className="btn btn--price btn--price--below"
+              onClick={createSubmitHandler('SELL')}>
+              below
+            </button>
           </div>
         </FormGroup>
       </form>

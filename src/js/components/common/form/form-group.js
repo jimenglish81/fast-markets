@@ -8,9 +8,9 @@ import { conditionalRender } from '../../../utils';
  * @param {String} [props.label]
  * @return {Element}
  */
-const FormGroup = ({ children, label }) => {
+const FormGroup = ({ className='', children, label }) => {
   const hasLabel = !!label;
-  const className = hasLabel ? 'col_2' : 'col_1';
+  const alignment = hasLabel ? 'col_2' : 'col_1';
   const labelEl = conditionalRender(hasLabel, (
     <div
       className={className}
@@ -21,11 +21,11 @@ const FormGroup = ({ children, label }) => {
 
   return (
     <section
-      className="form-group col_group"
+      className={`${className} form-group col_group`}
       data-form-group>
       {labelEl}
       <div
-        className={className}
+        className={alignment}
         data-form-group-content>
         {children}
       </div>
@@ -34,6 +34,7 @@ const FormGroup = ({ children, label }) => {
 };
 
 FormGroup.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element,
