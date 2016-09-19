@@ -1,23 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { generateDealReference } from '../../utils';
-import { submitTrade } from '../../actions';
+import {
+  submitTrade,
+  sizeUpdate
+} from '../../actions';
 import TicketForm from '../../components/ticket';
+
+const calculatePayout = createSelector(
+  state => state.ticket.size,
+  state => state.markets.selectedMarket.strike,
+  (size, strike) => +(size) + +(strike)
+);
 
 class Ticket extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      size: null,
-    };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(direction) {
-    const { size } = this.state;
     const {
       accountId,
-      selectedMarket
+      selectedMarket,
+      size,
     } = this.props;
     const data = {
       dealReference: generateDealReference(accountId),
@@ -35,14 +42,16 @@ class Ticket extends Component {
         minDealSize,
         strike,
       },
+      size,
     } = this.props;
 
     return (
       <TicketForm
         minDealSize={minDealSize}
         strike={strike}
+        size={size}
         onSubmit={this.onSubmit}
-        onSizeChange={(size) => this.setState({ size })}
+        onSizeChange={(size) => this.props.sizeUpdate(size)}
       />
     );
   }
@@ -51,19 +60,30 @@ class Ticket extends Component {
 Ticket.propTypes = {
   accountId: PropTypes.string.isRequired,
   selectedMarket: PropTypes.object.isRequired,
+  size: PropTypes.number,
   submitTrade: PropTypes.func.isRequired,
+  sizeUpdate: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   const {
+    ticket: {
+      size,
+    },
     markets: {
       selectedMarket,
+    },
+    auth: {
+      accountId,
     },
   } = state;
 
   return {
+    accountId,
+    payout: calculatePayout(state),
     selectedMarket,
+    size,
   };
 }
 
-export default connect(mapStateToProps, { submitTrade })(Ticket);
+export default connect(mapStateToProps, { submitTrade, sizeUpdate })(Ticket);

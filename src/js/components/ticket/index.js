@@ -11,39 +11,52 @@ const TicketForm = (props) => {
   };
   const {
     minDealSize,
-    strike
+    strike,
+    size,
   } = props;
 
   return (
     <section className="ticket">
       <form className="ticket-form">
-        <FormGroup label="Stake">
-          <input
-            placeholder={`Min: ${minDealSize}`}
-            autoComplete="off"
-            max="9999999"
-            min={minDealSize}
-            step="any"
-            type="number"
-            value={props.size}
-            onChange={inputChange}
-          />
-        </FormGroup>
-        <FormGroup label="Direction">
-          <div className="ticket-form__direction">
-            <button
-              className="btn btn--price btn--price--above"
-              onClick={createSubmitHandler('BUY')}>
-              above
-            </button>
-            <div>{strike}</div>
-            <button
-              className="btn btn--price btn--price--below"
-              onClick={createSubmitHandler('SELL')}>
-              below
-            </button>
+        <section className="ticket-form__group">
+          <div className="ticket-form__group__label">
+            <label>Stake:</label>
           </div>
-        </FormGroup>
+          <div className="ticket-form__group__field">
+            <input
+              placeholder={`Min: ${minDealSize}`}
+              autoComplete="off"
+              max="9999999"
+              min={minDealSize}
+              step="any"
+              type="number"
+              value={size}
+              onChange={inputChange}
+            />
+          </div>
+        </section>
+        <section className="ticket-form__group">
+          <div className="ticket-form__group__label">
+            <label>Direction:</label>
+          </div>
+          <div className="ticket-form__group__field">
+            <div className="ticket-form__direction">
+              <button
+                className="btn btn--price btn--price--above"
+                onClick={createSubmitHandler('BUY')}>
+                above
+              </button>
+              <div className="ticket-form__direction__strike">
+                {strike}
+              </div>
+              <button
+                className="btn btn--price btn--price--below"
+                onClick={createSubmitHandler('SELL')}>
+                below
+              </button>
+            </div>
+          </div>
+        </section>
       </form>
     </section>
   );
@@ -52,7 +65,7 @@ const TicketForm = (props) => {
 TicketForm.propTypes = {
   minDealSize: PropTypes.number.isRequired,
   size: PropTypes.number,
-  strike: PropTypes.number.isRequired,
+  strike: PropTypes.string,
   onSizeChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

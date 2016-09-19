@@ -7,12 +7,6 @@ const Chart = (props) => {
   const margin = { top: 20, right: 20, bottom: 40, left: 40 };
   const width = 800 - (margin.left + margin.right);
   const height = 400 - (margin.top + margin.bottom);
-
-  // const data = raw.map(({ timestamp, closePrice: { bid: price } }) => ({
-  //   timestamp,
-  //   price,
-  // }));
-
   const data = props.dataPoints.map(({ timestamp, price }) => ({
     timestamp: d3.timeParse('%Y/%m/%d %H:%M:%S')(timestamp),
     price,
@@ -58,7 +52,6 @@ const Chart = (props) => {
   	.attr('transform', 'translate(' + width + ', 0)')
   	.call(yAxis)
 
-
   el.append('g')
     .attr('className', 'sparkline')
     .attr('transform', 'translate(0, '+ (height) + ')')
@@ -78,7 +71,7 @@ const Chart = (props) => {
     .attr('className', 'sparkline')
     .attr('d', line);
 
-  const lastValue = data[data.length - 1].price;
+  const lastValue = data[data.length - 1] && data[data.length - 1].price;
   const g = el.append('g')
     .attr('width', 50)
     .attr('height', 16)

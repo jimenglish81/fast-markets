@@ -21,7 +21,7 @@ class Header extends Component {
     if (isAuthenticated) {
       return [
         <li className="nav__navbar__item" key={1}>
-          <button className="nav__navbar__item__link" onClick={this._handleLogout}>
+          <button className="btn btn-logout" onClick={this._handleLogout}>
             Sign out
           </button>
         </li>

@@ -1,4 +1,6 @@
 import {
+  TRADE_REQUEST,
+  TRADE_FAILURE,
   CONFIRM_RECIEVED
 } from '../actions/types';
 

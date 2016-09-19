@@ -38,6 +38,9 @@ import {
 
   MARKET_UPDATE,
   CHART_UPDATE,
+  SIZE_UPDATE,
+
+  CONFIRM_RECIEVED
 } from './types';
 
 /**
@@ -162,7 +165,7 @@ export const chartUpdate = (update: Object):
 });
 
 /**
- * Action to request an update a given epic.
+ * Action to represent recieving a confirm.
  * @param {Object} confirm
  * @return {Object}
  */
@@ -170,4 +173,15 @@ export const confirmRecieved = (confirm: Object):
 { type: string, payload: Object } => ({
   type: CONFIRM_RECIEVED,
   payload: confirm,
+});
+
+/**
+ * Action to update ticket size.
+ * @param {Number} size
+ * @return {Object}
+ */
+export const sizeUpdate = (size: Number):
+{ type: string, payload: Number } => ({
+  type: SIZE_UPDATE,
+  payload: size,
 });

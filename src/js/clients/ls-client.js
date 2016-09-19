@@ -17,7 +17,7 @@ export default class LsClient {
     this._client = client;
   }
 
-  subscribe(subscriptionStr, fids, mode, onItemUpdate) {
+  subscribe(subscriptionStr, fids, mode, onItemUpdate, withSnapshot=true) {
     const subscription = new Lightstreamer.Subscription(
       mode,
       subscriptionStr,
@@ -36,6 +36,10 @@ export default class LsClient {
       },
       onItemUpdate,
     });
+
+    if (!withSnapshot) {
+      subscription.setRequestedSnapshot('no');
+    }
 
     this._client.subscribe(subscription);
 
