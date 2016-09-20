@@ -9,9 +9,12 @@ import {
 import TicketForm from '../../components/ticket';
 
 const calculatePayout = createSelector(
-  state => state.ticket.size,
-  state => state.markets.selectedMarket.strike,
-  (size, strike) => +(size) + +(strike)
+  (state) => state.ticket.size,
+  (state) => state.markets.selectedMarket.odds,
+  (size, odds) => {
+    const payout = parseFloat(size) / parseFloat(odds);
+    return isNan(payout) ? null : payout;
+  }
 );
 
 class Ticket extends Component {
