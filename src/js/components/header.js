@@ -34,7 +34,7 @@ class Header extends Component {
   render() {
     return (
       <nav className="nav">
-        <h2 className="nav__logo">1MinuteMarkets</h2>
+        <h2 className="nav__logo">FastMarkets</h2>
         <ul className="nav__navbar">
           {this.renderItems()}
         </ul>

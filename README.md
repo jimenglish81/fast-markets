@@ -1,5 +1,5 @@
 Little IG project
-(one minute markets)
+(fast-markets)
 
 // TODOs
 - auth validation
