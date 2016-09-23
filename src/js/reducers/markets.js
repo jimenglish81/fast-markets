@@ -18,7 +18,7 @@ export default (state={}, { payload, type }) => {
       return {
         ...state,
         markets: payload,
-        selectedEpic: 'FM.D.GBPJPY24.GBPJPY24.IP' // _.chain(payload).head().get('epic').value(),
+        selectedEpic:  _.chain(payload).head().get('epic').value(),
       };
     case SELECT_EPIC:
       return {

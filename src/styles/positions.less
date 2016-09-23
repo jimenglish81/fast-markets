@@ -4,13 +4,23 @@
 
 /** TEMP **/
 .positions__row {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid @smallPrintColor;
   border-collapse: collapse;
   padding-top: 2px;
 }
 
+.positions__header .positions__cell {
+  white-space: nowrap;
+  font-size: 0.8em;
+  color: @smallPrintColor;
+}
+.positions__header .positions__row {
+  border-bottom: none;
+}
+
 .positions__cell {
   padding: 0 3px;
+  color: @primary;
 }
 
 .positions__cell__market-name {

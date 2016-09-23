@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { FormGroup } from '../common/form';
+import numeral from 'numeral';
+import { conditionalRender } from '../../utils';
 
 const TicketForm = (props) => {
   const inputChange = ({ target }) => {
@@ -11,6 +12,7 @@ const TicketForm = (props) => {
   };
   const {
     minDealSize,
+    payout,
     strike,
     size,
   } = props;
@@ -47,7 +49,7 @@ const TicketForm = (props) => {
                 above
               </button>
               <div className="ticket-form__direction__strike">
-                {strike}
+                {numeral(strike).format('0,0.00')}
               </div>
               <button
                 className="btn btn--price btn--price--below"
@@ -58,6 +60,7 @@ const TicketForm = (props) => {
           </div>
         </section>
       </form>
+      {conditionalRender(payout, <div>{numeral(payout).format('0,0.00')}</div>)}
     </section>
   );
 };
@@ -66,6 +69,7 @@ TicketForm.propTypes = {
   minDealSize: PropTypes.number.isRequired,
   size: PropTypes.number,
   strike: PropTypes.string,
+  payout: PropTypes.number,
   onSizeChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

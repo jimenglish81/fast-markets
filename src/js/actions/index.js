@@ -6,7 +6,8 @@ import {
   sprints,
   market,
   chart,
-  createTrade
+  createTrade,
+  positions
 } from '../clients/api';
 
 import {
@@ -33,6 +34,10 @@ import {
   TRADE_REQUEST,
   TRADE_SUCCESS,
   TRADE_FAILURE,
+
+  POSITIONS_REQUEST,
+  POSITIONS_SUCCESS,
+  POSITIONS_FAILURE,
 
   SELECT_EPIC,
 
@@ -111,6 +116,19 @@ export const fetchChart = (epic: string):
     apiMethod: chart.bind(null, epic),
     authenticated: true,
     types: [CHART_REQUEST, CHART_SUCCESS, CHART_FAILURE],
+  },
+});
+
+/**
+ * API action to fetch positions.
+ * @return {Object}
+ */
+export const fetchPositions = ():
+  { [API_CALL: string]: { apiMethod: Function, authenticated: boolean, types: string[] } } => ({
+  [API_CALL]: {
+    apiMethod: positions,
+    authenticated: true,
+    types: [POSITIONS_REQUEST, POSITIONS_SUCCESS, POSITIONS_FAILURE],
   },
 });
 

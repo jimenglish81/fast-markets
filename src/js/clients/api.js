@@ -117,6 +117,16 @@ export function chart(epic, cst, xst) {
           .then(parseChartResp(epic));
 }
 
+export function positions(cst, xst) {
+  const headers = {
+    ...createHeaders(cst, xst),
+    version: 2,
+  };
+  const url = `${BASE}positions/sprintmarkets`;
+
+  return doGet(url, headers);
+}
+
 export function createTrade(data, cst, xst) {
   const url = `${BASE}positions/sprintmarkets`;
 

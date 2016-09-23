@@ -13,7 +13,7 @@ const calculatePayout = createSelector(
   (state) => state.markets.selectedMarket.odds,
   (size, odds) => {
     const payout = parseFloat(size) / parseFloat(odds);
-    return isNan(payout) ? null : payout;
+    return isNaN(payout) ? null : payout;
   }
 );
 
@@ -45,6 +45,7 @@ class Ticket extends Component {
         minDealSize,
         strike,
       },
+      payout,
       size,
     } = this.props;
 
@@ -53,6 +54,7 @@ class Ticket extends Component {
         minDealSize={minDealSize}
         strike={strike}
         size={size}
+        payout={payout}
         onSubmit={this.onSubmit}
         onSizeChange={(size) => this.props.sizeUpdate(size)}
       />
@@ -62,6 +64,7 @@ class Ticket extends Component {
 
 Ticket.propTypes = {
   accountId: PropTypes.string.isRequired,
+  payout: PropTypes.number,
   selectedMarket: PropTypes.object.isRequired,
   size: PropTypes.number,
   submitTrade: PropTypes.func.isRequired,

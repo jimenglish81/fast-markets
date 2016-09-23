@@ -23,6 +23,10 @@ export const TRADE_REQUEST: string = 'TRADE_REQUEST';
 export const TRADE_SUCCESS: string = 'TRADE_SUCCESS';
 export const TRADE_FAILURE: string = 'TRADE_FAILURE';
 
+export const POSITIONS_REQUEST: string = 'POSITIONS_REQUEST';
+export const POSITIONS_SUCCESS: string = 'POSITIONS_SUCCESS';
+export const POSITIONS_FAILURE: string = 'POSITIONS_FAILURE';
+
 export const SELECT_EPIC: string = 'SELECT_EPIC';
 
 export const MARKET_UPDATE: string = 'MARKET_UPDATE';
