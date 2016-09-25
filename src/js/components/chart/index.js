@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
@@ -117,7 +117,7 @@ class Chart extends Component {
 
     g.append('text')
       .attr('x', 5)
-      .attr('y',  8)
+      .attr('y', 8)
   		.attr('dy', '.35em')
   		.attr('text-anchor', 'start')
       .attr('className', 'sparkline')

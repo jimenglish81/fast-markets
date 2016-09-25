@@ -2,7 +2,7 @@ const pkg = require('./package.json');
 const { resolve } = require('path');
 const curry = require('lodash/curry');
 const webpack = require('webpack');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const filterExists = (a) => a.filter(Boolean);
@@ -35,7 +35,9 @@ module.exports = (env) => {
       loaders: [
         {
           test: /\.less$/,
-          loader: 'style!css!autoprefixer!less',
+          loader: ExtractTextPlugin.extract({
+            loader: 'css-loader!less-loader',
+          }),
         },
         {
           test: /\.js$/,
@@ -59,6 +61,7 @@ module.exports = (env) => {
         new HtmlWebpackPlugin({
           template: './index.html',
         }),
+        new ExtractTextPlugin('bundle.css.[hash].css'),
         ifProd(new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
         })),
