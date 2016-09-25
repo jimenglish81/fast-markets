@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Header from './header';
+import Header from '../containers/header';
 
 const App = (props) => {
   return (

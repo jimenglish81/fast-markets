@@ -4,7 +4,7 @@ import { unauthUser} from '../actions';
 import { Link } from 'react-router';
 import { isAuthenticated } from '../reducers';
 
-// TODO - container?
+// TODO - extract into component?
 class Header extends Component {
   constructor(props) {
     super(props);
