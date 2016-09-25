@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 import { KEY } from '../secret';
 import { doGet, doPost, doDelete } from './request';
 
-const BASE = 'https://web-api.ig.com/gateway/deal/';
+const BASE = 'https://demo-api.ig.com/gateway/deal/';
 const createHeaders = (cst, xst) => {
   const headers = {
     'X-IG-API-KEY': KEY,
@@ -91,7 +91,7 @@ function marketNavigation(id, cst, xst) {
 }
 
 export function sprints(cst, xst) {
-  return marketNavigation('381909', cst, xst)
+  return marketNavigation('302308', cst, xst)
           .then(parseMarketNavigationResp);
 }
 

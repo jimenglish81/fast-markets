@@ -1,95 +1,135 @@
 import * as d3 from 'd3';
-import React from 'react';
+import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
 
-const Chart = (props) => {
-  const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-  const width = 800 - (margin.left + margin.right);
-  const height = 400 - (margin.top + margin.bottom);
-  const data = props.dataPoints.map(({ timestamp, price }) => ({
-    timestamp: d3.timeParse('%Y/%m/%d %H:%M:%S')(timestamp),
-    price,
-  }));
+class Chart extends Component {
+  constructor(props) {
+    super(props);
 
-  const dates = _.map(data, 'timestamp');
-  const prices = _.map(data, 'price');
+    this.state = {
+      parentWidth: 0,
+    };
+    this.debounceWindowResize = _.debounce(this.windowResize.bind(this), 150);
+  }
 
-  const node = ReactFauxDOM.createElement('svg');
-  const el = d3.select(node)
-    .attr('data', data)
-    .attr('height', height + margin.top + margin.bottom)
-    .attr('width', width + margin.left + margin.right)
-    .attr('viewBox', '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
-    .attr('preserveAspectRatio', 'xMinYMid')
-    .append('g')
-    .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')')
-    .attr('data', null);
-
-  const xScale = d3.scaleTime()
-    .range([0, width])
-    .domain(d3.extent(dates))
-
-  //xScale.ticks(d3.timeSecond.every(1))
-
-  const yScale = d3.scaleLinear()
-    .range([height, 0])
-    .domain(d3.extent(prices))
-
-  const yAxis = d3.axisRight()
-    .scale(yScale)
-    .tickSize(-width, 0, 0);
-
-  const xAxis = d3.axisBottom()
-    .scale(xScale)
-    //.ticks(2, "s")
-    // .tickFormat(function(d) {
-    //   return d3.timeFormat("%Ss")(d);
-    // });
-
-  el.append('g')
-    .attr('className', 'sparkline')
-  	.attr('transform', 'translate(' + width + ', 0)')
-  	.call(yAxis)
-
-  el.append('g')
-    .attr('className', 'sparkline')
-    .attr('transform', 'translate(0, '+ (height) + ')')
-    .call(xAxis);
-
-  const line = d3.line()
-    .x(function (d) {
-      return xScale(d.timestamp);
-    })
-    .y(function (d) {
-      return yScale(d.price);
+  windowResize() {
+    this.setState({
+       parentWidth: findDOMNode(this).parentNode.offsetWidth,
     });
+  }
 
-  el.append('g')
-    .append('path')
-    .datum(data)
-    .attr('className', 'sparkline')
-    .attr('d', line);
+  /**
+   * Attach window resize.
+   * @private
+   */
+  componentDidMount () {
+    window.addEventListener('resize', this.debounceWindowResize);
+    this.windowResize();
+  }
 
-  const lastValue = data[data.length - 1] && data[data.length - 1].price;
-  const g = el.append('g')
-    .attr('width', 50)
-    .attr('height', 16)
-    .attr('transform', "translate(" + (width - 50) + "," + (yScale(lastValue) - 8) + ")");
+  /**
+   * Detach window resize.
+   * @private
+   */
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.debounceWindowResize);
+  }
 
-    g.append("rect")
+  render() {
+    const margin = { top: 20, right: 100, bottom: 40, left: 40 };
+    const width = this.state.parentWidth - (margin.left + margin.right);
+    const height = 400 - (margin.top + margin.bottom);
+    const data = this.props.dataPoints.map(({ timestamp, price }) => ({
+      timestamp: d3.timeParse('%Y/%m/%d %H:%M:%S')(timestamp),
+      price,
+    }));
+
+    const dates = _.map(data, 'timestamp');
+    const prices = _.map(data, 'price');
+
+    const node = ReactFauxDOM.createElement('svg');
+    const el = d3.select(node)
+      .attr('data', data)
+      .attr('height', height + margin.top + margin.bottom)
+      .attr('width', width + margin.left + margin.right)
+      .attr('viewBox', `0 0 ${(width + margin.left + margin.right)} ${(height + margin.top + margin.bottom)}`)
+      .attr('preserveAspectRatio', 'xMinYMid')
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .attr('data', null);
+
+    const xScale = d3.scaleTime()
+      .range([0, width])
+      .domain(d3.extent(dates))
+
+    //xScale.ticks(d3.timeSecond.every(1))
+
+    const yScale = d3.scaleLinear()
+      .range([height, 0])
+      .domain(d3.extent(prices))
+
+    const yAxis = d3.axisRight()
+      .scale(yScale)
+      .tickSize(-width, 0, 0);
+
+    const xAxis = d3.axisBottom()
+      .scale(xScale)
+      //.ticks(2, "s")
+      // .tickFormat(function(d) {
+      //   return d3.timeFormat("%Ss")(d);
+      // });
+
+    el.append('g')
+      .attr('className', 'sparkline')
+    	.attr('transform', `translate(${width}, 0)`)
+    	.call(yAxis)
+
+    el.append('g')
+      .attr('className', 'sparkline')
+      .attr('transform', `translate(0, ${(height)})`)
+      .call(xAxis);
+
+    const line = d3.line()
+      .x(function (d) {
+        return xScale(d.timestamp);
+      })
+      .y(function (d) {
+        return yScale(d.price);
+      });
+
+    el.append('g')
+      .append('path')
+      .datum(data)
+      .attr('className', 'sparkline')
+      .attr('d', line);
+
+    const lastValue = _.get(_.last(data), 'price');
+    const g = el.append('g')
       .attr('width', 50)
       .attr('height', 16)
+      .attr('transform', `translate(${(width - 50)}, ${(yScale(lastValue) - 8)})`);
 
-  g.append("text")
-    .attr("x", 16)
-    .attr("y",  8)
-		.attr("dy", ".35em")
-		.attr("text-anchor", "start")
-    .attr('className', 'sparkline')
-		.text(lastValue);
+    g.append('rect')
+      .attr('width', 50)
+      .attr('height', 16);
 
-  return node.toReact();
+    g.append('text')
+      .attr('x', 5)
+      .attr('y',  8)
+  		.attr('dy', '.35em')
+  		.attr('text-anchor', 'start')
+      .attr('className', 'sparkline')
+      .attr('font-size', '10px')
+  		.text(lastValue);
+
+    return node.toReact();
+  }
 }
+
+Chart.propTypes = {
+  dataPoints: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Chart;

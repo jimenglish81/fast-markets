@@ -22,7 +22,7 @@ class MarketDropdown extends Component {
   }
 
   /**
-   * Attach doucment click listener.
+   * Attach document click listener.
    * @private
    */
   componentDidMount () {
@@ -31,7 +31,7 @@ class MarketDropdown extends Component {
   }
 
   /**
-   * Detach doucment click listener.
+   * Detach document click listener.
    * @private
    */
   componentWillUnmount () {

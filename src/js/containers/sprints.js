@@ -44,7 +44,7 @@ class Sprints extends Component {
           <Ticket />
         </div>
         <div className="sprints__chart">
-          CHART
+          <Chart />
         </div>
       </div>
     ), (
