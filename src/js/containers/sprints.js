@@ -5,9 +5,10 @@ import {
   fetchMarkets,
   fetchMarket
 } from '../actions';
-import Chart from '../containers/chart';
-import MarketDropdown from '../containers/market-dropdown';
+import Chart from './chart';
+import MarketDropdown from './market-dropdown';
 import Ticket from './ticket';
+import Positions from '../components/positions';
 import { conditionalRender } from '../utils';
 
 // TODO does MarketDropdown need to be a container? Loading could be market?
@@ -38,13 +39,18 @@ class Sprints extends Component {
     const { isLoading } = this.state;
 
     return conditionalRender(!isLoading, (
-      <div className="sprints">
-        <div className="sprints__trades">
-          <MarketDropdown />
-          <Ticket />
+      <div>
+        <div className="sprints">
+          <div className="sprints__trades">
+            <MarketDropdown />
+            <Ticket />
+          </div>
+          <div className="sprints__chart">
+            <Chart />
+          </div>
         </div>
-        <div className="sprints__chart">
-          <Chart />
+        <div className="fast-market-positions">
+          <Positions />
         </div>
       </div>
     ), (

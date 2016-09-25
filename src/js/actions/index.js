@@ -44,8 +44,10 @@ import {
   MARKET_UPDATE,
   CHART_UPDATE,
   SIZE_UPDATE,
+  ACCOUNT_UPDATE,
 
-  CONFIRM_RECIEVED
+  CONFIRM_RECEIVED,
+  POSITION_RECEIVED
 } from './types';
 
 /**
@@ -183,14 +185,36 @@ export const chartUpdate = (update: Object):
 });
 
 /**
- * Action to represent recieving a confirm.
+ * Action to request an update account info.
+ * @param {Object} updates
+ * @return {Object}
+ */
+export const accountUpdate = (update: Object):
+{ type: string, payload: Object } => ({
+  type: ACCOUNT_UPDATE,
+  payload: update,
+});
+
+/**
+ * Action to represent receiving a confirm.
  * @param {Object} confirm
  * @return {Object}
  */
 export const confirmRecieved = (confirm: Object):
 { type: string, payload: Object } => ({
-  type: CONFIRM_RECIEVED,
+  type: CONFIRM_RECEIVED,
   payload: confirm,
+});
+
+/**
+ * Action to represent receiving an opu.
+ * @param {Object} position
+ * @return {Object}
+ */
+export const positionRecieved = (position: Object):
+{ type: string, payload: Object } => ({
+  type: POSITION_RECEIVED,
+  payload: position,
 });
 
 /**

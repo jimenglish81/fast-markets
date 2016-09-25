@@ -1,7 +1,7 @@
 import {
   TRADE_REQUEST,
   TRADE_FAILURE,
-  CONFIRM_RECIEVED
+  CONFIRM_RECEIVED
 } from '../actions/types';
 
 export default (state={}, { payload, type }) => {
@@ -16,7 +16,7 @@ export default (state={}, { payload, type }) => {
         loading: false,
         error: payload,
       };
-    case CONFIRM_RECIEVED:
+    case CONFIRM_RECEIVED:
       return {
         ...payload,
         loading: false,

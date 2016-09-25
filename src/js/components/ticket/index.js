@@ -68,7 +68,7 @@ const TicketForm = (props) => {
 TicketForm.propTypes = {
   minDealSize: PropTypes.number.isRequired,
   size: PropTypes.number,
-  strike: PropTypes.string,
+  strike: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   payout: PropTypes.number,
   onSizeChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

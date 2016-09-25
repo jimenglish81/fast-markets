@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
-
+import Row from './row';
 /**
  * Positions for app.
  * @param {Object} props
  * @return {Element}
  */
 const Positions = (props) => {
+
+  const renderRows = (rows) => {
+    return rows.map(() => <Row />)
+  };
 
   return (
     <section className="positions">
@@ -35,52 +39,7 @@ const Positions = (props) => {
         </div>
       </section>
       <section className="positions__body">
-        <div className="positions__row">
-          <div className="positions__cell positions__cell__market-name">
-            EUR/GBP
-          </div>
-          <div className="positions__cell positions__cell__direction">
-            Above
-          </div>
-          <div className="positions__cell positions__cell__expiry">
-            10/09/1982
-          </div>
-          <div className="positions__cell positions__cell__strike">
-            120
-          </div>
-          <div className="positions__cell positions__cell__latest">
-            101
-          </div>
-          <div className="positions__cell positions__cell__stake">
-            10
-          </div>
-          <div className="positions__cell positions__cell__payout">
-            300
-          </div>
-        </div>
-        <div className="positions__row">
-          <div className="positions__cell positions__cell__market-name">
-            EUR/GBP
-          </div>
-          <div className="positions__cell positions__cell__direction">
-            Above
-          </div>
-          <div className="positions__cell positions__cell__expiry">
-            10/09/1982
-          </div>
-          <div className="positions__cell positions__cell__strike">
-            120
-          </div>
-          <div className="positions__cell positions__cell__latest">
-            101
-          </div>
-          <div className="positions__cell positions__cell__stake">
-            10
-          </div>
-          <div className="positions__cell positions__cell__payout">
-            300
-          </div>
-        </div>
+        {renderRows([1, 2])}
       </section>
     </section>
   );
