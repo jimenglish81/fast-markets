@@ -59,8 +59,19 @@ const TicketForm = (props) => {
             </div>
           </div>
         </section>
+        <section className="ticket-form__group">
+          <div className="ticket-form__group">
+            <div className="ticket-form__group__label">
+              <label>Payout:</label>
+            </div>
+            <div className="ticket-form__group__field">
+              <div className="ticket-form__direction__strike">
+                {payout ? numeral(payout).format('0,0.00') : '-'}
+              </div>
+            </div>
+          </div>
+        </section>
       </form>
-      {conditionalRender(payout, <div>{numeral(payout).format('0,0.00')}</div>)}
     </section>
   );
 };
