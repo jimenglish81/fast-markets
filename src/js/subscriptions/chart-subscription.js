@@ -17,7 +17,7 @@ export default class ChartSubscription extends AbstractSubscription {
           const key = schema[pos - 1];
           updates[key] = value;
         });
-        if (updates,timestamp !== null && updates.price !== null) {
+        if (updates.timestamp !== null && updates.price !== null) {
           onItemUpdate(updates);
         }
       }

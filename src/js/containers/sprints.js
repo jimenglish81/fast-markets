@@ -47,7 +47,7 @@ class Sprints extends Component {
             <Ticket />
           </div>
           <div className="sprints__chart">
-            <Chart />
+            Chart
           </div>
         </div>
         <div className="fast-market-positions">

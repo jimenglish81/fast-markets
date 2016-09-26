@@ -17,12 +17,11 @@ class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      isLoading: true,
     };
   }
 
   getChartData() {
-    return;
     this.props.fetchChart(this.props.selectedEpic)
         .then(() => this.setState({ isLoading: false }));
   }
@@ -32,7 +31,6 @@ class Chart extends Component {
   }
 
   componentWillUpdate({ selectedEpic }) {
-    return;
     if (selectedEpic !== this.props.selectedEpic) {
       this.setState({
         isLoading: true,
@@ -47,7 +45,7 @@ class Chart extends Component {
 
     return conditionalRender(!isLoading, (
       <ChartComponent
-        dataPoints={data1.dataPoints}
+        dataPoints={this.props.dataPoints}
       />
     ), (
       <div>loading...</div>

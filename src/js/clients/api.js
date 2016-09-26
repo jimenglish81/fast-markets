@@ -113,7 +113,7 @@ export function chart(epic, cst, xst) {
     ...createHeaders(cst, xst),
     version: 2,
   };
-  const url = `${BASE}prices/${epic}/SECOND/300`;
+  const url = `${BASE}prices/${epic}/SECOND/30`;
 
   return doGet(url, headers)
           .then(parseChartResp(epic));

@@ -11,14 +11,15 @@ export default (state={}, { payload, type }) => {
     case CHART_SUCCESS:
       return { ...payload };
     case CHART_UPDATE:
-      debugger;
       const update = {
         ...payload,
         timestamp: d3.timeFormat('%Y/%m/%d %H:%M:%S')(new Date(+payload.timestamp)),
       };
 
       return {
-        dataPoints: [ ...dataPoints.slice(1), ...update ],
+        ...state,
+        //dataPoints: [ ...state.dataPoints.slice(1), update ],
+        dataPoints: [ ...state.dataPoints, update ],
       };
     default:
       return state;
