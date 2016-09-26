@@ -14,7 +14,7 @@ const TicketForm = (props) => {
     minDealSize,
     payout,
     strike,
-    size,
+    size='',
   } = props;
 
   return (

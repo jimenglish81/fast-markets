@@ -7,6 +7,21 @@ import  {
   accountUpdate
 } from '../actions';
 
+// TODO - move somewhere more appropriate.
+const parseOpu = (opu) => {
+  return {
+    instrumentName: 'Lookup on state by epic',
+    payoutAmount: opu.payoutAmount,
+    expiryTime: opu.expiryTime,
+    dealId: opu.dealId,
+    epic: opu.epic,
+    status: opu.status,
+    size: opu.size,
+    strikeLevel: opu.level,
+    direction: opu.direction,
+  }
+};
+
 export default (
   tradeSubscription,
   positionSubscription,
@@ -19,7 +34,7 @@ export default (
     });
 
     positionSubscription.subscribe(accountId, (opu) => {
-      store.dispatch(positionRecieved(opu));
+      store.dispatch(positionRecieved(parseOpu(opu)));
     });
 
     balanceSubscription.subscribe(accountId, (updates) => {

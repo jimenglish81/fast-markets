@@ -6,29 +6,40 @@ import React, { PropTypes } from 'react';
  * @return {Element}
  */
 const Row = (props) => {
+  const {
+    position: {
+      instrumentName,
+      dealId,
+      direction,
+      size,
+      expiryTime,
+      strikeLevel,
+      payoutAmount,
+    },
+  } = props;
 
   return (
-    <div className="positions__row">
+    <div className="positions__row" key={dealId}>
       <div className="positions__cell positions__cell__market-name">
-        EUR/GBP
+        {instrumentName}
       </div>
       <div className="positions__cell positions__cell__direction">
-        Above
+        {direction === 'BUY' ? 'Above' : 'Below'}
       </div>
       <div className="positions__cell positions__cell__expiry">
-        10/09/1982
+        {expiryTime}
       </div>
       <div className="positions__cell positions__cell__strike">
-        120
+        {strikeLevel}
       </div>
       <div className="positions__cell positions__cell__latest">
-        101
+        {'TODO'}
       </div>
       <div className="positions__cell positions__cell__stake">
-        10
+        {size}
       </div>
       <div className="positions__cell positions__cell__payout">
-        300
+        {payoutAmount}
       </div>
     </div>
   )

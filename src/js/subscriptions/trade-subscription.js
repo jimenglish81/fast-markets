@@ -16,7 +16,9 @@ export default class TradeSubscription extends AbstractSubscription {
         }
         try {
           const confirm = JSON.parse(itemUpdate.getValue('CONFIRMS'));
-          onItemUpdate(confirm);
+          if (confirm) {
+            onItemUpdate(confirm);
+          }
         } catch(err) {
           console.error(`Failed parse confirm: ${err}`);
         }

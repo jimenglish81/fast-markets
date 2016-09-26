@@ -80,7 +80,9 @@ function mapStateToProps(state) {
       selectedMarket,
     },
     auth: {
-      accountId,
+      session: {
+        accountId,
+      },
     },
   } = state;
 

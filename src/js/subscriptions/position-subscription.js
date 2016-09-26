@@ -17,7 +17,9 @@ export default class PositionSubscription extends AbstractSubscription {
         }
         try {
           const opu = JSON.parse(itemUpdate.getValue('OPU'));
-          onItemUpdate(opu);
+          if (opu) {
+            onItemUpdate(opu);
+          }
         } catch(err) {
           console.error(`Failed parse opu: ${err}`);
         }

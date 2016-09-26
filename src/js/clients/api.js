@@ -64,6 +64,8 @@ const parseChartResp = (epic) => ({ prices }) => ({
   }))
 });
 
+const parsePositions = ({ sprintMarketPositions }) => sprintMarketPositions;
+
 export function auth(identifier, password, encryptedPassword=false) {
   const data = {
     identifier,
@@ -124,7 +126,8 @@ export function positions(cst, xst) {
   };
   const url = `${BASE}positions/sprintmarkets`;
 
-  return doGet(url, headers);
+  return doGet(url, headers)
+          .then(parsePositions);
 }
 
 export function createTrade(data, cst, xst) {

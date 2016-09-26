@@ -7,8 +7,12 @@ import Row from './row';
  */
 const Positions = (props) => {
 
-  const renderRows = (rows) => {
-    return rows.map(() => <Row />)
+  const renderRows = (rows=[]) => {
+    return rows.map((position) => {
+      return (
+        <Row position={position} />
+      );
+    });
   };
 
   return (
@@ -39,7 +43,7 @@ const Positions = (props) => {
         </div>
       </section>
       <section className="positions__body">
-        {renderRows([1, 2])}
+        {renderRows(props.positions)}
       </section>
     </section>
   );

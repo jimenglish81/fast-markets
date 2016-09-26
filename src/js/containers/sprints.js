@@ -8,7 +8,7 @@ import {
 import Chart from './chart';
 import MarketDropdown from './market-dropdown';
 import Ticket from './ticket';
-import Positions from '../components/positions';
+import Positions from './positions';
 import { conditionalRender } from '../utils';
 
 // TODO does MarketDropdown need to be a container? Loading could be market?
@@ -20,6 +20,7 @@ class Sprints extends Component {
     };
   }
 
+  // TODO - Promise.all
   componentWillMount() {
     this.props.fetchMarkets();
   }

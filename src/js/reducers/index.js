@@ -4,6 +4,7 @@ import markets from './markets';
 import chart from './chart';
 import trade from './trade';
 import ticket from './ticket';
+import positions from './positions';
 
 const rootReducer = combineReducers({
   auth,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   chart,
   trade,
   ticket,
+  positions,
 });
 
 export default rootReducer;
