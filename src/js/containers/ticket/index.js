@@ -4,7 +4,8 @@ import { createSelector } from 'reselect';
 import { generateDealReference } from '../../utils';
 import {
   submitTrade,
-  sizeUpdate
+  sizeUpdate,
+  expiryUpdate
 } from '../../actions';
 import TicketForm from '../../components/ticket';
 
@@ -28,12 +29,13 @@ class Ticket extends Component {
       accountId,
       selectedMarket,
       size,
+      expiry,
     } = this.props;
     const data = {
       dealReference: generateDealReference(accountId),
       direction,
       epic: selectedMarket.epic,
-      expiryPeriod: 'TWO_MINUTES',
+      expiryPeriod: expiry,
       size,
     };
     this.props.submitTrade(data);
@@ -44,18 +46,25 @@ class Ticket extends Component {
       selectedMarket: {
         minDealSize,
         strike,
+        minExpiry,
+        maxExpiry,
       },
       payout,
       size,
+      expiry,
     } = this.props;
 
     return (
       <TicketForm
         minDealSize={minDealSize}
         strike={strike}
+        minExpiry={minExpiry}
+        maxExpiry={maxExpiry}
         size={size}
+        expiry={expiry}
         payout={payout}
         onSubmit={this.onSubmit}
+        onExpiryChange={(expiry) => this.props.expiryUpdate(expiry)}
         onSizeChange={(size) => this.props.sizeUpdate(size)}
       />
     );
@@ -67,13 +76,16 @@ Ticket.propTypes = {
   payout: PropTypes.number,
   selectedMarket: PropTypes.object.isRequired,
   size: PropTypes.number,
+  expiry: PropTypes.string,
   submitTrade: PropTypes.func.isRequired,
   sizeUpdate: PropTypes.func.isRequired,
+  expiryUpdate: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   const {
     ticket: {
+      expiry,
       size,
     },
     markets: {
@@ -88,10 +100,11 @@ function mapStateToProps(state) {
 
   return {
     accountId,
+    expiry,
     payout: calculatePayout(state),
     selectedMarket,
     size,
   };
 }
 
-export default connect(mapStateToProps, { submitTrade, sizeUpdate })(Ticket);
+export default connect(mapStateToProps, { submitTrade, sizeUpdate, expiryUpdate })(Ticket);

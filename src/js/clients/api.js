@@ -52,7 +52,9 @@ const parseMarketResp = ({ instrument, snapshot, dealingRules }) => {
     instrumentName: instrument.name,
     marketStatus: snapshot.marketStatus,
     strike: snapshot.bid,
-    minDealSize: dealingRules.minDealSize.value
+    minDealSize: dealingRules.minDealSize.value,
+    minExpiry: instrument.sprintMarketsMinimumExpiryTime / 60,
+    maxExpiry: instrument.sprintMarketsMaximumExpiryTime / 60,
   };
 };
 

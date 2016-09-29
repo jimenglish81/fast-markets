@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import moment from 'moment';
+import numeral from 'numeral';
 
 /**
  * Partially apply Function from right hand side with given number of optional
@@ -45,3 +47,11 @@ export const conditionalRender = (cond, node, empty=null) => {
 export const generateDealReference = (accountId, timestamp=new Date().getTime()) => {
   return `MM-${timestamp}-${accountId}`;
 };
+
+export const formatCurrency = (value) => {
+  return numeral(value).format('0,0.00');
+};
+
+export const formatTime = (timestamp) => {
+  return moment(timestamp).format('hh:mm:ss');
+}

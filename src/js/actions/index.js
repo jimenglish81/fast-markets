@@ -44,6 +44,7 @@ import {
   MARKET_UPDATE,
   CHART_UPDATE,
   SIZE_UPDATE,
+  EXPIRY_UPDATE,
   ACCOUNT_UPDATE,
 
   CONFIRM_RECEIVED,
@@ -226,4 +227,14 @@ export const sizeUpdate = (size: Number):
 { type: string, payload: Number } => ({
   type: SIZE_UPDATE,
   payload: size,
+});
+
+/**
+ * Action to update ticket size.
+ * @param {Number} size
+ * @return {Object}
+ */
+export const expiryUpdate = (expiry) => ({
+  type: EXPIRY_UPDATE,
+  payload: expiry,
 });

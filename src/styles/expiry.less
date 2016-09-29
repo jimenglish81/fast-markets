@@ -1,0 +1,43 @@
+.expiry-field {
+  font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+}
+
+.expiry-field input {
+  display: none;
+}
+
+.expiry-field label {
+  background: #69335e;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 10px;
+  min-width: 30px;
+  transition: all 0.25s ease-in-out;
+  border-left: 1px solid #20154f;
+}
+
+.expiry-field label:hover {
+  background: #20154f;
+}
+
+.expiry-field label.checked {
+  background: #20154f;
+}
+
+.expiry-field label.disabled {
+  background: #ddd;
+}
+
+.expiry-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+  border-left: none;
+}
+
+.expiry-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}

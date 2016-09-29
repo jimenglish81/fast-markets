@@ -48,6 +48,11 @@ module.exports = (env) => {
           test: /\.json$/,
           loader: 'json'
         },
+        {
+          test: /\.(jpg|jpeg|gif|png|ico)$/,
+          exclude: /node_modules/,
+          loaders: 'url-loader',
+        },
       ],
     },
     externals: {

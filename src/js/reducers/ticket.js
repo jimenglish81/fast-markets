@@ -1,5 +1,6 @@
 import {
-  SIZE_UPDATE
+  SIZE_UPDATE,
+  EXPIRY_UPDATE
 } from '../actions/types';
 
 export default (state={}, { payload, type }) => {
@@ -9,6 +10,11 @@ export default (state={}, { payload, type }) => {
       return {
         ...state,
         size: payload,
+      };
+    case EXPIRY_UPDATE:
+      return {
+        ...state,
+        expiry: payload,
       };
     default:
       return state;

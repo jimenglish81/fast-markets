@@ -16,6 +16,7 @@ class Positions extends Component {
       positions,
     } = this.props;
 
+    // TODO - use children here and render rows to pass latest price
     return (
       <PositionsGrid
         positions={positions}
@@ -25,6 +26,7 @@ class Positions extends Component {
 }
 
 Positions.propTypes = {
+  fetchPositions: PropTypes.func.isRequired,
   positions: PropTypes.arrayOf(PropTypes.object),
 };
 

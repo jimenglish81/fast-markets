@@ -4,7 +4,8 @@ import {
   AUTH_FAILURE,
   UNAUTH_REQUEST,
   UNAUTH_SUCCESS,
-  UNAUTH_FAILURE
+  UNAUTH_FAILURE,
+  ACCOUNT_UPDATE
 } from '../actions/types';
 import { Map } from 'immutable';
 
@@ -29,6 +30,11 @@ export default (state={ isAuthenticated: false }, { payload, type }) => {
         session: null,
         error: payload || 'generic error',
       };
+    case ACCOUNT_UPDATE:
+    return {
+      ...state,
+      session: { ...state.session, ...payload},
+    };
     default:
       return state;
   }

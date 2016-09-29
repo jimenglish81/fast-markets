@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { formatCurrency, formatTime } from '../../utils';
 
 /**
  * Positions for app.
@@ -27,10 +28,10 @@ const Row = (props) => {
         {direction === 'BUY' ? 'Above' : 'Below'}
       </div>
       <div className="positions__cell positions__cell__expiry">
-        {expiryTime}
+        {formatTime(expiryTime)}
       </div>
       <div className="positions__cell positions__cell__strike">
-        {strikeLevel}
+        {formatCurrency(strikeLevel)}
       </div>
       <div className="positions__cell positions__cell__latest">
         {'TODO'}
@@ -39,7 +40,7 @@ const Row = (props) => {
         {size}
       </div>
       <div className="positions__cell positions__cell__payout">
-        {payoutAmount}
+        {formatCurrency(payoutAmount)}
       </div>
     </div>
   )

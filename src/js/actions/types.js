@@ -32,6 +32,7 @@ export const SELECT_EPIC: string = 'SELECT_EPIC';
 export const MARKET_UPDATE: string = 'MARKET_UPDATE';
 export const CHART_UPDATE: string = 'CHART_UPDATE';
 export const SIZE_UPDATE: string = 'SIZE_UPDATE';
+export const EXPIRY_UPDATE: string = 'EXPIRY_UPDATE';
 export const ACCOUNT_UPDATE: string = 'ACCOUNT_UPDATE';
 
 export const CONFIRM_RECEIVED: string = 'CONFIRM_RECEIVED';
