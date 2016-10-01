@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import {
+  MARKET_REQUEST,
+  MARKETS_REQUEST,
   MARKETS_SUCCESS,
   MARKET_SUCCESS,
   SELECT_EPIC,
@@ -14,6 +16,12 @@ export default (state={}, { payload, type }) => {
   } = state;
 
   switch (type) {
+    case MARKET_REQUEST:
+    case MARKETS_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case MARKETS_SUCCESS:
       return {
         ...state,
@@ -29,6 +37,7 @@ export default (state={}, { payload, type }) => {
       const existing = _.find(markets, { epic: selectedEpic });
       return {
         ...state,
+        isLoading: false,
         selectedMarket: { ...existing, ...payload },
       };
     case MARKET_UPDATE:

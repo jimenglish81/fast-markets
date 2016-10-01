@@ -5,6 +5,7 @@ import {
   fetchMarkets,
   fetchMarket
 } from '../actions';
+import Loader from '../components/common/loader';
 import Chart from './chart';
 import MarketDropdown from './market-dropdown';
 import Ticket from './ticket';
@@ -15,9 +16,6 @@ import { conditionalRender } from '../utils';
 class Sprints extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: true,
-    };
   }
 
   // TODO - Promise.all
@@ -27,17 +25,12 @@ class Sprints extends Component {
 
   componentWillUpdate({ selectedEpic }) {
     if (selectedEpic !== this.props.selectedEpic) {
-      this.setState({
-        isLoading: true,
-      });
-
-      this.props.fetchMarket(selectedEpic)
-        .then(() => this.setState({ isLoading: false }));
+      this.props.fetchMarket(selectedEpic);
     }
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading } = this.props;
 
     return conditionalRender(!isLoading, (
       <div>
@@ -55,7 +48,7 @@ class Sprints extends Component {
         </div>
       </div>
     ), (
-      <div>loading...</div>
+      <Loader />
     ));
   }
 }
@@ -64,6 +57,12 @@ Sprints.propTypes = {
   selectedEpic: PropTypes.string,
   fetchMarkets: PropTypes.func.isRequired,
   fetchMarket: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+
+
+Sprints.defaultProps = {
+  isLoading: true,
 };
 
 function mapStateToProps(state) {
@@ -71,11 +70,13 @@ function mapStateToProps(state) {
     markets: {
       markets,
       selectedEpic,
+      isLoading,
     },
   } = state;
 
   return {
     //markets,
+    isLoading,
     selectedEpic,
   };
 }
