@@ -27,7 +27,7 @@ export default (state={ isAuthenticated: false }, { payload, type }) => {
       return {
         isAuthenticated: false,
         session: null,
-        error: payload || 'generic error',
+        error: payload || 'Sign in failed.',
         loading: false,
       };
     case UNAUTH_SUCCESS:
