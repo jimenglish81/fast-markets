@@ -79,7 +79,7 @@ class Expiry extends Component {
     } = this.props;
     const minValue = getMin(values, min);
     const maxValue = getMax(values, max);
-    const minExpiry = keys[values.indexOf(min)];
+    const minExpiry = keys[values.indexOf(minValue)];
     const expiryValue = expiry || minExpiry;
 
     return generateOptions(minValue, maxValue)

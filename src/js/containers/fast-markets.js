@@ -40,7 +40,7 @@ class FastMarkets extends Component {
             <Ticket />
           </div>
           <div className="fast-markets__chart">
-            Chart
+            <Chart />
           </div>
         </div>
         <div className="fast-markets__positions">
