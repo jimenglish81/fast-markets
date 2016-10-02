@@ -102,7 +102,7 @@ class Chart extends Component {
     el.append('g')
       .append('path')
       .datum(data)
-      .attr('className', 'sparkline')
+      .attr('className', 'chart-line')
       .attr('d', line);
 
     const lastValue = _.get(_.last(data), 'price');
@@ -121,7 +121,7 @@ class Chart extends Component {
       .attr('y', 8)
   		.attr('dy', '.35em')
   		.attr('text-anchor', 'start')
-      .attr('className', 'sparkline')
+      .attr('stroke', '#1997c6')
       .attr('font-size', '10px')
   		.text(lastValue);
 
