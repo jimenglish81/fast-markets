@@ -4,7 +4,6 @@ import { unauthUser} from '../actions';
 import { Link } from 'react-router';
 import { isAuthenticated } from '../reducers';
 
-// TODO - extract into component?
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,7 @@ class Header extends Component {
     if (isAuthenticated) {
       return [
         <li className="nav__navbar__item" key={1}>
-          <button className="btn btn-logout" onClick={this._handleLogout}>
+          <button className="btn btn--slim btn--secondary" onClick={this._handleLogout}>
             Sign out
           </button>
         </li>

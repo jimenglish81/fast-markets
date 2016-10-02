@@ -1,6 +1,6 @@
 export {
   default as FormError
-} from './form-error';
+} from './error';
 export {
   default as FormGroup
-} from './form-group';
+} from './group';

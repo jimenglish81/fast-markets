@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FormError from './form-error';
+import FormError from './error';
 
 describe('<FormError />', () => {
 

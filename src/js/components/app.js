@@ -3,13 +3,13 @@ import Header from '../containers/header';
 
 const App = (props) => {
   return (
-    <div className="minute-markets">
+    <div className="fast-markets">
       <Header />
-      <div className="minute-markets-body">
+      <div className="fast-markets-body">
         {props.children}
       </div>
-      <footer>
-        <p>Powered by IG</p>
+      <footer className="fast-markets-footer">
+        <small>Powered by IG</small>
       </footer>
     </div>
   );

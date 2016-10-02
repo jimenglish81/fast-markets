@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FormGroup from './form-group';
+import FormGroup from './group';
 
 describe('<FormGroup />', () => {
 

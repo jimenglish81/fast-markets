@@ -38,11 +38,13 @@ const AuthForm = (props) => {
         <FormGroup>
           <button
             action="submit"
-            className="btn btn-primary">
+            className="btn btn--primary">
             Sign in
           </button>
         </FormGroup>
-        <FormError error={props.error} />
+        <FormGroup>
+          <FormError error={props.error} />
+        </FormGroup>
       </form>
     </div>
   );

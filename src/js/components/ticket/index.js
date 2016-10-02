@@ -25,10 +25,11 @@ const TicketForm = (props) => {
       <form className="ticket-form">
         <section className="ticket-form__group">
           <div className="ticket-form__group__label">
-            <label>Stake:</label>
+            <label>Stake</label>
           </div>
           <div className="ticket-form__group__field">
             <input
+              className="input--slim ticket-form__group__input"
               placeholder={`Min: ${minDealSize}`}
               autoComplete="off"
               max="9999999"
@@ -42,7 +43,7 @@ const TicketForm = (props) => {
         </section>
         <section className="ticket-form__group">
           <div className="ticket-form__group__label">
-            <label>Expiry:</label>
+            <label>Expiry</label>
           </div>
           <div className="ticket-form__group__field">
             <Expiry
@@ -54,12 +55,12 @@ const TicketForm = (props) => {
         </section>
         <section className="ticket-form__group">
           <div className="ticket-form__group__label">
-            <label>Direction:</label>
+            <label>Direction</label>
           </div>
           <div className="ticket-form__group__field">
             <div className="ticket-form__direction">
               <button
-                className="btn btn--price btn--price--above"
+                className="btn btn--price btn--slim btn--price__above"
                 onClick={createSubmitHandler('BUY')}>
                 above
               </button>
@@ -67,7 +68,7 @@ const TicketForm = (props) => {
                 {formatCurrency(strike)}
               </div>
               <button
-                className="btn btn--price btn--price--below"
+                className="btn btn--price btn--slim btn--price__below"
                 onClick={createSubmitHandler('SELL')}>
                 below
               </button>
@@ -77,7 +78,12 @@ const TicketForm = (props) => {
         <section className="ticket-form__group">
           <div className="ticket-form__group">
             <div className="ticket-form__group__label">
-              <label>Payout (inc stake):</label>
+              <label>
+                Payout
+                <div>
+                  <small>(inc stake)</small>
+                </div>
+              </label>
             </div>
             <div className="ticket-form__group__field">
               <div className="ticket-form__direction__strike">

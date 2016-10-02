@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import AuthForm from '../../components/auth/form';
+import AuthForm from '../../components/auth';
 import { authUser } from '../../actions';
+
+const isValid = (identifier, password) => {
+  return identifier !== '' && password !== '';
+};
 
 class Auth extends Component {
   constructor(props) {
@@ -9,31 +13,56 @@ class Auth extends Component {
     this.state = {
       identifier: '',
       password: '',
+      validationMsg: '',
     };
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
     this._handleInputChange = this._handleInputChange.bind(this);
   }
 
+  componentWillReceiveProps({ error }) {
+    if (error) {
+      this.setState({
+        identifier: '',
+        password: '',
+        validationMsg: error,
+      });
+    }
+  }
+
   _handleFormSubmit(evt) {
     evt.preventDefault();
     const { identifier, password } = this.state;
-    this.props.authUser(identifier, password);
+
+    if (isValid(identifier, password)) {
+      this.props.authUser(identifier, password);
+    } else {
+      this.setState({
+        identifier: '',
+        password: '',
+        validationMsg: 'You must add a valid username and password',
+      });
+    }
   }
 
   _handleInputChange(key, value) {
     this.setState({
+      validationMsg: '',
       [key]: value,
     });
   }
 
   render() {
-    const { identifier, password } = this.state;
+    const {
+      identifier,
+      password,
+      validationMsg,
+    } = this.state;
 
     return (
       <AuthForm
         identifier={identifier}
         password={password}
-        error={this.props.error}
+        error={validationMsg}
         onFormSubmit={this._handleFormSubmit}
         onInputChange={this._handleInputChange}
       />
@@ -46,9 +75,9 @@ Auth.propTypes = {
   error: React.PropTypes.string,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ auth: { error } }) {
   return {
-    error: state.auth.error,
+    error,
   };
 }
 

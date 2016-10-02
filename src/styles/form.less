@@ -9,6 +9,7 @@ label {
 }
 
 input {
+  box-sizing: border-box;
   margin: 0;
   max-width: 100%;
   flex: 1 0 auto;
@@ -19,7 +20,7 @@ input {
   font-family: @pageFont;
   padding: 1em 1.2em;
   background:  @input-background-color;
-  border: 1px solid @input-border-color;
+  border: 1px solid @input-background-color;
   color: @input-color;
   border-radius: .3rem;
   transition: box-shadow .1s ease,border-color .1s ease;
@@ -27,7 +28,12 @@ input {
 }
 
 input:focus {
-    border-color: @input-border-color-focus;
-    box-shadow: none;
-    background: @highlight-background;
+  border-color: @input-border-color-focus;
+  box-shadow: none;
+  background: @input-background-color-focus;
+  color: @input-focus-color;
+}
+
+.input--slim {
+  padding: 0.6em;
 }

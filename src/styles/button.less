@@ -1,7 +1,6 @@
 .btn {
   cursor: pointer;
   display: inline-block;
-  min-height: 1em;
   outline: 0;
   border: none;
   vertical-align: baseline;
@@ -10,8 +9,7 @@
   text-transform: none;
   text-shadow: none;
   font-weight: 700;
-  line-height: 1em;
-  color: @smallPrintColor;
+  color: @textColor;
   font-style: normal;
   text-align: center;
   text-decoration: none;
@@ -23,10 +21,6 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   position: relative;
-}
-
-.btn:hover {
-  color: @smallPrintColor;
 }
 
 .btn:before {
@@ -49,38 +43,43 @@
   transform: scaleX(1);
 }
 
-.btn-primary {
-  background: @primary;
-}
-
-.btn-primary:before {
-  background: #1687b2;
-}
-
-.btn-logout {
+.btn--slim {
   padding: 0.6em;
 }
 
-
-/* temp */
-.btn--price,
-.btn--price:hover {
-  color: @smallPrintColor;
+.btn--primary {
+  background: @primary;
 }
 
-.btn--price--above {
-  background: @deal-primary;
+.btn--primary:before {
+  background: @btn-primary-highlight;
 }
 
-.btn--price--above:before {
-  background: #4DBD33;
+.btn--secondary {
+  background-color: @secondary;
+  border: 1px solid @secondary-dark;
 }
 
-.btn--price--below {
-  background: @deal-secondary;
-  color: @smallPrintColor;
+.btn--secondary:hover {
+  background-color: @secondary-highlight;
 }
 
-.btn--price--below:before {
-  background: #DB2929;
+.btn--secondary:before {
+  background-color: @secondary-highlight;
+}
+
+.btn--price__above {
+  background-color: @deal-primary;
+}
+
+.btn--price__above:before {
+  background-color: @deal-primary-highlight;
+}
+
+.btn--price__below {
+  background-color: @deal-secondary;
+}
+
+.btn--price__below:before {
+  background-color: @deal-secondary-highlight;
 }

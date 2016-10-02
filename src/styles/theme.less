@@ -3,9 +3,9 @@
 /*******************************
              Base
 *******************************/
-@background: @primary-background;
-@textColor: #f0f0f0;
-@smallPrintColor: #f0f0f0;
+@background: @secondary-vdark;
+@textColor: @light;
+@smallPrintColor: @light;
 @pageFont: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 @logoFont: 'Alegreya Sans SC', cursive;
 @logoColor: @primary;
@@ -13,24 +13,25 @@
 /*******************************
              Links
 *******************************/
-@linkColor: #4183c4;
-@linkHoverColor: #1e70bf;
+@linkColor: @primary;
+@linkHoverColor: @primary-highlight;
 
 /*******************************
              Highlight
 *******************************/
-@inputHighlightBackground: #fff;
+@inputHighlightBackground: @light;
 @inputHighlightColor: rgba(0, 0, 0, 0.87);
 @highlightBackground: #cce2ff;
-@highlightColor: #34373c;
+@highlightColor: @secondary-dark;
 
 /*******************************
              Forms
 *******************************/
-@input-color: #969696;
-@input-border-color: #4e525b;
-@input-background-color: @secondary-background;
-@input-border-color-focus: #85B7D9;
+@input-color: @light;
+@input-background-color: @secondary-dark;
+@input-border-color-focus: @primary;
+@input-background-color-focus: @light;
+@input-focus-color: @secondary-dark;
 
 /*******************************
              Font
@@ -50,3 +51,12 @@
 *******************************/
 @market-status-dealable: @deal-primary;
 @market-status-undealable: @deal-secondary;
+
+/*******************************
+             Buttons
+*******************************/
+@btn-primary: @primary;
+@btn-primary-highlight: @primary-highlight;
+
+@btn-dealable: @deal-primary;
+@undealable: @deal-secondary;

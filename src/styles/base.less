@@ -126,35 +126,13 @@ a:hover {
 /*******************************
           Highlighting
 *******************************/
-::-webkit-selection {
-  background-color: @highlightBackground;
-  color: @highlightColor;
-}
-
-::-moz-selection {
-  background-color: @highlightBackground;
-  color: @highlightColor;
-}
-
 ::selection {
   background-color: @highlightBackground;
   color: @highlightColor;
 }
 
-textarea::-webkit-selection,
-input::-webkit-selection {
-  background-color: @inputHighlightBackground;
-  color: @inputHighlightColor;
-}
-
-textarea::-moz-selection,
-input::-moz-selection {
-  background-color: @inputHighlightBackground;
-  color: @inputHighlightColor;
-}
-
 textarea::selection,
 input::selection {
-  background-color: @inputHighlightBackground;
-  color: @inputHighlightColor;
+  background-color: @highlightBackground;
+  color: @highlightColor;
 }

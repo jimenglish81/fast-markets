@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
-import AuthForm from './form';
+import AuthForm from './index';
 
 describe('<AuthForm />', () => {
 

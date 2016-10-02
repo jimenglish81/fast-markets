@@ -3,6 +3,7 @@
   display: flex;
   align-items: stretch;
   flex-direction: row;
+  justify-content: center;
 }
 
 .expiry-field input {
@@ -10,32 +11,36 @@
 }
 
 .expiry-field label {
-  background: #69335e;
-  color: #fff;
+  background: transparent;
+  color: #1997c6;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
   padding: 5px 10px;
   min-width: 30px;
   transition: all 0.25s ease-in-out;
-  border-left: 1px solid #20154f;
+  border: 1px solid #1997c6;
+  border-left: none;
 }
 
 .expiry-field label:hover {
-  background: #20154f;
+  color: #fff;
+  background: #1997c6;
 }
 
 .expiry-field label.checked {
-  background: #20154f;
+  color: #fff;
+  background: #1997c6;
 }
 
 .expiry-field label.disabled {
   background: #ddd;
+  color: #999;
 }
 
 .expiry-field label:first-of-type {
   border-radius: 4px 0 0 4px;
-  border-left: none;
+  border-left: 1px solid #1997c6;
 }
 
 .expiry-field label:last-of-type {

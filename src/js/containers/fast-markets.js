@@ -13,7 +13,7 @@ import Positions from './positions';
 import { conditionalRender } from '../utils';
 
 // TODO does MarketDropdown need to be a container? Loading could be market?
-class Sprints extends Component {
+class FastMarkets extends Component {
   constructor(props) {
     super(props);
   }
@@ -34,16 +34,16 @@ class Sprints extends Component {
 
     return conditionalRender(!isLoading, (
       <div>
-        <div className="sprints">
-          <div className="sprints__trades">
+        <div className="fast-markets__wrapper">
+          <div className="fast-markets__trades">
             <MarketDropdown />
             <Ticket />
           </div>
-          <div className="sprints__chart">
+          <div className="fast-markets__chart">
             Chart
           </div>
         </div>
-        <div className="fast-market-positions">
+        <div className="fast-markets__positions">
           <Positions />
         </div>
       </div>
@@ -53,7 +53,7 @@ class Sprints extends Component {
   }
 }
 
-Sprints.propTypes = {
+FastMarkets.propTypes = {
   selectedEpic: PropTypes.string,
   fetchMarkets: PropTypes.func.isRequired,
   fetchMarket: PropTypes.func.isRequired,
@@ -61,7 +61,7 @@ Sprints.propTypes = {
 };
 
 
-Sprints.defaultProps = {
+FastMarkets.defaultProps = {
   isLoading: true,
 };
 
@@ -81,4 +81,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchMarkets, fetchMarket })(Sprints);
+export default connect(mapStateToProps, { fetchMarkets, fetchMarket })(FastMarkets);
