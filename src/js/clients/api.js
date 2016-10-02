@@ -22,6 +22,10 @@ const createHeaders = (cst, xst) => {
 
 const parseSessionResp = (session) => {
   const {
+    accountInfo: {
+      available: availableCash,
+      profitLoss,
+    },
     currentAccountId: accountId,
     ['CST']: cst,
     lightstreamerEndpoint,
@@ -33,6 +37,8 @@ const parseSessionResp = (session) => {
     cst,
     lightstreamerEndpoint,
     xst,
+    availableCash,
+    profitLoss,
   };
 };
 

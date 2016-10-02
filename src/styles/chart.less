@@ -3,9 +3,17 @@
   stroke: @primary;
   stroke-width: 1px;
 }
+
 .tick text {
   stroke: @primary;
 }
-.tick {
+
+.tick,
+.tick line,
+path.domain {
   stroke: @secondary-highlight;
+}
+
+.current-price {
+  fill: @secondary-highlight;
 }

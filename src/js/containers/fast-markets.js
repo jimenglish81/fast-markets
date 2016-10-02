@@ -33,7 +33,7 @@ class FastMarkets extends Component {
     if (selectedEpic !== currentEpic) {
       Promise.all([
         fetchMarket(selectedEpic),
-        fetchChart(selectedEpic)
+        //fetchChart(selectedEpic)
       ]);
     }
   }
@@ -78,14 +78,12 @@ FastMarkets.defaultProps = {
 function mapStateToProps(state) {
   const {
     markets: {
-      markets,
       selectedEpic,
       isLoading,
     },
   } = state;
 
   return {
-    //markets,
     isLoading,
     selectedEpic,
   };

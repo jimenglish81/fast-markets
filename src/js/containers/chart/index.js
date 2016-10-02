@@ -21,9 +21,10 @@ class Chart extends Component {
       dataPoints,
     } = this.props;
 
-    return conditionalRender(!isLoading, (
+    // TODO - use isLoading once allowance back.
+    return conditionalRender(!false, (
       <ChartComponent
-        dataPoints={dataPoints}
+        dataPoints={data1.dataPoints}
       />
     ), (
       <Loader />

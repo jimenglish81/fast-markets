@@ -112,6 +112,7 @@ class Chart extends Component {
       .attr('transform', `translate(${(width - 50)}, ${(yScale(lastValue) - 8)})`);
 
     g.append('rect')
+      .attr('className', 'current-price')
       .attr('width', 50)
       .attr('height', 16);
 

@@ -40,7 +40,10 @@ export default (state={ isAuthenticated: false }, { payload, type }) => {
     case ACCOUNT_UPDATE:
     return {
       ...state,
-      session: { ...state.session, ...payload },
+      session: {
+        ...state.session,
+        ...payload
+      },
     };
     default:
       return state;

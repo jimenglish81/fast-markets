@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { unauthUser} from '../actions';
-import { Link } from 'react-router';
+import FastMarketHeader from '../components/header';
+import { formatCurrency } from '../utils';
 import { isAuthenticated } from '../reducers';
 
 class Header extends Component {
@@ -15,47 +16,61 @@ class Header extends Component {
   }
 
   renderItems() {
-    const { isAuthenticated } = this.props;
+    const {
+      availableCash,
+      isAuthenticated,
+      profitLoss,
+    } = this.props;
 
     if (isAuthenticated) {
       return [
-        <li className="nav__navbar__item" key={1}>
-          <button className="btn btn--slim btn--secondary" onClick={this._handleLogout}>
-            Sign out
-          </button>
-        </li>
+        <ul className="nav__navbar">
+          <li className="nav__navbar__item" key={1}>
+            <div className="nav__navbar__item__header">available</div>
+            <span>{formatCurrency(availableCash)}</span>
+          </li>
+          <li className="nav__navbar__item" key={2}>
+            <div className="nav__navbar__item__header">profit/loss</div>
+            <span>{formatCurrency(profitLoss)}</span>
+          </li>
+          <li className="nav__navbar__item" key={3}>
+            <button className="btn btn--slim btn--secondary" onClick={this._handleLogout}>
+              Sign out
+            </button>
+          </li>
+        </ul>
       ];
-    } else {
-
     }
   }
 
   render() {
     return (
-      <nav className="nav">
-        <svg fill="#1997c6" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 0h24v24H0z" fill="none"/>
-          <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-        </svg>
-        <h2 className="nav__logo">
-          FastMarkets
-        </h2>
-        <ul className="nav__navbar">
-          {this.renderItems()}
-        </ul>
-      </nav>
+      <FastMarketHeader>
+        {this.renderItems()}
+      </FastMarketHeader>
     );
   }
 }
 
 Header.propTypes = {
+  availableCash: React.PropTypes.number,
   unauthUser: React.PropTypes.func.isRequired,
   isAuthenticated: React.PropTypes.bool,
+  profitLoss: React.PropTypes.number,
 };
 
 function mapStateToProps(state) {
+  const {
+    auth: {
+      availableCash,
+      profitLoss,
+    },
+  } = state;
+
   return {
+    availableCash,
     isAuthenticated: isAuthenticated(state),
+    profitLoss,
   };
 }
 
