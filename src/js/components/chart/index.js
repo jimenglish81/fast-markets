@@ -24,7 +24,7 @@ class Chart extends Component {
    * Attach window resize.
    * @private
    */
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('resize', this.debounceWindowResize);
     this.windowResize();
   }
@@ -33,7 +33,7 @@ class Chart extends Component {
    * Detach window resize.
    * @private
    */
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.debounceWindowResize);
   }
 

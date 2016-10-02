@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
   fetchMarkets,
-  fetchMarket
+  fetchMarket,
+  fetchChart
 } from '../actions';
 import Loader from '../components/common/loader';
 import Chart from './chart';
@@ -18,14 +19,22 @@ class FastMarkets extends Component {
     super(props);
   }
 
-  // TODO - Promise.all
   componentWillMount() {
     this.props.fetchMarkets();
   }
 
   componentWillUpdate({ selectedEpic }) {
-    if (selectedEpic !== this.props.selectedEpic) {
-      this.props.fetchMarket(selectedEpic);
+    const {
+      fetchChart,
+      fetchMarket,
+      selectedEpic: currentEpic,
+    } = this.props;
+
+    if (selectedEpic !== currentEpic) {
+      Promise.all([
+        fetchMarket(selectedEpic),
+        fetchChart(selectedEpic)
+      ]);
     }
   }
 
@@ -57,6 +66,7 @@ FastMarkets.propTypes = {
   selectedEpic: PropTypes.string,
   fetchMarkets: PropTypes.func.isRequired,
   fetchMarket: PropTypes.func.isRequired,
+  fetchChart: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
@@ -81,4 +91,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchMarkets, fetchMarket })(FastMarkets);
+export default connect(mapStateToProps, { fetchMarkets, fetchMarket, fetchChart })(FastMarkets);
