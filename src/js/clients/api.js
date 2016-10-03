@@ -26,6 +26,7 @@ const parseSessionResp = (session) => {
       available: availableCash,
       profitLoss,
     },
+    currencySymbol: currency,
     currentAccountId: accountId,
     ['CST']: cst,
     lightstreamerEndpoint,
@@ -35,6 +36,7 @@ const parseSessionResp = (session) => {
   return {
     accountId,
     cst,
+    currency,
     lightstreamerEndpoint,
     xst,
     availableCash,
@@ -53,7 +55,9 @@ const parseMarketNavigationResp = ({ markets }) => {
 };
 
 const parseMarketResp = ({ instrument, snapshot, dealingRules }) => {
+  // TODO - defensive
   return {
+    currency: instrument.currencies[0].symbol,
     epic: instrument.epic,
     instrumentName: instrument.name,
     marketStatus: snapshot.marketStatus,

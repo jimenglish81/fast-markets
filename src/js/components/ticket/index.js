@@ -17,6 +17,7 @@ const TicketForm = (props) => {
     payout,
     expiry,
     strike,
+    currency,
     size='',
   } = props;
 
@@ -87,7 +88,7 @@ const TicketForm = (props) => {
             </div>
             <div className="ticket-form__group__field">
               <div className="ticket-form__direction__strike">
-                {conditionalRender(payout, formatCurrency(payout), '-')}
+                {conditionalRender(payout, formatCurrency(payout, currency), '-')}
               </div>
             </div>
           </div>
@@ -101,6 +102,7 @@ TicketForm.propTypes = {
   minDealSize: PropTypes.number.isRequired,
   minExpiry: PropTypes.number.isRequired,
   maxExpiry: PropTypes.number.isRequired,
+  currency: PropTypes.string,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   expiry: PropTypes.string,
   strike: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

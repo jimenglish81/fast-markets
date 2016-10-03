@@ -20,6 +20,7 @@ class Header extends Component {
       availableCash,
       isAuthenticated,
       profitLoss,
+      currency,
     } = this.props;
 
     if (isAuthenticated) {
@@ -27,11 +28,11 @@ class Header extends Component {
         <ul className="nav__navbar">
           <li className="nav__navbar__item" key={1}>
             <div className="nav__navbar__item__header">available</div>
-            <span>{formatCurrency(availableCash)}</span>
+            <span>{formatCurrency(availableCash, currency)}</span>
           </li>
           <li className="nav__navbar__item" key={2}>
             <div className="nav__navbar__item__header">profit/loss</div>
-            <span>{formatCurrency(profitLoss)}</span>
+            <span>{formatCurrency(profitLoss, currency)}</span>
           </li>
           <li className="nav__navbar__item" key={3}>
             <button className="btn btn--slim btn--secondary" onClick={this._handleLogout}>
@@ -57,6 +58,7 @@ Header.propTypes = {
     PropTypes.number,
     PropTypes.string
   ]),
+  currency: PropTypes.string,
   unauthUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   profitLoss: PropTypes.oneOfType([
@@ -74,10 +76,12 @@ function mapStateToProps(state) {
   const {
      availableCash,
      profitLoss,
+     currency,
   } = session;
 
   return {
     availableCash,
+    currency,
     isAuthenticated: isAuthenticated(state),
     profitLoss,
   };

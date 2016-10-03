@@ -17,6 +17,9 @@ const Row = (props) => {
       strikeLevel,
       payoutAmount,
     },
+    market: {
+      strike,
+    }
   } = props;
 
   return (
@@ -34,7 +37,7 @@ const Row = (props) => {
         {formatCurrency(strikeLevel)}
       </div>
       <div className="positions__cell positions__cell__latest">
-        {'TODO'}
+        {formatCurrency(strike)}
       </div>
       <div className="positions__cell positions__cell__stake">
         {size}
@@ -48,6 +51,7 @@ const Row = (props) => {
 
 Row.propTypes = {
   position: PropTypes.object.isRequired,
+  market: PropTypes.object.isRequired,
 };
 
 export default Row;

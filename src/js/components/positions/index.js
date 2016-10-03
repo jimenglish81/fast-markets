@@ -1,19 +1,11 @@
 import React, { PropTypes } from 'react';
-import Row from './row';
+
 /**
  * Positions for app.
  * @param {Object} props
  * @return {Element}
  */
 const Positions = (props) => {
-
-  const renderRows = (rows=[]) => {
-    return rows.map((position) => {
-      return (
-        <Row position={position} key={position.dealId} />
-      );
-    });
-  };
 
   return (
     <section className="positions">
@@ -43,14 +35,14 @@ const Positions = (props) => {
         </div>
       </section>
       <section className="positions__body">
-        {renderRows(props.positions)}
+        {props.children}
       </section>
     </section>
   );
 };
 
 Positions.propTypes = {
-  positions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default Positions;

@@ -44,6 +44,7 @@ class Ticket extends Component {
   render() {
     const {
       selectedMarket: {
+        currency,
         minDealSize,
         strike,
         minExpiry,
@@ -56,6 +57,7 @@ class Ticket extends Component {
 
     return (
       <TicketForm
+        currency={currency}
         minDealSize={minDealSize}
         strike={strike}
         minExpiry={minExpiry}
@@ -75,7 +77,7 @@ Ticket.propTypes = {
   accountId: PropTypes.string.isRequired,
   payout: PropTypes.number,
   selectedMarket: PropTypes.object.isRequired,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   expiry: PropTypes.string,
   submitTrade: PropTypes.func.isRequired,
   sizeUpdate: PropTypes.func.isRequired,

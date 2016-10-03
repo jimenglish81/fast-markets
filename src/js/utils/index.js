@@ -48,8 +48,8 @@ export const generateDealReference = (accountId, timestamp=new Date().getTime())
   return `MM-${timestamp}-${accountId}`;
 };
 
-export const formatCurrency = (value) => {
-  return numeral(value).format('0,0.00');
+export const formatCurrency = (value, currency='') => {
+  return `${currency}${numeral(value).format('0,0.00')}`;
 };
 
 export const formatTime = (timestamp) => {
