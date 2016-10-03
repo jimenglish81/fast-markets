@@ -95,7 +95,7 @@ class Expiry extends Component {
           classNames.push('checked');
         }
         return (
-          <label className={classNames.join(' ')}>
+          <label className={classNames.join(' ')} key={value}>
             <input
               type="radio"
               value={value}

@@ -1,9 +1,14 @@
+.positions_body {
+  max-height: 110px;
+  overflow: scroll;
+}
+
 .positions__row {
   display: flex;
 }
 
 .positions__row {
-  border-bottom: 1px solid @textColor;
+  border-bottom: 1px solid @secondary-dark;
   border-collapse: collapse;
   padding-top: 2px;
 }
@@ -21,10 +26,12 @@
 .positions__cell {
   padding: 0 3px;
   color: @textColor;
+  text-align: center;
 }
 
 .positions__cell__market-name {
   flex-grow: 1;
+  text-align: left;
 }
 
 .positions__cell__direction {
@@ -36,11 +43,11 @@
 }
 
 .positions__cell__strike {
-  width: 50px;
+  width: 100px;
 }
 
 .positions__cell__latest {
-  width: 50px;
+  width: 100px;
 }
 
 .positions__cell__stake {

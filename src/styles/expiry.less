@@ -20,7 +20,7 @@
   min-width: 30px;
   transition: all 0.25s ease-in-out;
   border: 1px solid @primary;
-  border-left: none;
+  border-right: none;
 }
 
 .expiry-field label:hover {
@@ -35,18 +35,20 @@
   border-color: #1997c6;
 }
 
-.expiry-field label.disabled {
-  border-color: #999;
-  background: #ddd;
-  color: #999;
+.expiry-field label.disabled,
+.expiry-field label.disabled:hover {
+  cursor: default;
+  background: transparent;
+  color: @primary-vdark;
+  border-color: @primary-vdark;
 }
 
 .expiry-field label:first-of-type {
   border-radius: 4px 0 0 4px;
-  border-left-width: 1px;
-  border-left-style: solid;
 }
 
 .expiry-field label:last-of-type {
   border-radius: 0 4px 4px 0;
+  border-right-width: 1px;
+  border-right-style: solid;
 }

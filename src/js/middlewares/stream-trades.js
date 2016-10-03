@@ -8,9 +8,9 @@ import  {
 } from '../actions';
 
 // TODO - move somewhere more appropriate.
-const parseOpu = (opu) => {
+const parseOpu = (opu, market) => {
   return {
-    instrumentName: 'Lookup on state by epic',
+    instrumentName: market.instrumentName,
     payoutAmount: opu.payoutAmount,
     expiryTime: opu.expiryTime,
     dealId: opu.dealId,
@@ -34,7 +34,10 @@ export default (
     });
 
     positionSubscription.subscribe(accountId, (opu) => {
-      store.dispatch(positionRecieved(parseOpu(opu)));
+      const market = store.getState().markets.markets.find((m) => m.epic === opu.epic);
+      if (market) {
+        store.dispatch(positionRecieved(parseOpu(opu, market)));
+      }
     });
 
     balanceSubscription.subscribe(accountId, (updates) => {

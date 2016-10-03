@@ -101,7 +101,7 @@ TicketForm.propTypes = {
   minDealSize: PropTypes.number.isRequired,
   minExpiry: PropTypes.number.isRequired,
   maxExpiry: PropTypes.number.isRequired,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   expiry: PropTypes.string,
   strike: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   payout: PropTypes.number,

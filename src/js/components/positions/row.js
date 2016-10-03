@@ -20,7 +20,7 @@ const Row = (props) => {
   } = props;
 
   return (
-    <div className="positions__row" key={dealId}>
+    <div className="positions__row">
       <div className="positions__cell positions__cell__market-name">
         {instrumentName}
       </div>
@@ -44,6 +44,10 @@ const Row = (props) => {
       </div>
     </div>
   )
+};
+
+Row.propTypes = {
+  position: PropTypes.object.isRequired,
 };
 
 export default Row;

@@ -53,5 +53,5 @@ export const formatCurrency = (value) => {
 };
 
 export const formatTime = (timestamp) => {
-  return moment(timestamp).format('hh:mm:ss');
+  return moment(new Date(timestamp)).format('HH:mm:ss');
 }

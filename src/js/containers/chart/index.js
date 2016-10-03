@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ChartComponent from '../../components/chart';
-import Loader from '../../components/common/loader';
 import { conditionalRender } from '../../utils';
 import { fetchChart } from '../../actions';
 
@@ -26,8 +25,6 @@ class Chart extends Component {
       <ChartComponent
         dataPoints={data1.dataPoints}
       />
-    ), (
-      <Loader />
     ));
   }
 }

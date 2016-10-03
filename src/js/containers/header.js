@@ -23,7 +23,7 @@ class Header extends Component {
     } = this.props;
 
     if (isAuthenticated) {
-      return [
+      return (
         <ul className="nav__navbar">
           <li className="nav__navbar__item" key={1}>
             <div className="nav__navbar__item__header">available</div>
@@ -39,7 +39,7 @@ class Header extends Component {
             </button>
           </li>
         </ul>
-      ];
+      );
     }
   }
 
@@ -53,19 +53,28 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  availableCash: React.PropTypes.number,
-  unauthUser: React.PropTypes.func.isRequired,
-  isAuthenticated: React.PropTypes.bool,
-  profitLoss: React.PropTypes.number,
+  availableCash: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
+  unauthUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+  profitLoss: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
 };
 
 function mapStateToProps(state) {
   const {
     auth: {
-      availableCash,
-      profitLoss,
+      session={},
     },
   } = state;
+  const {
+     availableCash,
+     profitLoss,
+  } = session;
 
   return {
     availableCash,

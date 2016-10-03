@@ -10,7 +10,7 @@ const Positions = (props) => {
   const renderRows = (rows=[]) => {
     return rows.map((position) => {
       return (
-        <Row position={position} />
+        <Row position={position} key={position.dealId} />
       );
     });
   };
@@ -47,6 +47,10 @@ const Positions = (props) => {
       </section>
     </section>
   );
+};
+
+Positions.propTypes = {
+  positions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Positions;
