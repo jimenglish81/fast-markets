@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react';
  * @param {Object} props
  * @return {Element}
  */
-const Positions = (props) => {
+const Positions = ({ children }) => {
 
   return (
     <section className="positions">
@@ -35,7 +35,12 @@ const Positions = (props) => {
         </div>
       </section>
       <section className="positions__body">
-        {props.children}
+        {children.length ?
+          children :
+          <small className="positions__empty-msg">
+            You currently have no positions.
+          </small>
+        }
       </section>
     </section>
   );

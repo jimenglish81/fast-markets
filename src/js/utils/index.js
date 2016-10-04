@@ -29,9 +29,9 @@ export const objectToQueryParams = (target) => {
 
 /**
  * Conditionally render a React component.
- * @param {Boolean} cond Condition to evaluate.
+ * @param {boolean} cond Condition to evaluate.
  * @param {Element} node React element to render.
- * @param {Object} [empty=null] Empty content to render.
+ * @param {Object} [empty=null]? Empty content to render.
  * @returns {Element|String}
  */
 export const conditionalRender = (cond, node, empty=null) => {
@@ -40,7 +40,7 @@ export const conditionalRender = (cond, node, empty=null) => {
 
 /**
  * Generate unique deal reference.
- * @param {String} accountId IG account id.
+ * @param {string} accountId IG account id.
  * @param {number} timestamp Current DataTime
  * @returns {String}
  */
@@ -48,10 +48,21 @@ export const generateDealReference = (accountId, timestamp=new Date().getTime())
   return `MM-${timestamp}-${accountId}`;
 };
 
+/**
+ * Format currency with optional symbol.
+ * @param {string} value Value to format.
+ * @param {number} [currency=''] Currency symbol.
+ * @returns {String}
+ */
 export const formatCurrency = (value, currency='') => {
   return `${currency}${numeral(value).format('0,0.00')}`;
 };
 
+/**
+ * Generate HH:MM:SS time string from date string.
+ * @param {String} timestamp DataTime string.
+ * @returns {String}
+ */
 export const formatTime = (timestamp) => {
   return moment(new Date(timestamp)).format('HH:mm:ss');
 }

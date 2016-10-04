@@ -20,6 +20,7 @@ class Positions extends Component {
     if (!positions) {
       return null;
     }
+
     return positions.map((position) => {
       // TODO - move to util.
       const market = markets.find((m) => m.epic === position.epic);

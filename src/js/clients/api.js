@@ -55,9 +55,8 @@ const parseMarketNavigationResp = ({ markets }) => {
 };
 
 const parseMarketResp = ({ instrument, snapshot, dealingRules }) => {
-  // TODO - defensive
   return {
-    currency: instrument.currencies[0].symbol,
+    currency: instrument.currencies && instrument.currencies[0].symbol,
     epic: instrument.epic,
     instrumentName: instrument.name,
     marketStatus: snapshot.marketStatus,
@@ -125,7 +124,7 @@ export function chart(epic, cst, xst) {
     ...createHeaders(cst, xst),
     version: 2,
   };
-  const url = `${BASE}prices/${epic}/SECOND/30`;
+  const url = `${BASE}prices/${epic}/SECOND/10`;
 
   return doGet(url, headers)
           .then(parseChartResp(epic));
