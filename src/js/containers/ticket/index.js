@@ -31,6 +31,11 @@ class Ticket extends Component {
       size,
       expiry,
     } = this.props;
+
+    if (!size) {
+      // TODO - validaation and higlight field.
+      return;
+    }
     const data = {
       dealReference: generateDealReference(accountId),
       direction,

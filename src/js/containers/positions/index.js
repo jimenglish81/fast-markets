@@ -7,8 +7,8 @@ import PositionsGrid from '../../components/positions';
 import PositionsRow from '../../components/positions/row';
 
 class Positions extends Component {
-
   componentWillMount() {
+    // TODO - move to fast-markets?
     this.props.fetchPositions();
   }
 
