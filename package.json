@@ -14,7 +14,7 @@
     "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
     "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod",
     "build": "webpack --env.dev --watch",
-    "build:prod": "webpack --env.prod",
+    "build:prod": "npm run clean:dist && webpack --env.prod",
     "clean:dist": "rimraf dist",
     "test": "karma start",
     "watch:test": "npm test -- --auto-watch --no-single-run",
