@@ -80,7 +80,6 @@ FastMarkets.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  debugger;
   const {
     markets: {
       selectedEpic,

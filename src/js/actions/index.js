@@ -48,7 +48,9 @@ import {
   ACCOUNT_UPDATE,
 
   CONFIRM_RECEIVED,
-  POSITION_RECEIVED
+  POSITION_RECEIVED,
+
+  CLEAR_CONFIRM
 } from './types';
 
 /**
@@ -237,4 +239,8 @@ export const sizeUpdate = (size: Number):
 export const expiryUpdate = (expiry) => ({
   type: EXPIRY_UPDATE,
   payload: expiry,
+});
+
+export const clearConfirm = () => ({
+  type: CLEAR_CONFIRM,
 });

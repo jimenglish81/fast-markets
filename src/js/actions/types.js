@@ -37,3 +37,5 @@ export const ACCOUNT_UPDATE: string = 'ACCOUNT_UPDATE';
 
 export const CONFIRM_RECEIVED: string = 'CONFIRM_RECEIVED';
 export const POSITION_RECEIVED: string = 'POSITION_RECEIVED';
+
+export const CLEAR_CONFIRM: string = 'CLEAR_CONFIRM';

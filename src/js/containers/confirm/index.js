@@ -28,7 +28,9 @@ Confirm.propTypes = {
 
 function mapStateToProps(state) {
   const {
-    trade: confirm,
+    trade: {
+      confirm,
+    },
   } = state;
 
   return {

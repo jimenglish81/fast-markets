@@ -34,6 +34,7 @@ export default (
     });
 
     positionSubscription.subscribe(accountId, (opu) => {
+      // TODO - move somewhere more appropriate.
       const market = store.getState().markets.markets.find((m) => m.epic === opu.epic);
       if (market) {
         store.dispatch(positionRecieved(parseOpu(opu, market)));
