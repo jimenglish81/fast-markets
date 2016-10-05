@@ -1,20 +1,23 @@
 import React, { Component, PropTypes } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Confirm as ConfirmComponent } from '../../components/confirm';
 
 class Confirm extends Component {
   render() {
-    if (this.props.confirm) {
-      const {
-        confirm: {
-          reason,
-        },
-      } = this.props;
+    const { confirm } = this.props;
+    if (!_.isEmpty(confirm)) {
+      const isSuccess = confirm.reason === 'SUCCESS';
+      const message = isSuccess ? 'Deal placed.' : 'Deal failed.';
 
       return (
-        <ConfirmComponent state={reason} />
+        <ConfirmComponent
+          isSuccess={isSuccess}
+          message={message}
+        />
       );
     }
+
     return null;
   }
 }
@@ -25,7 +28,7 @@ Confirm.propTypes = {
 
 function mapStateToProps(state) {
   const {
-    trade,
+    trade: confirm,
   } = state;
 
   return {

@@ -10,7 +10,7 @@ import Loader from '../components/common/loader';
 import Chart from './chart';
 import MarketDropdown from './market-dropdown';
 import Ticket from './ticket';
-import { Confirm } from '../components/confirm';
+import Confirm from './confirm';
 import Positions from './positions';
 import { conditionalRender } from '../utils';
 
@@ -42,7 +42,6 @@ class FastMarkets extends Component {
   render() {
     const {
       isLoading,
-      confirm,
     } = this.props;
 
     return conditionalRender(!isLoading, (
@@ -51,7 +50,7 @@ class FastMarkets extends Component {
           <div className="fast-markets__trades">
             <MarketDropdown />
             <Ticket />
-            <Confirm confirm={confirm} />
+            <Confirm />
           </div>
           <div className="fast-markets__chart">
             <Chart />
@@ -73,7 +72,6 @@ FastMarkets.propTypes = {
   fetchMarket: PropTypes.func.isRequired,
   fetchChart: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  confirm: PropTypes.object,
 };
 
 
@@ -82,16 +80,15 @@ FastMarkets.defaultProps = {
 };
 
 function mapStateToProps(state) {
+  debugger;
   const {
     markets: {
       selectedEpic,
       isLoading,
     },
-    trade: confirm,
   } = state;
 
   return {
-    confirm,
     isLoading,
     selectedEpic,
   };

@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Success from './success';
 import Failure from './failure';
-import { conditionalRender } from '../../utils';
 
-const Confirm = ({ confirm }) => {
-  let content = null;
-
-  if (confirm) {
-    content = conditionalRender(confirm.reason === 'SUCCESS',
-      (
-        <Success message={'Deal placed.'} />
-      ),
-      (
-        <Failure message={'Deal rejected.'} />
-      )
-    )
-  }
+const Confirm = ({ isSuccess, message }) => {
+  const icon = (isSuccess ? <Success /> : <Failure />);
 
   return (
-    <div>
-      {content}
+    <div className="confirm">
+      {icon}
+      <p className="confirm__text">{message}</p>
     </div>
   )
 }
+
+Confirm.propTypes = {
+  isSuccess: PropTypes.bool,
+  message: PropTypes.string.isRequired,
+};
 
 export default Confirm;
