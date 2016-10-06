@@ -1,15 +1,15 @@
 import {
-  SIZE_UPDATE,
+  STAKE_UPDATE,
   EXPIRY_UPDATE
 } from '../actions/types';
 
 export default (state={}, { payload, type }) => {
 
   switch (type) {
-    case SIZE_UPDATE:
+    case STAKE_UPDATE:
       return {
         ...state,
-        size: payload,
+        stake: payload,
       };
     case EXPIRY_UPDATE:
       return {

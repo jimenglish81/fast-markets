@@ -4,16 +4,16 @@ import { createSelector } from 'reselect';
 import { generateDealReference } from '../../utils';
 import {
   submitTrade,
-  sizeUpdate,
+  stakeUpdate,
   expiryUpdate
 } from '../../actions';
 import TicketForm from '../../components/ticket';
 
 const calculatePayout = createSelector(
-  (state) => state.ticket.size,
+  (state) => state.ticket.stake,
   (state) => state.markets.selectedMarket.odds,
-  (size, odds) => {
-    const payout = parseFloat(size) / parseFloat(odds);
+  (stake, odds) => {
+    const payout = parseFloat(stake) / parseFloat(odds);
     return isNaN(payout) ? null : payout;
   }
 );
@@ -28,7 +28,7 @@ class Ticket extends Component {
     const {
       accountId,
       selectedMarket,
-      size,
+      stake: size,
       expiry,
     } = this.props;
 
@@ -56,7 +56,7 @@ class Ticket extends Component {
         maxExpiry,
       },
       payout,
-      size,
+      stake,
       expiry,
     } = this.props;
 
@@ -67,12 +67,12 @@ class Ticket extends Component {
         strike={strike}
         minExpiry={minExpiry}
         maxExpiry={maxExpiry}
-        size={size}
+        stake={stake}
         expiry={expiry}
         payout={payout}
         onSubmit={this.onSubmit}
         onExpiryChange={(expiry) => this.props.expiryUpdate(expiry)}
-        onSizeChange={(size) => this.props.sizeUpdate(size)}
+        onStakeChange={(stake) => this.props.stakeUpdate(stake)}
       />
     );
   }
@@ -82,10 +82,10 @@ Ticket.propTypes = {
   accountId: PropTypes.string.isRequired,
   payout: PropTypes.number,
   selectedMarket: PropTypes.object.isRequired,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  stake: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   expiry: PropTypes.string,
   submitTrade: PropTypes.func.isRequired,
-  sizeUpdate: PropTypes.func.isRequired,
+  stakeUpdate: PropTypes.func.isRequired,
   expiryUpdate: PropTypes.func.isRequired,
 };
 
@@ -93,7 +93,7 @@ function mapStateToProps(state) {
   const {
     ticket: {
       expiry,
-      size,
+      stake,
     },
     markets: {
       selectedMarket,
@@ -110,8 +110,8 @@ function mapStateToProps(state) {
     expiry,
     payout: calculatePayout(state),
     selectedMarket,
-    size,
+    stake,
   };
 }
 
-export default connect(mapStateToProps, { submitTrade, sizeUpdate, expiryUpdate })(Ticket);
+export default connect(mapStateToProps, { submitTrade, stakeUpdate, expiryUpdate })(Ticket);

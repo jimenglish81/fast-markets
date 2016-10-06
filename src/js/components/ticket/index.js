@@ -3,8 +3,9 @@ import { conditionalRender, formatCurrency } from '../../utils';
 import Expiry from '../expiry';
 
 const TicketForm = (props) => {
+  // TODO - move out of functional component.
   const inputChange = ({ target }) => {
-    props.onSizeChange(target.value);
+    props.onStakeChange(target.value);
   };
   const createSubmitHandler = (direction) => (evt) => {
     evt.preventDefault();
@@ -18,7 +19,7 @@ const TicketForm = (props) => {
     expiry,
     strike,
     currency,
-    size='',
+    stake='',
   } = props;
 
   return (
@@ -37,7 +38,7 @@ const TicketForm = (props) => {
               min={minDealSize}
               step="any"
               type="number"
-              value={size}
+              value={stake}
               onChange={inputChange}
             />
           </div>
@@ -103,11 +104,11 @@ TicketForm.propTypes = {
   minExpiry: PropTypes.number.isRequired,
   maxExpiry: PropTypes.number.isRequired,
   currency: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  stake: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   expiry: PropTypes.string,
   strike: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   payout: PropTypes.number,
-  onSizeChange: PropTypes.func.isRequired,
+  onStakeChange: PropTypes.func.isRequired,
   onExpiryChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

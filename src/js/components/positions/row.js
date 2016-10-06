@@ -7,13 +7,12 @@ import { formatCurrency, formatTime } from '../../utils';
  * @return {Element}
  */
 const Row = (props) => {
-  // TODO - rename size to stake.
   const {
     position: {
       instrumentName,
       dealId,
       direction,
-      size,
+      stake,
       expiryTime,
       strikeLevel,
       payoutAmount,
@@ -41,7 +40,7 @@ const Row = (props) => {
         {formatCurrency(strike)}
       </div>
       <div className="positions__cell positions__cell__stake">
-        {formatCurrency(size)}
+        {formatCurrency(stake)}
       </div>
       <div className="positions__cell positions__cell__payout">
         {formatCurrency(payoutAmount)}

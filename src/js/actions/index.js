@@ -43,7 +43,7 @@ import {
 
   MARKET_UPDATE,
   CHART_UPDATE,
-  SIZE_UPDATE,
+  STAKE_UPDATE,
   EXPIRY_UPDATE,
   ACCOUNT_UPDATE,
 
@@ -55,8 +55,8 @@ import {
 
 /**
  * API action to authenticate user.
- * @param {String} identifier
- * @param {String} password
+ * @param {string} identifier
+ * @param {string} password
  * @return {Object}
  */
 export const authUser = (identifier: string, password: string):
@@ -70,8 +70,8 @@ export const authUser = (identifier: string, password: string):
 
 /**
  * API action to unauthenticate user.
- * @param {String} identifier
- * @param {String} password
+ * @param {string} identifier
+ * @param {string} password
  * @return {Object}
  */
 export const unauthUser = ():
@@ -98,7 +98,7 @@ export const fetchMarkets = ():
 
 /**
  * API action to fetch a given market.
- * @param {String} epic
+ * @param {string} epic
  * @return {Object}
  */
 export const fetchMarket = (epic: string):
@@ -111,8 +111,8 @@ export const fetchMarket = (epic: string):
 });
 
 /**
- * API action to fetch a given market.
- * @param {String} epic
+ * API action to fetch chart data for given market.
+ * @param {string} epic
  * @return {Object}
  */
 export const fetchChart = (epic: string):
@@ -152,7 +152,7 @@ export const submitTrade = (data) => ({
 
 /**
  * Action to select a given epic.
- * @param {String} epic
+ * @param {string} epic
  * @return {Object}
  */
 export const selectEpic = (epic: string):
@@ -163,7 +163,7 @@ export const selectEpic = (epic: string):
 
 /**
  * Action to request an update a given epic.
- * @param {String} epic
+ * @param {string} epic
  * @param {Object} updates
  * @return {Object}
  */
@@ -221,19 +221,19 @@ export const positionRecieved = (position: Object):
 });
 
 /**
- * Action to update ticket size.
- * @param {Number} size
+ * Action to update ticket stake.
+ * @param {number} stake
  * @return {Object}
  */
-export const sizeUpdate = (size: Number):
-{ type: string, payload: Number } => ({
-  type: SIZE_UPDATE,
-  payload: size,
+export const stakeUpdate = (stake: Number):
+{ type: string, payload: number } => ({
+  type: STAKE_UPDATE,
+  payload: stake,
 });
 
 /**
- * Action to update ticket size.
- * @param {Number} size
+ * Action to update ticket expiry.
+ * @param {string} expiry
  * @return {Object}
  */
 export const expiryUpdate = (expiry) => ({
@@ -241,6 +241,11 @@ export const expiryUpdate = (expiry) => ({
   payload: expiry,
 });
 
-export const clearConfirm = () => ({
+/**
+ * Action to clear current confirm.
+ * @return {Object}
+ */
+export const clearConfirm = ():
+{ type: string } => ({
   type: CLEAR_CONFIRM,
 });

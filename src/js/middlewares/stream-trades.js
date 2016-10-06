@@ -16,7 +16,7 @@ const parseOpu = (opu, market) => {
     dealId: opu.dealId,
     epic: opu.epic,
     status: opu.status,
-    size: opu.size,
+    stake: opu.size,
     strikeLevel: opu.level,
     direction: opu.direction,
   }
