@@ -14,21 +14,21 @@ export default (state={ isAuthenticated: false }, { payload, type }) => {
     case AUTH_REQUEST:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
     case AUTH_SUCCESS:
       return {
         isAuthenticated: true,
         session: payload,
         error: null,
-        loading: false,
+        isLoading: false,
       };
     case AUTH_FAILURE:
       return {
         isAuthenticated: false,
         session: null,
         error: payload || 'Sign in failed.',
-        loading: false,
+        isLoading: false,
       };
     case UNAUTH_SUCCESS:
     case UNAUTH_FAILURE:

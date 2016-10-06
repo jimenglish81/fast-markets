@@ -32,6 +32,11 @@ class Auth extends Component {
   _handleFormSubmit(evt) {
     evt.preventDefault();
     const { identifier, password } = this.state;
+    const { isLoading } = this.props;
+
+    if (isLoading) {
+      return false;
+    }
 
     if (isValid(identifier, password)) {
       this.props.authUser(identifier, password);
@@ -71,13 +76,15 @@ class Auth extends Component {
 }
 
 Auth.propTypes = {
-  authUser: React.PropTypes.func.isRequired,
-  error: React.PropTypes.string,
+  authUser: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
 };
 
-function mapStateToProps({ auth: { error } }) {
+function mapStateToProps({ auth: { error, isLoading } }) {
   return {
     error,
+    isLoading,
   };
 }
 

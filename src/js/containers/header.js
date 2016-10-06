@@ -70,14 +70,15 @@ Header.propTypes = {
 function mapStateToProps(state) {
   const {
     auth: {
-      session={},
+      session,
     },
   } = state;
+
   const {
      availableCash,
      profitLoss,
      currency,
-  } = session;
+  } = (session || {});
 
   return {
     availableCash,
