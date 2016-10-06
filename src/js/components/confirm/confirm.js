@@ -6,7 +6,7 @@ const Confirm = ({ isSuccess, message }) => {
   const icon = (isSuccess ? <Success /> : <Failure />);
 
   return (
-    <div className="confirm">
+    <div className="confirm confirm--jiggle">
       {icon}
       <p className="confirm__text">{message}</p>
     </div>

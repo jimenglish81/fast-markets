@@ -8,7 +8,8 @@ class Confirm extends Component {
     const { confirm } = this.props;
     if (!_.isEmpty(confirm)) {
       const isSuccess = confirm.reason === 'SUCCESS';
-      const message = isSuccess ? 'Deal placed.' : 'Deal failed.';
+      const message = isSuccess ?
+            `Deal placed on ${confirm.instrumentName}.` : `Deal failed for ${confirm.instrumentName}.`;
 
       return (
         <ConfirmComponent

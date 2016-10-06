@@ -82,7 +82,7 @@ class Expiry extends Component {
     const minExpiry = keys[values.indexOf(minValue)];
     const expiryValue = !expiry || EXPIRIES.get(expiry) < minValue ? minExpiry : expiry;
     // TODO - this is hacky.
-    this.props.onChange(expiryValue);
+    //this.props.onChange(expiryValue);
 
     return generateOptions(minValue, maxValue)
       .map(({ disabled, label, value }) => {

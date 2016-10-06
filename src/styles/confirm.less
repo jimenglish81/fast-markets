@@ -1,11 +1,38 @@
+@keyframes jiggle {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 .confirm {
   align-content: center;
   display: flex;
   justify-content: center;
+  animation-duration: 0.8s;
 }
 
 .confirm__text {
   align-items: center;
   display: flex;
   padding-left: 2px;
+}
+
+.confirm--jiggle {
+  animation-name: jiggle;
 }

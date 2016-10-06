@@ -30,7 +30,12 @@ export default (
   if (action.type === AUTH_SUCCESS) {
     const { accountId } = action.payload;
     tradeSubscription.subscribe(accountId, (confirm) => {
-      store.dispatch(confirmRecieved(confirm));
+      // TODO - move somewhere more appropriate.
+      const market = store.getState().markets.markets.find((m) => m.epic === confirm.epic);
+      if (market) {
+        confirm.instrumentName = market.instrumentName;
+        store.dispatch(confirmRecieved(confirm));
+      }
     });
 
     positionSubscription.subscribe(accountId, (opu) => {
