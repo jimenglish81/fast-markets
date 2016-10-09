@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { generateDealReference } from '../../utils';
 import { findMarketByEpic } from '../../reducers/markets';
 import { calculatePayout } from '../../reducers/ticket';
-
 import {
   submitTrade,
   stakeUpdate,
   expiryUpdate
 } from '../../actions';
+import {
+  getMin as getMinExpiry,
+  values as expiryValues
+} from '../../components/expiry';
 import TicketForm from '../../components/ticket';
 
 class Ticket extends Component {
@@ -98,12 +101,14 @@ function mapStateToProps(state) {
       },
     },
   } = state;
+  const selectedMarket = findMarketByEpic(selectedEpic, markets);
+  const minExpiry = getMinExpiry(expiryValues, selectedMarket.minExpiry);
 
   return {
     accountId,
-    expiry,
+    expiry: expiry || getMinExpiry(expiryValues, selectedMarket.minExpiry),
     payout: calculatePayout(state),
-    selectedMarket: findMarketByEpic(selectedEpic, markets),
+    selectedMarket,
     stake,
   };
 }

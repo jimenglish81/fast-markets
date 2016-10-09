@@ -9,26 +9,26 @@ const EXPIRIES = new Map([
   ['SIXTY_MINUTES', 60]
 ]);
 const keys = [ ...EXPIRIES.keys() ];
-const values = [ ...EXPIRIES.values() ];
+export const values = [ ...EXPIRIES.values() ];
 
-const getMin = (values, minExpiry) => {
+export const getMin = (values, minExpiry) => {
   for (let i = 0, l = values.length; i < l; i++) {
     if (minExpiry <= values[i]) {
-      return values[i];
+      return keys[i];
     }
   }
 
-  return _.first(values);
+  return _.first(keys);
 }
 
 const getMax = (values, maxExpiry) => {
   for (let i = 0, l = values.length; i < l; i++) {
     if (maxExpiry >= values[i]) {
-      return values[i];
+      return keys[i];
     }
   }
 
-  return _.last(values);
+  return _.last(keys);
 }
 
 const generateOptions = (min, max) => {
@@ -77,12 +77,11 @@ class Expiry extends Component {
       max,
       expiry,
     } = this.props;
-    const minValue = getMin(values, min);
-    const maxValue = getMax(values, max);
-    const minExpiry = keys[values.indexOf(minValue)];
-    const expiryValue = !expiry || EXPIRIES.get(expiry) < minValue ? minExpiry : expiry;
-    // TODO - this is hacky.
-    //this.props.onChange(expiryValue);
+    const minExpiry = getMin(values, min);
+    const maxExpiry = getMax(values, max);
+    const minValue = EXPIRIES.get(minValue);
+    const maxValue = EXPIRIES.get(maxExpiry);
+    const expiryValue = EXPIRIES.get(expiry) < minValue ? minExpiry : expiry;
 
     return generateOptions(minValue, maxValue)
       .map(({ disabled, label, value }) => {
@@ -128,7 +127,7 @@ class Expiry extends Component {
 Expiry.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
-  expiry: PropTypes.string,
+  expiry: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
