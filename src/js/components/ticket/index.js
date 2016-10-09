@@ -3,7 +3,6 @@ import { conditionalRender, formatCurrency } from '../../utils';
 import Expiry from '../expiry';
 
 const TicketForm = (props) => {
-  // TODO - move out of functional component.
   const inputChange = ({ target }) => {
     props.onStakeChange(target.value);
   };

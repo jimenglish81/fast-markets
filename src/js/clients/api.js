@@ -106,7 +106,7 @@ export function unauth(cst, xst) {
   return doDelete(`${BASE}session`, createHeaders(cst, xst));
 }
 
-// TODO - sort out traversal
+// Path in hierarchy...
 // 357975
 //    381908
 //        381909

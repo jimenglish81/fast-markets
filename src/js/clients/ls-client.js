@@ -1,4 +1,3 @@
-// TODO - use sessionStore?
 export default class LsClient {
   connect(endpoint, accountId, cst, xst) {
     const client = new Lightstreamer.LightstreamerClient(endpoint);

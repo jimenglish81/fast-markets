@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 const Header = (props) => {
-  // TODO - give className  to logo.
   return (
     <nav className="nav">
       <svg

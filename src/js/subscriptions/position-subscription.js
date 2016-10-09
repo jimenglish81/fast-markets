@@ -1,6 +1,5 @@
 import AbstractSubscription from './abstract-subscription';
 
-// TODO - share with confirm
 export default class PositionSubscription extends AbstractSubscription {
 
   subscribe(accountId, onItemUpdate) {

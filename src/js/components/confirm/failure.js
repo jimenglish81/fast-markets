@@ -1,7 +1,5 @@
 import React from 'react';
 
-// TODO - share component and pick PATH.
-
 const Failure = () => {
   return (
     <svg
