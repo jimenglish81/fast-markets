@@ -41,6 +41,8 @@ export default class LsClient {
       subscription.setRequestedSnapshot('no');
     }
 
+    subscription.setRequestedMaxFrequency(1);
+
     this._client.subscribe(subscription);
 
     return subscription;

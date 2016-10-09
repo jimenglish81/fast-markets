@@ -20,7 +20,8 @@ export default class ChartSubscription extends AbstractSubscription {
         if (updates.timestamp !== null && updates.price !== null) {
           onItemUpdate(updates);
         }
-      }
+      },
+      false
     );
   }
 }

@@ -43,7 +43,10 @@ const AuthForm = (props) => {
           </button>
         </FormGroup>
         <FormGroup>
-          <FormError error={props.error} />
+          <FormError
+            className={'login-form__error login-form__error--shake'}
+            error={props.error}
+          />
         </FormGroup>
       </form>
     </div>

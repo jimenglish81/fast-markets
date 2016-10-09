@@ -14,12 +14,7 @@ import Confirm from './confirm';
 import Positions from './positions';
 import { conditionalRender } from '../utils';
 
-// TODO does MarketDropdown need to be a container? Loading could be market?
 class FastMarkets extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.fetchMarkets();
   }
@@ -34,7 +29,7 @@ class FastMarkets extends Component {
     if (selectedEpic !== currentEpic) {
       Promise.all([
         fetchMarket(selectedEpic),
-        //fetchChart(selectedEpic)
+        fetchChart(selectedEpic),
       ]);
     }
   }
