@@ -29,7 +29,7 @@ class FastMarkets extends Component {
     if (selectedEpic !== currentEpic) {
       Promise.all([
         fetchMarket(selectedEpic),
-        fetchChart(selectedEpic),
+      //  fetchChart(selectedEpic),
       ]);
     }
   }

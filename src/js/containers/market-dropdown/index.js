@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectEpic } from '../../actions';
+import { findMarketByEpic } from '../../reducers/markets';
 import Dropdown from '../../components/market-dropdown';
 
 class MarketDropdown extends Component {
@@ -31,13 +32,13 @@ function mapStateToProps(state) {
   const {
     markets: {
       markets,
-      selectedMarket,
+      selectedEpic,
     },
   } = state;
 
   return {
     markets,
-    selectedMarket,
+    selectedMarket: findMarketByEpic(selectedEpic, markets),
   };
 }
 

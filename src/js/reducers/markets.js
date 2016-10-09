@@ -34,33 +34,35 @@ export default (state={}, { payload, type }) => {
         selectedEpic: payload,
       };
     case MARKET_SUCCESS:
-      const existing = _.find(markets, { epic: selectedEpic });
       return {
         ...state,
         isLoading: false,
-        selectedMarket: { ...existing, ...payload },
+        markets: markets.map((market) => {
+          if (market.epic !== payload.epic) {
+            return market;
+          }
+
+          return { ...market,  ...payload };
+        }),
       };
     case MARKET_UPDATE:
       const { epic, updates } = payload;
-      const updatedState = {};
-
-      updatedState.markets = markets.map((market) => {
-        if (market.epic !== epic) {
-          return market;
-        }
-
-        return { ...market, ...updates };
-      });
-
-      if (selectedEpic === epic) {
-        updatedState.selectedMarket = { ...selectedMarket, ...updates };
-      }
 
       return {
         ...state,
-        ...updatedState,
+        markets: markets.map((market) => {
+          if (market.epic !== epic) {
+            return market;
+          }
+
+          return { ...market, ...updates };
+        }),
       };
     default:
       return state;
   }
+}
+
+export const findMarketByEpic = (selectedEpic, markets) => {
+  return markets.find(({ epic }) => epic === selectedEpic);
 }

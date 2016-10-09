@@ -14,7 +14,9 @@ export default (state={}, { payload, type }) => {
       };
     case TRADE_FAILURE:
       return {
-        error: payload,
+        confirm: {
+          reason: 'FAILURE',
+        },
         loading: false,
       };
     case CONFIRM_RECEIVED:

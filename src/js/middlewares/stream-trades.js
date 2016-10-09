@@ -6,21 +6,8 @@ import  {
   positionRecieved,
   accountUpdate
 } from '../actions';
-
-// TODO - move somewhere more appropriate.
-const parseOpu = (opu, market) => {
-  return {
-    instrumentName: market.instrumentName,
-    payoutAmount: opu.payoutAmount,
-    expiryTime: opu.expiryTime,
-    dealId: opu.dealId,
-    epic: opu.epic,
-    status: opu.status,
-    stake: opu.size,
-    strikeLevel: opu.level,
-    direction: opu.direction,
-  }
-};
+import { parseOpu } from '../clients/api';
+import { findMarketByEpic } from '../reducers/markets';
 
 export default (
   tradeSubscription,
@@ -29,9 +16,9 @@ export default (
 ) => (store) => (next) => (action) => {
   if (action.type === AUTH_SUCCESS) {
     const { accountId } = action.payload;
+
     tradeSubscription.subscribe(accountId, (confirm) => {
-      // TODO - move somewhere more appropriate.
-      const market = store.getState().markets.markets.find((m) => m.epic === confirm.epic);
+      const market = findMarketByEpic(confirm.epic, store.getState().markets.markets);
       if (market) {
         confirm.instrumentName = market.instrumentName;
         store.dispatch(confirmRecieved(confirm));
@@ -39,8 +26,7 @@ export default (
     });
 
     positionSubscription.subscribe(accountId, (opu) => {
-      // TODO - move somewhere more appropriate.
-      const market = store.getState().markets.markets.find((m) => m.epic === opu.epic);
+      const market = findMarketByEpic(opu.epic, store.getState().markets.markets);
       if (market) {
         store.dispatch(positionRecieved(parseOpu(opu, market)));
       }

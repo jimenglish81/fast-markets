@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   fetchPositions
 } from '../../actions';
+import { findMarketByEpic } from '../../reducers/markets';
 import PositionsGrid from '../../components/positions';
 import PositionsRow from '../../components/positions/row';
 
@@ -22,8 +23,7 @@ class Positions extends Component {
     }
 
     return positions.map((position) => {
-      // TODO - move to util.
-      const market = markets.find((m) => m.epic === position.epic);
+      const market = findMarketByEpic(position.epic, markets);
       return (
         <PositionsRow position={position} market={market} key={position.dealId} />
       );
@@ -35,7 +35,6 @@ class Positions extends Component {
       positions,
     } = this.props;
 
-    // TODO - use children here and render rows to pass latest price
     return (
       <PositionsGrid>
         {this.renderRows()}

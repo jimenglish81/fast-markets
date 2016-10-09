@@ -77,6 +77,20 @@ const parseChartResp = (epic) => ({ prices }) => ({
 
 const parsePositions = ({ sprintMarketPositions }) => sprintMarketPositions;
 
+export const parseOpu = (opu, market) => {
+  return {
+    instrumentName: market.instrumentName,
+    payoutAmount: opu.payoutAmount,
+    expiryTime: opu.expiryTime,
+    dealId: opu.dealId,
+    epic: opu.epic,
+    status: opu.status,
+    stake: opu.size,
+    strikeLevel: opu.level,
+    direction: opu.direction,
+  }
+};
+
 export function auth(identifier, password, encryptedPassword=false) {
   const data = {
     identifier,

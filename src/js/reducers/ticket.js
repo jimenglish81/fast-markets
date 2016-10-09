@@ -2,9 +2,10 @@ import {
   STAKE_UPDATE,
   EXPIRY_UPDATE
 } from '../actions/types';
+import { createSelector } from 'reselect';
+import { findMarketByEpic } from './markets';
 
 export default (state={}, { payload, type }) => {
-
   switch (type) {
     case STAKE_UPDATE:
       return {
@@ -20,3 +21,12 @@ export default (state={}, { payload, type }) => {
       return state;
   }
 }
+
+export const calculatePayout = createSelector(
+  ({ ticket }) => ticket.stake,
+  ({ markets: { selectedEpic, markets } }) => findMarketByEpic(selectedEpic, markets).odds,
+  (stake, odds) => {
+    const payout = parseFloat(stake) / parseFloat(odds);
+    return isNaN(payout) ? null : payout;
+  }
+);

@@ -1,22 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import { generateDealReference } from '../../utils';
+import { findMarketByEpic } from '../../reducers/markets';
+import { calculatePayout } from '../../reducers/ticket';
+
 import {
   submitTrade,
   stakeUpdate,
   expiryUpdate
 } from '../../actions';
 import TicketForm from '../../components/ticket';
-
-const calculatePayout = createSelector(
-  (state) => state.ticket.stake,
-  (state) => state.markets.selectedMarket.odds,
-  (stake, odds) => {
-    const payout = parseFloat(stake) / parseFloat(odds);
-    return isNaN(payout) ? null : payout;
-  }
-);
 
 class Ticket extends Component {
   constructor(props) {
@@ -96,7 +89,8 @@ function mapStateToProps(state) {
       stake,
     },
     markets: {
-      selectedMarket,
+      markets,
+      selectedEpic,
     },
     auth: {
       session: {
@@ -109,7 +103,7 @@ function mapStateToProps(state) {
     accountId,
     expiry,
     payout: calculatePayout(state),
-    selectedMarket,
+    selectedMarket: findMarketByEpic(selectedEpic, markets),
     stake,
   };
 }
