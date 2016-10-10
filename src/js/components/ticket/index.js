@@ -50,7 +50,7 @@ const TicketForm = (props) => {
             <Expiry
               expiry={expiry}
               min={minExpiry}
-              maxn={maxExpiry}
+              max={maxExpiry}
               onChange={props.onExpiryChange} />
           </div>
         </section>

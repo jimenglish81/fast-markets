@@ -16,7 +16,7 @@ const parseChartResp = ({ prices }) => ({
 });
 const data = parseChartResp(charty).dataPoints;
 
-export default (state={ dataPoints: [] }, { payload, type }) => {
+export default (state={ dataPoints: data }, { payload, type }) => {
 
   switch (type) {
     case CHART_REQUEST:
@@ -37,7 +37,8 @@ export default (state={ dataPoints: [] }, { payload, type }) => {
     case CHART_UPDATE:
       const update = {
         price: +payload.price,
-        timestamp: d3.timeFormat('%Y/%m/%d %H:%M:%S')(new Date(+payload.timestamp)),
+        timestamp: payload.timestamp,
+      //  timestamp: d3.timeFormat('%Y/%m/%d %H:%M:%S')(new Date(+payload.timestamp)),
       };
 
       return {

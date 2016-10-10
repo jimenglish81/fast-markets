@@ -16,11 +16,14 @@ export default (
 ) => (store) => (next) => (action) => {
   if (action.type === AUTH_SUCCESS) {
     const { accountId } = action.payload;
+    let lastReference;
 
     tradeSubscription.subscribe(accountId, (confirm) => {
-      const market = findMarketByEpic(confirm.epic, store.getState().markets.markets);
-      if (market) {
+      const { markets } = store.getState();
+      const market = findMarketByEpic(confirm.epic, markets.markets);
+      if (market && lastReference !== confirm.dealReference) {
         confirm.instrumentName = market.instrumentName;
+        lastReference = confirm.dealReference;
         store.dispatch(confirmRecieved(confirm));
       }
     });

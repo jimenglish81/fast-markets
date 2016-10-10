@@ -23,7 +23,7 @@ export const getMin = (values, minExpiry) => {
 
 const getMax = (values, maxExpiry) => {
   for (let i = 0, l = values.length; i < l; i++) {
-    if (maxExpiry >= values[i]) {
+    if (maxExpiry <= values[i]) {
       return keys[i];
     }
   }
@@ -79,7 +79,7 @@ class Expiry extends Component {
     } = this.props;
     const minExpiry = getMin(values, min);
     const maxExpiry = getMax(values, max);
-    const minValue = EXPIRIES.get(minValue);
+    const minValue = EXPIRIES.get(minExpiry);
     const maxValue = EXPIRIES.get(maxExpiry);
     const expiryValue = EXPIRIES.get(expiry) < minValue ? minExpiry : expiry;
 

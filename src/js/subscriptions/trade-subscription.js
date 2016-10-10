@@ -22,8 +22,7 @@ export default class TradeSubscription extends AbstractSubscription {
         } catch(err) {
           console.error(`Failed parse confirm: ${err}`);
         }
-      },
-      false
+      }
     );
   }
 }

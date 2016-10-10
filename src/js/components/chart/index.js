@@ -74,6 +74,7 @@ class Chart extends Component {
       .scale(yScale)
       .tickSize(-width, 0, 0);
 
+
     const xAxis = d3.axisBottom()
       .scale(xScale)
       //.ticks(2, "s")
@@ -104,6 +105,22 @@ class Chart extends Component {
       .datum(data)
       .attr('className', 'chart-line')
       .attr('d', line);
+
+
+
+    // TODO - add positions, color dependant on winning or losing
+    // width should be baed on position.expiryTime or last timestamp (whicheven shorter)
+    // could be a selectedPsotion if chart gets too budy
+    // hover on line then shows price
+    el.append('line')
+       .attr('y1', yScale( _.get(_.last(data), 'price')))
+       .attr('y2', yScale( _.get(_.last(data), 'price')))
+       .attr('x1', 0)
+       .attr('x2', xScale(_.get(_.last(data), 'timestamp')))
+       .attr('stroke-width', 1)
+       .attr('opacity', 0.6)
+       .attr('stroke', '#1997c6');
+
 
     const lastValue = _.get(_.last(data), 'price');
     const g = el.append('g')

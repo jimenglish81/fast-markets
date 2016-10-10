@@ -8,7 +8,7 @@ const generateMessage = (isSuccess, instrumentName) => {
     `Deal placed` : `Deal rejected`;
 
   if (instrumentName) {
-    return ` on ${instrumentName}.`;
+    return `${message} on ${instrumentName}.`;
   }
 
   return `${message}.`;

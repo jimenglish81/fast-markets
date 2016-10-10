@@ -11,7 +11,7 @@ export default ({ dispatch }) => {
       window.clearTimeout(timeout);
       timeout = window.setTimeout(() => {
         dispatch(clearConfirm());
-      }, 2000);
+      }, 2500);
     }
 
     next(action);
