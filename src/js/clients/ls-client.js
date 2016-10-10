@@ -16,7 +16,7 @@ export default class LsClient {
     this._client = client;
   }
 
-  subscribe(subscriptionStr, fids, mode, onItemUpdate, withSnapshot=true) {
+  subscribe(subscriptionStr, fids, mode, onItemUpdate, withSnapshot=true, maxFrequency=1) {
     const subscription = new Lightstreamer.Subscription(
       mode,
       subscriptionStr,
@@ -40,7 +40,7 @@ export default class LsClient {
       subscription.setRequestedSnapshot('no');
     }
 
-    subscription.setRequestedMaxFrequency(1);
+    subscription.setRequestedMaxFrequency(maxFrequency);
 
     this._client.subscribe(subscription);
 

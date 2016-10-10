@@ -64,23 +64,20 @@ class Chart extends Component {
       .range([0, width])
       .domain(d3.extent(dates))
 
-    //xScale.ticks(d3.timeSecond.every(1))
-
+    const [ min, max ] = d3.extent(prices);
+    const padding = (max - min) / 2;
     const yScale = d3.scaleLinear()
       .range([height, 0])
-      .domain(d3.extent(prices))
+      .domain([min - padding, max + padding]);
 
     const yAxis = d3.axisRight()
       .scale(yScale)
       .tickSize(-width, 0, 0);
 
-
     const xAxis = d3.axisBottom()
+      .ticks(d3.timeSecond, 10)
       .scale(xScale)
-      //.ticks(2, "s")
-      // .tickFormat(function(d) {
-      //   return d3.timeFormat("%Ss")(d);
-      // });
+      .tickFormat(d3.timeFormat('%H:%M:%S'));
 
     el.append('g')
       .attr('className', 'sparkline')
@@ -90,7 +87,13 @@ class Chart extends Component {
     el.append('g')
       .attr('className', 'sparkline')
       .attr('transform', `translate(0, ${(height)})`)
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll("text")
+      .attr("y", 0)
+      .attr("x", 9)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(45)")
+      .style("text-anchor", "start");
 
     const line = d3.line()
       .x(function (d) {
@@ -105,8 +108,6 @@ class Chart extends Component {
       .datum(data)
       .attr('className', 'chart-line')
       .attr('d', line);
-
-
 
     // TODO - add positions, color dependant on winning or losing
     // width should be baed on position.expiryTime or last timestamp (whicheven shorter)
