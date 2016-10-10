@@ -88,12 +88,13 @@ class Chart extends Component {
       .attr('className', 'sparkline')
       .attr('transform', `translate(0, ${(height)})`)
       .call(xAxis)
-      .selectAll("text")
-      .attr("y", 0)
-      .attr("x", 9)
-      .attr("dy", ".35em")
-      .attr("transform", "rotate(45)")
-      .style("text-anchor", "start");
+      .selectAll('text')
+      .attr('font-size', '9px')
+      .attr('y', 0)
+      .attr('x', 9)
+      .attr('dy', '.35em')
+      .attr('transform', 'rotate(45)')
+      .style('text-anchor', 'start');
 
     const line = d3.line()
       .x(function (d) {
