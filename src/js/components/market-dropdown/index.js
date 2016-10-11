@@ -101,21 +101,29 @@ class MarketDropdown extends Component {
    * @public
    */
   render() {
-    const selectedMarket = this.props.selectedMarket;
-    const className = `market-dropdown${this.state.isOpen ? ' market-dropdown--open' : ''}`;
+    const {
+      selectedMarket: {
+        instrumentName,
+        marketStatus,
+      },
+    } = this.props;
 
     return (
-      <div className={className} ref={(el) => this._element = el}>
+      <div className={this.className} ref={(el) => this._element = el}>
         <div className="market-dropdown__selected" onMouseDown={this.onMouseDown}>
           <MarketName
-            status={selectedMarket.marketStatus}
-            name={selectedMarket.instrumentName}
+            status={marketStatus}
+            name={instrumentName}
           />
         <span className="market-dropdown__arrow" />
         </div>
         {this.state.isOpen ? <div className="market-dropdown__menu">{this.renderItems()}</div> : null}
       </div>
     );
+  }
+
+  get className() {
+    return `market-dropdown${this.state.isOpen ? ' market-dropdown--open' : ''}`;
   }
 }
 

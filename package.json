@@ -2,7 +2,7 @@
   "name": "fast-markets",
   "private": true,
   "version": "1.0.0",
-  "description": "1 minute markets",
+  "description": "fast markets",
   "main": "index.js",
   "scripts": {
     "sloc": "sloc src/js/",
