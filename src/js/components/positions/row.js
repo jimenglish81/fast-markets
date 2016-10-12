@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { formatCurrency, formatTime } from '../../utils';
+import Sparkline from '../chart/sparkline';
 
 /**
  * Positions for app.
@@ -44,6 +45,9 @@ const Row = (props) => {
       </div>
       <div className="positions__cell positions__cell__payout">
         {formatCurrency(payoutAmount)}
+      </div>
+      <div>
+        <Sparkline />
       </div>
     </div>
   )

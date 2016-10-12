@@ -32,6 +32,9 @@ const Positions = ({ children }) => {
           <div className="positions__cell positions__cell__payout">
             Payout
           </div>
+          <div className="positions__cell positions__cell__spark">
+
+          </div>
         </div>
       </section>
       <section className="positions__body">

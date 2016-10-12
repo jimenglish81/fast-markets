@@ -57,8 +57,7 @@ class Chart extends Component {
       .attr('viewBox', `0 0 ${(width + margin.left + margin.right)} ${(height + margin.top + margin.bottom)}`)
       .attr('preserveAspectRatio', 'xMinYMid')
       .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`)
-      .attr('data', null);
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     const xScale = d3.scaleTime()
       .range([0, width])
@@ -122,7 +121,6 @@ class Chart extends Component {
        .attr('stroke-width', 1)
        .attr('opacity', 0.6)
        .attr('stroke', '#1997c6');
-
 
     const lastValue = _.get(_.last(data), 'price');
     const g = el.append('g')
