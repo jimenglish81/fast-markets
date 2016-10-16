@@ -3,53 +3,63 @@ import React, { Component, PropTypes } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import _ from 'lodash';
 
-export default class Sparkline extends Component {
-  render() {
-    const width = 90;
-    const height = 19;
-    const prices = [0,2,4,5,6,2,3,8,2,3,0];
-    const xScale = d3.scaleLinear()
-                    .range([0, width])
-                    .domain([0, prices.length - 1])
+const Sparkline = (props) => {
+  const {
+    height,
+    isWinning,
+    prices,
+    strikeLevel,
+    width,
+  } = props;
 
-    const yScale = d3.scaleLinear()
-                    .range([height, 0])
-                    .domain(d3.extent(prices));
+  const xScale = d3.scaleLinear()
+                  .range([0, width])
+                  .domain([0, prices.length - 1])
 
-    const node = ReactFauxDOM.createElement('svg');
-    const el = d3.select(node)
-      .attr('data', prices)
-      .attr('height', height)
-      .attr('width', width);
+  const yScale = d3.scaleLinear()
+                  .range([height, 0])
+                  .domain(d3.extent(prices));
 
-    const line = d3.line()
-      .x(function (d, i) {
-        return xScale(i);
-      })
-      .y(function (d) {
-        return yScale(d);
-      });
+  const node = ReactFauxDOM.createElement('svg');
+  const el = d3.select(node)
+    .attr('data', prices)
+    .attr('height', height)
+    .attr('width', width);
 
-    el.append('g')
-      .attr('transform', 'translate(0, 2)')
-      .append('path')
-      .datum(prices)
-      .style('stroke', '#1997c6')
-      .style('fill', 'none')
-      .style('stroke-width', 0.5)
-      .attr('d', line);
+  const line = d3.line()
+    .x(function (d, i) {
+      return xScale(i);
+    })
+    .y(function (d) {
+      return yScale(+d);
+    });
 
+  el.append('g')
+    .attr('transform', 'translate(0, 2)')
+    .append('path')
+    .datum(prices)
+    .style('stroke', '#1997c6')
+    .style('fill', 'none')
+    .style('stroke-width', 0.5)
+    .attr('d', line);
 
-    // TODO - this will be the strike price
-    el.append('line')
-       .attr('y1', yScale(4))
-       .attr('y2', yScale(4))
-       .attr('x1', 0)
-       .attr('x2', xScale(prices.length - 1))
-       .attr('stroke-width', 1)
-       .attr('opacity', 0.6)
-       .attr('stroke', 'red');
+  el.append('line')
+     .attr('y1', yScale(strikeLevel))
+     .attr('y2', yScale(strikeLevel))
+     .attr('x1', 0)
+     .attr('x2', xScale(prices.length - 1))
+     .style('stroke-width', 1.5)
+     .style('stroke', isWinning ? '#1bc98e' : '#e64759')
+     .style('opacity', 1);
 
-    return node.toReact();
-  }
+  return node.toReact();
 }
+
+Sparkline.propTypes = {
+  height: PropTypes.number,
+  isWinning: PropTypes.bool,
+  prices: PropTypes.arrayOf(PropTypes.number),
+  width: PropTypes.number,
+};
+
+export default Sparkline;

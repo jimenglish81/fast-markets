@@ -19,14 +19,23 @@ const Row = (props) => {
       payoutAmount,
     },
     market: {
+      prices,
       strike,
-    }
+    },
+    isWinning,
   } = props;
 
   return (
     <div className="positions__row">
       <div className="positions__cell positions__cell__market-name">
-        {instrumentName}
+        <span>instrumentName}</span>
+        <Sparkline
+          height={19}
+          isWinning={isWinning}
+          prices={prices}
+          strikeLevel={strikeLevel}
+          width={90}
+        />
       </div>
       <div className="positions__cell positions__cell__direction">
         {direction === 'BUY' ? 'Above' : 'Below'}
@@ -46,16 +55,14 @@ const Row = (props) => {
       <div className="positions__cell positions__cell__payout">
         {formatCurrency(payoutAmount)}
       </div>
-      <div>
-        <Sparkline />
-      </div>
     </div>
   )
 };
 
 Row.propTypes = {
-  position: PropTypes.object.isRequired,
+  isWinning: PropTypes.bool,
   market: PropTypes.object.isRequired,
+  position: PropTypes.object.isRequired,
 };
 
 export default Row;

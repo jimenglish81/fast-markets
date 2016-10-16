@@ -49,9 +49,8 @@ module.exports = (env) => {
           loader: 'json'
         },
         {
-          test: /\.(jpg|jpeg|gif|png|ico)$/,
-          exclude: /node_modules/,
-          loaders: 'url-loader',
+          test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$/,
+          loader: 'file-loader?name=[name].[ext]',
         },
       ],
     },

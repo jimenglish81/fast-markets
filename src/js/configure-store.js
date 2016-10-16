@@ -19,11 +19,7 @@ import PositionSubscription from './subscriptions/position-subscription';
 const configureStore = () => {
   const sessionStore = new Session();
   const lsClient = new LsClient();
-  const marketsSubscription = new MarketSubscription(
-        lsClient,
-        ['MARKET_STATE', 'STRIKE_PRICE', 'ODDS'],
-        ['marketStatus', 'strike', 'odds']
-      );
+  const marketsSubscription = new MarketSubscription(lsClient);
   const balanceSubscription = new BalanceSubscription(
         lsClient,
         ['PNL', 'AVAILABLE_CASH'],

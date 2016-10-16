@@ -50,7 +50,7 @@ import {
   CONFIRM_RECEIVED,
   POSITION_RECEIVED,
 
-  CLEAR_CONFIRM
+  CLEAR_CONFIRM,
 } from './types';
 
 /**
@@ -225,7 +225,7 @@ export const positionRecieved = (position: Object):
  * @param {number} stake
  * @return {Object}
  */
-export const stakeUpdate = (stake: Number):
+export const stakeUpdate = (stake: number):
 { type: string, payload: number } => ({
   type: STAKE_UPDATE,
   payload: stake,
@@ -236,7 +236,8 @@ export const stakeUpdate = (stake: Number):
  * @param {string} expiry
  * @return {Object}
  */
-export const expiryUpdate = (expiry) => ({
+export const expiryUpdate = (expiry: string):
+{ type: string, payload: string } => ({
   type: EXPIRY_UPDATE,
   payload: expiry,
 });

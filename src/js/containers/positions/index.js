@@ -6,6 +6,8 @@ import {
 import { findMarketByEpic } from '../../reducers/markets';
 import PositionsGrid from '../../components/positions';
 import PositionsRow from '../../components/positions/row';
+import { isWinningBet } from '../../reducers/positions';
+
 
 class Positions extends Component {
   componentWillMount() {
@@ -24,8 +26,14 @@ class Positions extends Component {
 
     return positions.map((position) => {
       const market = findMarketByEpic(position.epic, markets);
+      const isWinning = isWinningBet(market.strike, position.strikeLevel, position.direction);
       return (
-        <PositionsRow position={position} market={market} key={position.dealId} />
+        <PositionsRow
+          isWinning={isWinning}
+          position={position}
+          market={market}
+          key={position.dealId}
+        />
       );
     });
   };

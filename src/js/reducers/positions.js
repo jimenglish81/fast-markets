@@ -25,3 +25,7 @@ export default (state=[], { payload, type }) => {
       return state;
   }
 }
+
+export const isWinningBet = (strike, strikeLevel, direction) => {
+  return (direction === 'ABOVE') ? strikeLevel > strike : strikeLevel < strike;
+};

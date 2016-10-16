@@ -35,12 +35,12 @@ const parseSessionResp = (session) => {
 
   return {
     accountId,
+    availableCash,
     cst,
     currency,
     lightstreamerEndpoint,
-    xst,
-    availableCash,
     profitLoss,
+    xst,
   };
 };
 
@@ -60,33 +60,36 @@ const parseMarketResp = ({ instrument, snapshot, dealingRules }) => {
     epic: instrument.epic,
     instrumentName: instrument.name,
     marketStatus: snapshot.marketStatus,
-    strike: snapshot.bid,
+    strike: parseFloat(snapshot.bid),
     minDealSize: dealingRules.minDealSize.value,
     minExpiry: instrument.sprintMarketsMinimumExpiryTime / 60,
     maxExpiry: instrument.sprintMarketsMaximumExpiryTime / 60,
+    prices: [],
   };
 };
 
 const parseChartResp = (epic) => ({ prices }) => ({
   epic,
-  dataPoints: prices.map(({ snapshotTime: timestamp, closePrice: { bid: price } }) => ({
+  dataPoints: prices.map(({ snapshotTime: timestamp, closePrice: { bid } }) => ({
     timestamp,
-    price,
+    price: parseFloat(bid),
   }))
 });
 
-const parsePositions = ({ sprintMarketPositions }) => sprintMarketPositions;
+const parsePositions = ({ sprintMarketPositions }) => {
+  return sprintMarketPositions;
+};
 
 export const parseOpu = (opu, market) => {
   return {
     instrumentName: market.instrumentName,
-    payoutAmount: opu.payoutAmount,
+    payoutAmount: parseFloat(opu.payoutAmount),
     expiryTime: opu.expiryTime,
     dealId: opu.dealId,
     epic: opu.epic,
     status: opu.status,
-    stake: opu.size,
-    strikeLevel: opu.level,
+    stake: parseFloat(opu.size),
+    strikeLevel: parseFloat(opu.level),
     direction: opu.direction,
   }
 };

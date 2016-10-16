@@ -19,11 +19,20 @@ describe('auth api call', function() {
 
     it('makes a request', (done) => {
       const accountId = 'abc123';
+      const available = 200;
+      const profitLoss = 300;
+      const accountInfo = {
+        available,
+        profitLoss,
+      };
       const cst = 'xyz123abc';
+      const currencySymbol = 'GBP';
       const lightstreamerEndpoint = 'http://foo';
       const xst = '789def';
 
       const resp = {
+        accountInfo,
+        currencySymbol,
         currentAccountId: accountId,
         lightstreamerEndpoint,
       };
@@ -36,8 +45,11 @@ describe('auth api call', function() {
         .then((resp) => {
           expect(resp).to.deep.equal({
             accountId,
+            availableCash: available,
             cst,
+            currency: currencySymbol,
             lightstreamerEndpoint,
+            profitLoss,
             xst,
           });
           expect(requests[0].requestBody).to.equal(
@@ -56,7 +68,7 @@ describe('auth api call', function() {
         {
           CST: cst,
           ['X-SECURITY-TOKEN']: xst,
-        }, 
+        },
         JSON.stringify(resp)
       );
     });

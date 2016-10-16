@@ -3,6 +3,7 @@ import AbstractSubscription from './abstract-subscription';
 export default class ChartSubscription extends AbstractSubscription {
 
   subscribe(epic, onItemUpdate) {
+    const fidsToParse = ['BID'];
     const schema = ['price', 'timestamp'];
 
     this.unsubscribe();
@@ -15,7 +16,7 @@ export default class ChartSubscription extends AbstractSubscription {
 
         itemUpdate.forEachChangedField((fid, pos, value) => {
           const key = schema[pos - 1];
-          updates[key] = value;
+          updates[key] = fidsToParse.includes(key) ? parseFloat(value) : value;
         });
         if (updates.timestamp && updates.price) {
           onItemUpdate(updates);
