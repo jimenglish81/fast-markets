@@ -100,7 +100,7 @@ export const parseOpu = (opu, market) => {
     status: opu.status,
     stake: parseFloat(opu.size),
     strikeLevel: parseFloat(opu.level),
-    direction: opu.direction === 'BUY' ? 'ABOVE' : 'BELOW',
+    direction: opu.direction,
   }
 };
 

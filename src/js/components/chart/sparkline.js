@@ -21,10 +21,10 @@ const Sparkline = (props) => {
                   .domain([0, prices.length - 1])
 
   const [min, max] = d3.extent(prices);
-  const diff = max - min;
+  const diff = Math.max(strikeLevel - min, max - strikeLevel);
   const yScale = d3.scaleLinear()
                   .range([height, 0])
-                  .domain([Math.min(strikeLevel, min) - diff, Math.max(strikeLevel, max) + diff]);
+                  .domain([strikeLevel - diff, strikeLevel + diff]);
 
   const node = ReactFauxDOM.createElement('svg');
   const el = d3.select(node)
