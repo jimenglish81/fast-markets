@@ -18,11 +18,14 @@ export default class MarketSubscription extends AbstractSubscription {
 
         itemUpdate.forEachChangedField((fid, pos, value) => {
           const key = schema[pos - 1];
-          updates[key] = fidsToParse.includes(key) ? parseFloat(value) : value;
+          if (value !== null) {
+            updates[key] = fidsToParse.includes(fid) ? parseFloat(value) : value;
+          }
         });
 
         onItemUpdate(epic, updates);
-      }
+      },
+      3
     );
   }
 }

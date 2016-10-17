@@ -12,13 +12,19 @@ const Sparkline = (props) => {
     width,
   } = props;
 
+  if (prices.length < 2) {
+    return null;
+  }
+
   const xScale = d3.scaleLinear()
                   .range([0, width])
                   .domain([0, prices.length - 1])
 
+  const [min, max] = d3.extent(prices);
+  const diff = max - min;
   const yScale = d3.scaleLinear()
                   .range([height, 0])
-                  .domain(d3.extent(prices));
+                  .domain([Math.min(strikeLevel, min) - diff, Math.max(strikeLevel, max) + diff]);
 
   const node = ReactFauxDOM.createElement('svg');
   const el = d3.select(node)
@@ -35,12 +41,11 @@ const Sparkline = (props) => {
     });
 
   el.append('g')
-    .attr('transform', 'translate(0, 2)')
     .append('path')
     .datum(prices)
     .style('stroke', '#1997c6')
     .style('fill', 'none')
-    .style('stroke-width', 0.5)
+    .style('stroke-width', 1.5)
     .attr('d', line);
 
   el.append('line')

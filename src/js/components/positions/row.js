@@ -28,17 +28,19 @@ const Row = (props) => {
   return (
     <div className="positions__row">
       <div className="positions__cell positions__cell__market-name">
-        <span>instrumentName}</span>
-        <Sparkline
-          height={19}
-          isWinning={isWinning}
-          prices={prices}
-          strikeLevel={strikeLevel}
-          width={90}
-        />
+        <div className="positions__cell__market-name-inner">{instrumentName}</div>
+        <div className="positions__cell__market-name-sparkline">
+          <Sparkline
+            height={17}
+            isWinning={isWinning}
+            prices={prices}
+            strikeLevel={strikeLevel}
+            width={90}
+          />
+        </div>
       </div>
       <div className="positions__cell positions__cell__direction">
-        {direction === 'BUY' ? 'Above' : 'Below'}
+        {direction === 'ABOVE' ? 'Above' : 'Below'}
       </div>
       <div className="positions__cell positions__cell__expiry">
         {formatTime(expiryTime)}

@@ -25,6 +25,10 @@
       "pre-commit": "opt --in pre-commit --exec \"npm run validate\""
     }
   },
+  "repository": {
+    "url": "https://github.com/jimenglish81/fast-markets.git",
+    "type": "git"
+  },
   "engines": {
     "node": "6.x",
     "npm": "3.x"

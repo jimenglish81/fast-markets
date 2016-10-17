@@ -16,7 +16,7 @@ export default class ChartSubscription extends AbstractSubscription {
 
         itemUpdate.forEachChangedField((fid, pos, value) => {
           const key = schema[pos - 1];
-          updates[key] = fidsToParse.includes(key) ? parseFloat(value) : value;
+          updates[key] = fidsToParse.includes(fid) ? parseFloat(value) : value;
         });
         if (updates.timestamp && updates.price) {
           onItemUpdate(updates);

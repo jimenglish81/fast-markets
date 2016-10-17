@@ -77,7 +77,17 @@ const parseChartResp = (epic) => ({ prices }) => ({
 });
 
 const parsePositions = ({ sprintMarketPositions }) => {
-  return sprintMarketPositions;
+
+  return sprintMarketPositions.map((position) => ({
+    instrumentName: position.instrumentName,
+    payoutAmount: parseFloat(position.payoutAmount),
+    expiryTime: position.expiryTime,
+    dealId: position.dealId,
+    epic: position.epic,
+    stake: parseFloat(position.size),
+    strikeLevel: parseFloat(position.strikeLevel),
+    direction: position.direction === 'BUY' ? 'ABOVE' : 'BELOW',
+  }));
 };
 
 export const parseOpu = (opu, market) => {
@@ -90,7 +100,7 @@ export const parseOpu = (opu, market) => {
     status: opu.status,
     stake: parseFloat(opu.size),
     strikeLevel: parseFloat(opu.level),
-    direction: opu.direction,
+    direction: opu.direction === 'BUY' ? 'ABOVE' : 'BELOW',
   }
 };
 
