@@ -39,3 +39,4 @@ export const CONFIRM_RECEIVED: string = 'CONFIRM_RECEIVED';
 export const POSITION_RECEIVED: string = 'POSITION_RECEIVED';
 
 export const CLEAR_CONFIRM: string = 'CLEAR_CONFIRM';
+export const POSITION_REMOVED: string = 'POSITION_REMOVED';

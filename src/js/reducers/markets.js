@@ -54,7 +54,7 @@ export default (state={}, { payload, type }) => {
           if (market.epic !== epic) {
             return market;
           }
-          const prices = _.chain(market.prices).concat(updates.strike).filter(_.identity).takeRight(10).value();
+          const prices = _.chain(market.prices).concat(updates.strike).filter(_.identity).takeRight(20).value();
           return {
             ...market,
             ...updates,

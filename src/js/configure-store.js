@@ -7,6 +7,7 @@ import streamChart from './middlewares/stream-chart';
 import streamTrades from './middlewares/stream-trades';
 import connectLs from './middlewares/connect-ls';
 import confirms from './middlewares/confirms';
+import closePosition from './middlewares/close-position';
 import reducers from './reducers';
 import Session from './session-stores/session';
 import LsClient from './clients/ls-client';
@@ -41,6 +42,7 @@ const configureStore = () => {
       balanceSubscription
     ),
     confirms,
+    closePosition,
     logger,
   ];
 

@@ -87,9 +87,11 @@ const parsePositions = ({ sprintMarketPositions }) => {
     stake: parseFloat(position.size),
     strikeLevel: parseFloat(position.strikeLevel),
     direction: position.direction === 'BUY' ? 'ABOVE' : 'BELOW',
+    isSettled: false,
   }));
 };
 
+// TODO - consolidate in builder
 export const parseOpu = (opu, market) => {
   return {
     instrumentName: market.instrumentName,
@@ -100,7 +102,8 @@ export const parseOpu = (opu, market) => {
     status: opu.status,
     stake: parseFloat(opu.size),
     strikeLevel: parseFloat(opu.level),
-    direction: opu.direction,
+    direction: opu.direction === 'BUY' ? 'ABOVE' : 'BELOW',
+    isSettled: false,
   }
 };
 

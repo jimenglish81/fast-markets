@@ -4,6 +4,7 @@ import {
 } from '../actions/types';
 import { clearConfirm } from '../actions';
 
+// TODO - lodash debounce
 export default ({ dispatch }) => {
   let timeout;
   return (next) => (action) => {

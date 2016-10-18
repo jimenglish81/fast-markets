@@ -51,6 +51,7 @@ import {
   POSITION_RECEIVED,
 
   CLEAR_CONFIRM,
+  POSITION_REMOVED,
 } from './types';
 
 /**
@@ -218,6 +219,12 @@ export const positionRecieved = (position: Object):
 { type: string, payload: Object } => ({
   type: POSITION_RECEIVED,
   payload: position,
+});
+
+export const removePosition = (dealId: string):
+{ type: string, payload: string } => ({
+  type: POSITION_REMOVED,
+  payload: dealId,
 });
 
 /**

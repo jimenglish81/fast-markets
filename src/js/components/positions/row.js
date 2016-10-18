@@ -17,6 +17,7 @@ const Row = (props) => {
       expiryTime,
       strikeLevel,
       payoutAmount,
+      isSettled,
     },
     market: {
       prices,
@@ -24,6 +25,14 @@ const Row = (props) => {
     },
     isWinning,
   } = props;
+
+  if (isSettled) {
+    return (
+      <div className="positions__row">
+        <div>{isWinning ? 'won' : 'lost'}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="positions__row">
