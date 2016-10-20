@@ -20,16 +20,19 @@ const Row = (props) => {
       isSettled,
     },
     market: {
+      currency,
       prices,
       strike,
     },
     isWinning,
   } = props;
 
+  // TODO - move to component
   if (isSettled) {
+    const settlementClassName = isWinning ? 'settlement--won' : 'settlement--lost';
     return (
-      <div className="positions__row">
-        <div>{isWinning ? 'won' : 'lost'}</div>
+      <div className={`settlement ${settlementClassName}`}>
+        {isWinning ? `You just won ${formatCurrency(payoutAmount, currency)}!` : 'You were unsuccessful this time.'}
       </div>
     );
   }
