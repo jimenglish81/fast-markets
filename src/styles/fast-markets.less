@@ -6,8 +6,29 @@
 }
 
 .fast-markets__trades {
-  width: 270px;
-  flex: 0 0 270px;
+  width: 265px;
+  flex: 0 0 265px;
+}
+
+@media (min-width : 320px) and (max-width : 414px) {
+  .fast-markets__trades {
+    width: 300px;
+    flex: 0 0 300px;
+  }
+}
+
+@media (min-width : 375px) {
+  .fast-markets__trades {
+    margin: 0 25px;
+  }
+}
+
+@media (min-width : 376px) and (max-width : 414px) {
+  .fast-markets__trades {
+    margin: 0 15px;
+    width: 364px;
+    flex: 0 0 364px;
+  }
 }
 
 .fast-markets__chart {
