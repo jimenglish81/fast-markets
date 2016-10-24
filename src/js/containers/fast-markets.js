@@ -45,7 +45,9 @@ class FastMarkets extends Component {
           <div className="fast-markets__trades">
             <MarketDropdown />
             <Ticket />
-            <Confirm />
+            <div className="fast-markets__confirm">
+              <Confirm />
+            </div>
           </div>
           <div className="fast-markets__chart">
             <Chart />

@@ -76,6 +76,50 @@
   width: 80px;
 }
 
-.positions__cell__spark {
-  width: 90px;
+@media (max-width : 900px) {
+  .positions__cell__direction,
+  .positions__cell__expiry,
+  .positions__cell__strike,
+  .positions__cell__latest {
+    width: 90px;
+  }
+
+  .positions__cell__stake,
+  .positions__cell__payout {
+    width: 70px;
+  }
+}
+
+@media (max-width : 670px) {
+  .positions__cell__direction {
+    display: none;
+  }
+}
+
+@media (max-width : 590px) {
+  .positions__cell__stake {
+    display: none;
+  }
+}
+
+@media (max-width : 590px) {
+  .positions__cell__latest {
+    display: none;
+  }
+}
+
+@media (max-width : 420px) {
+  .positions__cell__strike {
+    display: none;
+  }
+}
+
+@media (max-width : 320px) {
+  .positions__cell__payout {
+    width: 55px;
+  }
+
+  .positions__cell__expiry {
+    width: 75px;
+  }
 }
