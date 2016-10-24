@@ -5,7 +5,7 @@
   height: 400px;
 }
 
-@media (max-width : 590px) {
+@media (max-width : 414px) {
   .fast-markets__wrapper {
     flex-direction: column-reverse;
     flex: initial;
@@ -22,20 +22,23 @@
 }
 
 @media (min-width : 320px) and (max-width : 414px) {
-  .fast-markets__trades {
+  .fast-markets__trades,
+  .fast-markets__chart {
     width: 300px;
     /*flex: 0 0 300px;*/
   }
 }
 
 @media (min-width : 375px) {
-  .fast-markets__trades {
+  .fast-markets__trades,
+  .fast-markets__chart {
     margin: 0 25px;
   }
 }
 
 @media (min-width : 376px) and (max-width : 414px) {
-  .fast-markets__trades {
+  .fast-markets__trades,
+  .fast-markets__chart {
     margin: 0 15px;
     width: 364px;
     /*flex: 0 0 364px;*/
