@@ -5,27 +5,32 @@
   height: 400px;
 }
 
-@media (max-width : 414px) {
-  .fast-markets__wrapper {
-    flex-direction: column-reverse;
-    flex: initial;
-  }
-}
-
 .fast-markets__trades {
   width: 265px;
   flex: 0 0 265px;
+  flex-direction: column;
+  display: flex;
 }
 
 .fast-markets__confirm {
-  min-height: 40px;
+  min-height: 24px;
+}
+
+@media (max-width : 414px) {
+  .fast-markets__trades {
+    flex: none;
+  }
+
+  .fast-markets__wrapper {
+    flex-direction: column-reverse;
+    flex: none;
+  }
 }
 
 @media (min-width : 320px) and (max-width : 414px) {
   .fast-markets__trades,
   .fast-markets__chart {
     width: 300px;
-    /*flex: 0 0 300px;*/
   }
 }
 
@@ -41,7 +46,6 @@
   .fast-markets__chart {
     margin: 0 15px;
     width: 364px;
-    /*flex: 0 0 364px;*/
   }
 }
 
@@ -49,4 +53,5 @@
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
+  min-height: 80px;
 }
