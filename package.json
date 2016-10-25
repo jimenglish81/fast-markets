@@ -18,7 +18,7 @@
     "clean:dist": "rimraf dist",
     "test": "karma start",
     "watch:test": "npm test -- --auto-watch --no-single-run",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --inline --progress --hot"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --inline --env.progress --hot"
   },
   "config": {
     "ghooks": {

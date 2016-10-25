@@ -28,9 +28,6 @@ module.exports = (env) => {
     devServer: {
       quiet: false,
     },
-    eslint: {
-      configFile: '.eslintrc'
-    },
     module: {
       loaders: [
         {
@@ -66,6 +63,13 @@ module.exports = (env) => {
           template: './index.html',
         }),
         new ExtractTextPlugin('bundle.css.[hash].css'),
+        new webpack.LoaderOptionsPlugin({
+          options: {
+            eslint: {
+              configFile: '.eslintrc',
+            },
+          },
+        }),
         ifProd(new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
         })),

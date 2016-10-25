@@ -17,10 +17,17 @@ class Chart extends Component {
 
   windowResize() {
     const { parentNode } = findDOMNode(this);
+    const svg = parentNode.querySelector('svg');
+
+    // toggle visibility to allow for flexbox resize.
+    svg.style.display = 'none';
+
     this.setState({
        parentWidth: parentNode.offsetWidth,
        parentHeight: parentNode.offsetHeight,
     });
+
+    svg.style.display = 'block';
   }
 
   /**
@@ -122,18 +129,16 @@ class Chart extends Component {
     // width should be baed on position.expiryTime or last timestamp (whicheven shorter)
     // could be a selectedPsotion if chart gets too budy
     // hover on line then shows price
-    if (isNarrow) {
-      el.append('line')
-         .attr('y1', yScale( _.get(_.last(data), 'price')))
-         .attr('y2', yScale( _.get(_.last(data), 'price')))
-         .attr('x1', 0)
-         .attr('x2', xScale(_.get(_.last(data), 'timestamp')))
-         .attr('stroke-width', 1)
-         .attr('opacity', 0.6)
-         .attr('stroke', '#1997c6');
-    }
-
     const lastValue = _.get(_.last(data), 'price');
+    el.append('line')
+       .attr('y1', yScale(lastValue))
+       .attr('y2', yScale(lastValue))
+       .attr('x1', 0)
+       .attr('x2', xScale(_.get(_.last(data), 'timestamp')))
+       .attr('stroke-width', 1)
+       .attr('opacity', 0.6)
+       .attr('stroke', '#1997c6');
+
     const g = el.append('g')
       .attr('width', 50)
       .attr('height', 16)
