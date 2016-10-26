@@ -55,10 +55,10 @@ class Chart extends Component {
       { top: 10, right: 10, bottom: 10, left: 10 };
     const width = this.state.parentWidth - (margin.left + margin.right);
     const height = this.state.parentHeight - (margin.top + margin.bottom);
-    const data = this.props.dataPoints.map(({ timestamp, price }) => ({
+    const data = _.uniqBy(this.props.dataPoints.map(({ timestamp, price }) => ({
       timestamp: d3.timeParse('%Y/%m/%d %H:%M:%S')(timestamp),
       price,
-    }));
+    })), 'timestamp');
 
     const dates = _.map(data, 'timestamp');
     const prices = _.map(data, 'price');
