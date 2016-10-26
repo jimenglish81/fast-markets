@@ -40,7 +40,7 @@ class FastMarkets extends Component {
     } = this.props;
 
     return conditionalRender(!isLoading, (
-      <div>
+      <div className="fast-markets__wrapper-inner">
         <div className="fast-markets__wrapper">
           <div className="fast-markets__trades">
             <MarketDropdown />
