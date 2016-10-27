@@ -58,7 +58,7 @@ class Chart extends Component {
     const data = _.uniqBy(this.props.dataPoints.map(({ timestamp, price }) => ({
       timestamp: d3.timeParse('%Y/%m/%d %H:%M:%S')(timestamp),
       price,
-    })), 'timestamp');
+    })),  (d) => d.timestamp.toJSON());
 
     const dates = _.map(data, 'timestamp');
     const prices = _.map(data, 'price');
