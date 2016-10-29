@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 import { formatCurrency, formatTime } from '../../utils';
 import Sparkline from '../chart/sparkline';
+import CountDown from '../common/count-down';
 
 /**
  * Positions for app.
@@ -10,6 +12,7 @@ import Sparkline from '../chart/sparkline';
 const Row = (props) => {
   const {
     position: {
+      createdDate,
       instrumentName,
       dealId,
       direction,
@@ -37,6 +40,11 @@ const Row = (props) => {
     );
   }
 
+  const expiryInSeconds = moment.utc(expiryTime)
+                  .diff(moment.utc(createdDate), 'seconds');
+  const timeInSeconds = moment.utc(expiryTime)
+                  .diff(moment.utc(), 'seconds');
+
   return (
     <div className="positions__row">
       <div className="positions__cell positions__cell__market-name">
@@ -55,7 +63,14 @@ const Row = (props) => {
         {direction === 'ABOVE' ? 'Above' : 'Below'}
       </div>
       <div className="positions__cell positions__cell__expiry">
-        {formatTime(expiryTime)}
+        <span>{formatTime(expiryTime)}</span>
+        <span style={{ display: 'flex' }}>
+          <CountDown
+            foreground={isWinning ? '#1bc98e' : '#e64759'}
+            background={'#51586a'}
+            percentage={timeInSeconds / expiryInSeconds}
+          />
+        </span>
       </div>
       <div className="positions__cell positions__cell__strike">
         {formatCurrency(strikeLevel)}

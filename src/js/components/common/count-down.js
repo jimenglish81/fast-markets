@@ -3,31 +3,47 @@ import React, { Component, PropTypes } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 
 const TAU = 2 * Math.PI;
+// createdDate: "2016-10-27T19:30:51"
+// expiryTime:"2016-10-27T19:50:51"
+// end.diff(start, 'seconds')
 
 class CountDown extends Component {
   render() {
+    const {
+      background,
+      foreground,
+      percentage
+    } = this.props;
     const arc = d3.arc()
-      .innerRadius(60)
-      .outerRadius(80)
+      .innerRadius(5)
+      .outerRadius(8)
       .startAngle(0);
 
     const node = ReactFauxDOM.createElement('svg');
     const svg = d3.select(node)
+      .attr('height', 18)
+      .attr('width', 16);
     const g = svg.append('g')
-      .attr('transform', `translate(${200 / 2},${200 / 2})`);
+      .attr('transform', `translate(${8},${10})`);
 
-    const background = g.append('path')
+    g.append('path')
       .datum({ endAngle: TAU })
-      .style('fill', '#1a1c22')
+      .style('fill', background)
       .attr('d', arc);
 
-    const foreground = g.append('path')
-      .datum({ endAngle: 0.127 * TAU })
-      .style('fill', 'orange')
+    g.append('path')
+      .datum({ endAngle: percentage * TAU })
+      .style('fill', foreground)
       .attr('d', arc);
 
     return node.toReact();
   }
 }
+
+CountDown.propTypes = {
+  background: PropTypes.string,
+  foreground: PropTypes.string,
+  percentage: PropTypes.number,
+};
 
 export default CountDown;
