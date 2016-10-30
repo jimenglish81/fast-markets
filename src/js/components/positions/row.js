@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
-import moment from 'moment';
 import { formatCurrency, formatTime } from '../../utils';
 import Sparkline from '../chart/sparkline';
-import CountDown from '../common/count-down';
+import CountDown from './expiry-countdown';
 
 /**
  * Positions for app.
@@ -40,11 +39,6 @@ const Row = (props) => {
     );
   }
 
-  const expiryInSeconds = moment.utc(expiryTime)
-                  .diff(moment.utc(createdDate), 'seconds');
-  const timeInSeconds = moment.utc(expiryTime)
-                  .diff(moment.utc(), 'seconds');
-
   return (
     <div className="positions__row">
       <div className="positions__cell positions__cell__market-name">
@@ -65,11 +59,7 @@ const Row = (props) => {
       <div className="positions__cell positions__cell__expiry">
         <span>{formatTime(expiryTime)}</span>
         <span style={{ display: 'flex' }}>
-          <CountDown
-            foreground={isWinning ? '#1bc98e' : '#e64759'}
-            background={'#51586a'}
-            percentage={timeInSeconds / expiryInSeconds}
-          />
+          <CountDown position={position} isWinning={isWinning} />
         </span>
       </div>
       <div className="positions__cell positions__cell__strike">
