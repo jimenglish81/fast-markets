@@ -14,7 +14,7 @@ describe('<AuthForm />', () => {
     expect(wrapper.find('form')).to.have.lengthOf(1);
     expect(wrapper.find('input')).to.have.lengthOf(2);
     expect(wrapper.find('button')).to.have.lengthOf(1);
-    expect(wrapper.find('FormGroup')).to.have.lengthOf(3);
+    expect(wrapper.find('FormGroup')).to.have.lengthOf(4);
   });
 
   it('correctly sets input placeholders', () => {

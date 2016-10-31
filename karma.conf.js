@@ -4,17 +4,13 @@ const TEST_FILES = 'src/**/*.test.js';
 
 //TODO - move from being postloader
 const convertToKarmaWebpack = function(config) {
-  return _.assign({}, config, {
-    module: _.assign({}, config.module, {
-      postLoaders: [
-        {
-          test: /\.(js)$/,
-          exclude: /(test|node_modules|\.test\.(js)$)/,
-          loader: 'istanbul-instrumenter'
-        }
-      ]
-    })
+  config.module.loaders.push({
+    test: /\.(js)$/,
+    exclude: /(test|node_modules|\.test\.(js)$)/,
+    loader: 'istanbul-instrumenter',
+    enforce: 'post'
   });
+  return config;
 };
 
 module.exports = function(config) {
@@ -38,7 +34,12 @@ module.exports = function(config) {
     },
     reporters: [ 'mocha', 'coverage' ],
     coverageReporter: {
-      type: 'text'
+      dir: 'reports/coverage',
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' },
+        { type: 'text-summary' },
+      ]
     },
     port: 9876,
     colors: true,

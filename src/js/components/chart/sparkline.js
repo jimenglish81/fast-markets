@@ -12,7 +12,7 @@ const Sparkline = (props) => {
     width,
   } = props;
 
-  if (prices.length < 2) {
+  if (!prices || prices.length < 2) {
     return null;
   }
 

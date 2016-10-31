@@ -10,26 +10,26 @@ const Positions = ({ children }) => {
   return (
     <section className="positions">
       <section className="positions__header">
-        <div className="positions__row">
-          <div className="positions__cell positions__cell__market-name">
+        <div className="positions-row">
+          <div className="positions-cell positions-cell__market-name">
             Market
           </div>
-          <div className="positions__cell positions__cell__direction">
+          <div className="positions-cell positions-cell__direction">
             Direction
           </div>
-          <div className="positions__cell positions__cell__expiry">
+          <div className="positions-cell positions-cell__expiry">
             Expiry
           </div>
-          <div className="positions__cell positions__cell__strike">
+          <div className="positions-cell positions-cell__strike">
             Strike
           </div>
-          <div className="positions__cell positions__cell__latest">
+          <div className="positions-cell positions-cell__latest">
             Latest
           </div>
-          <div className="positions__cell positions__cell__stake">
+          <div className="positions-cell positions-cell__stake">
             Stake
           </div>
-          <div className="positions__cell positions__cell__payout">
+          <div className="positions-cell positions-cell__payout">
             Payout
           </div>
         </div>

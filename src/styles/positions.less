@@ -8,10 +8,6 @@
   overflow: auto;
 }
 
-.positions__row {
-  display: flex;
-}
-
 .positions__empty-msg {
   display: block;
   text-align: center;
@@ -19,29 +15,30 @@
   color: @secondary-highlight;
 }
 
-.positions__row {
+.positions-row {
+  display: flex;
   border-bottom: 1px solid @secondary-dark;
   border-collapse: collapse;
   padding: 1px 0;
 }
 
-.positions__header .positions__cell {
+.positions__header .positions-cell {
   white-space: nowrap;
   font-size: 0.8em;
   color: @secondary-highlight;
   text-transform: uppercase;
 }
-.positions__header .positions__row {
+.positions__header .positions-row {
   border-bottom: none;
 }
 
-.positions__cell {
+.positions-cell {
   padding: 0 3px;
   color: @textColor;
   text-align: center;
 }
 
-.positions__cell__market-name {
+.positions-cell__market-name {
   flex-grow: 1;
   text-align: left;
   display: flex;
@@ -49,85 +46,90 @@
   justify-content: space-between;
 }
 
-.positions__cell__market-name-inner {
+.positions-cell__market-name-inner {
   padding-right: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.positions__cell__market-name-sparkline {
+.positions-cell__market-name-sparkline {
   width: 90px;
 }
 
-.positions__cell__direction {
+.positions-cell__direction {
   width: 120px;
 }
 
-.positions__cell__expiry {
+.positions-cell__expiry {
   display: flex;
   width: 150px;
 }
 
-.positions__cell__strike {
+.positions-cell__expiry--narrow {
+  display: flex;
+  padding-left: 3px;
+}
+
+.positions-cell__strike {
   width: 150px;
 }
 
-.positions__cell__latest {
+.positions-cell__latest {
   width: 150px;
 }
 
-.positions__cell__stake {
+.positions-cell__stake {
   width: 80px;
 }
 
-.positions__cell__payout {
+.positions-cell__payout {
   width: 80px;
 }
 
 @media (max-width : 900px) {
-  .positions__cell__direction,
-  .positions__cell__expiry,
-  .positions__cell__strike,
-  .positions__cell__latest {
+  .positions-cell__direction,
+  .positions-cell__expiry,
+  .positions-cell__strike,
+  .positions-cell__latest {
     width: 90px;
   }
 
-  .positions__cell__stake,
-  .positions__cell__payout {
+  .positions-cell__stake,
+  .positions-cell__payout {
     width: 70px;
   }
 }
 
 @media (max-width : 670px) {
-  .positions__cell__direction {
+  .positions-cell__direction {
     display: none;
   }
 }
 
 @media (max-width : 590px) {
-  .positions__cell__stake {
+  .positions-cell__stake {
     display: none;
   }
 }
 
 @media (max-width : 590px) {
-  .positions__cell__latest {
+  .positions-cell__latest {
     display: none;
   }
 }
 
 @media (max-width : 420px) {
-  .positions__cell__strike {
+  .positions-cell__strike {
     display: none;
   }
 }
 
 @media (max-width : 320px) {
-  .positions__cell__payout {
+  .positions-cell__payout {
     width: 55px;
   }
 
-  .positions__cell__expiry {
+  .positions-cell__expiry {
     width: 75px;
   }
 }

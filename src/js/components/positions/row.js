@@ -40,10 +40,10 @@ const Row = (props) => {
   }
 
   return (
-    <div className="positions__row">
-      <div className="positions__cell positions__cell__market-name">
-        <div className="positions__cell__market-name-inner">{instrumentName}</div>
-        <div className="positions__cell__market-name-sparkline">
+    <div className="positions-row">
+      <div className="positions-cell positions-cell__market-name">
+        <div className="positions-cell__market-name-inner">{instrumentName}</div>
+        <div className="positions-cell__market-name-sparkline">
           <Sparkline
             height={17}
             isWinning={isWinning}
@@ -53,25 +53,30 @@ const Row = (props) => {
           />
         </div>
       </div>
-      <div className="positions__cell positions__cell__direction">
+      <div className="positions-cell positions-cell__direction">
         {direction === 'ABOVE' ? 'Above' : 'Below'}
       </div>
-      <div className="positions__cell positions__cell__expiry">
-        <span>{formatTime(expiryTime)}</span>
-        <span style={{ display: 'flex' }}>
-          <CountDown position={position} isWinning={isWinning} />
+      <div className="positions-cell positions-cell__expiry">
+        <span className="positions-cell__expiry--wide">
+          {formatTime(expiryTime)}
+        </span>
+        <span className="positions-cell__expiry--narrow">
+          <CountDown
+            position={props.position}
+            isWinning={isWinning}
+          />
         </span>
       </div>
-      <div className="positions__cell positions__cell__strike">
+      <div className="positions-cell positions-cell__strike">
         {formatCurrency(strikeLevel)}
       </div>
-      <div className="positions__cell positions__cell__latest">
+      <div className="positions-cell positions-cell__latest">
         {formatCurrency(strike)}
       </div>
-      <div className="positions__cell positions__cell__stake">
+      <div className="positions-cell positions-cell__stake">
         {formatCurrency(stake)}
       </div>
-      <div className="positions__cell positions__cell__payout">
+      <div className="positions-cell positions-cell__payout">
         {formatCurrency(payoutAmount)}
       </div>
     </div>

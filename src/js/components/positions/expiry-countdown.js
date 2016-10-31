@@ -27,7 +27,7 @@ class ExpiryCountdown extends Component {
     } = this.state;
     const timeInSeconds = expiryUtc.diff(moment.utc(), 'seconds');
     this.setState({
-      percentage: timeInSeconds / expiryInSeconds,
+      percentage: 1 - (timeInSeconds / expiryInSeconds),
     });
     this._timeout = window.setTimeout(() => this._tick(), 1000);
   }
@@ -37,7 +37,7 @@ class ExpiryCountdown extends Component {
   }
 
   componentWillUnmount() {
-    window.cancelTimeout(this._timeout);
+    window.clearTimeout(this._timeout);
   }
 
   render() {
@@ -56,4 +56,4 @@ ExpiryCountdown.propTypes = {
   position: PropTypes.object.isRequired,
 };
 
-export default Countdown;
+export default ExpiryCountdown;
