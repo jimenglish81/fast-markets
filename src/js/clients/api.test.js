@@ -1,27 +1,19 @@
-import { beforeEach, afterEach, describe, it } from 'mocha';
+import { afterEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-import sinon from 'sinon';
 import { auth, unauth } from './api';
+import fetchMock from 'fetch-mock';
 
 describe('auth api calls', function() {
-  let xhr;
-  let requests;
-
-  beforeEach(() => {
-    xhr = sinon.useFakeXMLHttpRequest();
-    requests = [];
-    xhr.onCreate = function (xhr) {
-      requests.push(xhr);
-    };
-  });
+  const session = /.*\/session/;
 
   afterEach(() => {
-    xhr.restore();
+    fetchMock.restore();
   })
 
   describe('auth api call', () => {
 
     it('makes a request to login', (done) => {
+
       const accountId = 'abc123';
       const available = 200;
       const profitLoss = 300;
@@ -41,6 +33,15 @@ describe('auth api calls', function() {
         lightstreamerEndpoint,
       };
 
+      fetchMock.post(session, {
+  	    status: 200,
+  	    headers: {
+          'CST': cst,
+          'X-SECURITY-TOKEN': xst,
+  	    },
+  	    body: resp,
+      });
+
       const identifier = 'username';
       const password = 'password';
       const encryptedPassword = false;
@@ -56,7 +57,7 @@ describe('auth api calls', function() {
             profitLoss,
             xst,
           });
-          expect(requests[0].requestBody).to.equal(
+          expect(fetchMock.lastOptions(session).body).to.equal(
             JSON.stringify({
               identifier,
               password,
@@ -66,28 +67,21 @@ describe('auth api calls', function() {
 
           done();
         });
-
-      requests[0].respond(
-        200,
-        {
-          CST: cst,
-          ['X-SECURITY-TOKEN']: xst,
-        },
-        JSON.stringify(resp)
-      );
     });
-  });
 
-  it('makes a request to logout', (done) => {
-    unauth('cst', 'xst')
-      .then(() => {
-        const [ req ] = requests;
-        expect(req.method).to.equal('DELETE');
-        expect(req.requestHeaders.cst).to.equal('cst');
-        expect(req.requestHeaders['x-security-token']).to.equal('xst');
-        done();
+    it('makes a request to logout', (done) => {
+      fetchMock.delete(session, {
+        status: 200,
+        body: {},
       });
 
-    requests[0].respond(200, null, JSON.stringify({}));
+      unauth('cst', 'xst')
+        .then(() => {
+          const { headers } = fetchMock.lastOptions(session);
+          expect(headers.CST).to.equal('cst');
+          expect(headers['X-SECURITY-TOKEN']).to.equal('xst');
+          done();
+        });
+    });
   });
 });
