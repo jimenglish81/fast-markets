@@ -16,10 +16,10 @@
     "build": "webpack --env.dev --watch",
     "build:prod": "npm run clean:dist && webpack --env.prod",
     "clean:dist": "rimraf dist",
-    "test": "mocha --compilers js:babel-register --reporter spec tests/**/*.test.js",
+    "test": "mocha --compilers js:babel-register --reporter spec 'tests/**/*.test.js'",
     "test:watch": "npm test -- --watch --inspect",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --compilers js:babel-register --colors --reporter spec tests/**/*.test.js",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --inline --env.progress --hot"
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --compilers js:babel-register --colors --reporter spec 'tests/**/*.test.js'",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --hot"
   },
   "config": {
     "ghooks": {

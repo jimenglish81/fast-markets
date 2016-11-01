@@ -27,6 +27,9 @@ module.exports = (env) => {
     bail: env.prod,
     devServer: {
       quiet: false,
+      colors: true,
+      progress: true,
+      inline: true,
     },
     module: {
       loaders: [
