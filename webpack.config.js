@@ -28,7 +28,6 @@ module.exports = (env) => {
     devServer: {
       quiet: false,
       colors: true,
-      progress: true,
       inline: true,
     },
     module: {
@@ -54,13 +53,13 @@ module.exports = (env) => {
         },
       ],
     },
-    externals: {
-     'jsdom': 'window',
-     'cheerio': 'window',
-     'react/addons': true,
-     'react/lib/ExecutionEnvironment': true,
-     'react/lib/ReactContext': true,
-    },
+    // externals: {
+    //  'jsdom': 'window',
+    //  'cheerio': 'window',
+    //  'react/addons': true,
+    //  'react/lib/ExecutionEnvironment': true,
+    //  'react/lib/ReactContext': true,
+    // },
     plugins: filterExists([
         new HtmlWebpackPlugin({
           template: './index.html',
