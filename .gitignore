@@ -3,4 +3,5 @@ src/js/secret.js
 /reports
 /dist
 /esdoc
+/coverage
 npm-debug.log
