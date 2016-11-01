@@ -1,6 +1,6 @@
 import { afterEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-import { auth, unauth } from './api';
+import { auth, unauth } from '../../src/js/clients/api';
 import fetchMock from 'fetch-mock';
 
 describe('auth api calls', function() {

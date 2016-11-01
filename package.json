@@ -16,7 +16,7 @@
     "build": "webpack --env.dev --watch",
     "build:prod": "npm run clean:dist && webpack --env.prod",
     "clean:dist": "rimraf dist",
-    "test": "mocha --compilers js:babel-register --reporter spec src/**/*.test.js",
+    "test": "mocha --compilers js:babel-register --reporter spec tests/**/*.test.js",
     "test:watch": "npm test -- --watch --inspect",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --inline --env.progress --hot"
   },
