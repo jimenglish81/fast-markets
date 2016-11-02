@@ -18,8 +18,8 @@
     "clean:dist": "rimraf dist",
     "test": "mocha --compilers js:babel-register --reporter spec 'tests/**/*.test.js'",
     "test:watch": "npm test -- --watch --inspect",
-    "coverage": "istanbul cover _mocha -- --compilers js:babel-register --colors --reporter spec 'tests/**/*.test.js'",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --env.dev --hot"
+    "test:coverage": "istanbul cover _mocha -- --compilers js:babel-register --colors --reporter spec 'tests/**/*.test.js'",
+    "start": "webpack-dashboard -c cyan -- webpack-dev-server --env.dev --hot"
   },
   "config": {
     "ghooks": {
@@ -82,6 +82,7 @@
     "style-loader": "^0.13.1",
     "wallaby-webpack": "0.0.22",
     "webpack": "^2.1.0-beta.21",
+    "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^2.0.0-beta",
     "webpack-validator": "^2.2.6"
   },

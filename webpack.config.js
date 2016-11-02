@@ -4,6 +4,7 @@ const curry = require('lodash/curry');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const filterExists = (a) => a.filter(Boolean);
 const ifVal = (cond, val) => !!cond ? val : undefined;
@@ -53,14 +54,8 @@ module.exports = (env) => {
         },
       ],
     },
-    // externals: {
-    //  'jsdom': 'window',
-    //  'cheerio': 'window',
-    //  'react/addons': true,
-    //  'react/lib/ExecutionEnvironment': true,
-    //  'react/lib/ReactContext': true,
-    // },
     plugins: filterExists([
+        new DashboardPlugin(),
         new HtmlWebpackPlugin({
           template: './index.html',
         }),
