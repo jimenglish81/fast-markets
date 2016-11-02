@@ -1,9 +1,11 @@
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
 import {
   applyPartialRight,
   objectToQueryParams,
   conditionalRender,
   generateDealReference
-} from './index';
+} from '../../src/js/utils/index';
 
 describe('util functions', function() {
 

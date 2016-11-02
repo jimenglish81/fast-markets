@@ -1,4 +1,6 @@
-import { API_CALL } from '../middlewares/api';
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
+import { API_CALL } from '../../src/js/middlewares/api';
 import {
   authUser,
   fetchMarket,
@@ -13,7 +15,7 @@ import {
   stakeUpdate,
   expiryUpdate,
   clearConfirm,
-} from './index';
+} from '../../src/js/actions/index';
 import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
@@ -43,7 +45,7 @@ import {
   POSITION_RECEIVED,
 
   CLEAR_CONFIRM,
-} from './types';
+} from '../../src/js/actions/types';
 
 describe('actions', function() {
   it(`can create 'authUser' action`, function() {
