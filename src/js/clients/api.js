@@ -77,7 +77,6 @@ const parseChartResp = (epic) => ({ prices }) => ({
 });
 
 const parsePositions = ({ sprintMarketPositions }) => {
-
   return sprintMarketPositions.map((position) => ({
     instrumentName: position.instrumentName,
     payoutAmount: parseFloat(position.payoutAmount),
