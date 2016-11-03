@@ -60,7 +60,7 @@ export const formatCurrency = (value, currency='') => {
 
 /**
  * Generate HH:MM:SS time string from date string.
- * @param {String} timestamp DataTime string.
+ * @param {String} timestamp DateTime string.
  * @returns {String}
  */
 export const formatTime = (timestamp) => {
