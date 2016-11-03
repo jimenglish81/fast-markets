@@ -13,13 +13,13 @@
     "validate": "npm-run-all --parallel validate-webpack:* test",
     "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
     "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod",
-    "build": "BABEL_ENV=production webpack --env.dev --watch",
+    "build": "BABEL_ENV=prod webpack --env.dev --watch",
     "build:prod": "npm run clean:dist && webpack --env.prod",
     "clean:dist": "rimraf dist",
-    "test": "BABEL_ENV=test mocha --compilers js:babel-register --reporter spec 'tests/**/*.test.js'",
-    "test:watch": "npm test -- --watch --inspect",
-    "test:coverage": "BABEL_ENV=production istanbul cover _mocha -- --compilers js:babel-register --colors --reporter spec 'tests/**/*.test.js'",
-    "start": "BABEL_ENV=production webpack-dashboard -c cyan -- webpack-dev-server --env.dev --hot"
+    "test": "BABEL_ENV=dev mocha --require babel-register --reporter spec 'tests/**/*.test.js'",
+    "test:debug": "npm test -- --watch --inspect",
+    "test:coverage": "BABEL_ENV=prod istanbul cover _mocha -- --require babel-register --colors --reporter spec 'tests/**/*.test.js'",
+    "start": "BABEL_ENV=dev webpack-dashboard -c cyan -- webpack-dev-server --env.dev --hot"
   },
   "config": {
     "ghooks": {

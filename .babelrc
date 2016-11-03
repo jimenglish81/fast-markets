@@ -2,11 +2,11 @@
   "presets": [ "stage-2", "react"],
   "plugins": ["transform-flow-strip-types"],
   "env": {
-    "production": {
+    "dev": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "prod": {
       "presets": ["es2015"]
     },
-    "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
-    }
   }
 }
