@@ -8,3 +8,4 @@ reporting:
   dir: './reports/coverage'
   reports:
     - lcovonly
+    - html

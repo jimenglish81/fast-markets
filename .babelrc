@@ -1,4 +1,12 @@
 {
-      "presets": ["es2015", "stage-2", "react"],
-      "plugins": ["transform-flow-strip-types"]
+  "presets": [ "stage-2", "react"],
+  "plugins": ["transform-flow-strip-types"],
+  "env": {
+    "production": {
+      "presets": ["es2015"]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }
