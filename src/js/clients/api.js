@@ -91,7 +91,12 @@ const parsePositions = ({ sprintMarketPositions }) => {
   }));
 };
 
-// TODO - consolidate in builder
+/**
+ * Parse OPU to Position.
+ * @param {Object} opu OPU recieved from LS.
+ * @param {Object} market Associated Market.
+ * @return {Object}
+ */
 export const parseOpu = (opu, market) => {
   return {
     instrumentName: market.instrumentName,
@@ -108,6 +113,13 @@ export const parseOpu = (opu, market) => {
   }
 };
 
+/**
+ * Login user.
+ * @param {string} identifier Users identifier.
+ * @param {string} password Users password.
+ * @param {string} [encryptedPassword=false] If encyrpted.
+ * @return {Promise<Object>}
+ */
 export function auth(identifier, password, encryptedPassword=false) {
   const data = {
     identifier,
@@ -119,6 +131,12 @@ export function auth(identifier, password, encryptedPassword=false) {
         .then(parseSessionResp);
 }
 
+/**
+ * Logout user.
+ * @param {string} cst Client auth token.
+ * @param {string} xst Account auth token.
+ * @return {Promise<Object>}
+ */
 export function unauth(cst, xst) {
   return doDelete(`${BASE}session`, createHeaders(cst, xst));
 }
@@ -134,11 +152,24 @@ function marketNavigation(id, cst, xst) {
   return doGet(url, headers);
 }
 
+/**
+ * Get Fast Markets.
+ * @param {string} cst Client auth token.
+ * @param {string} xst Account auth token.
+ * @return {Promise<Object[]>}
+ */
 export function sprints(cst, xst) {
   return marketNavigation('302308', cst, xst)
           .then(parseMarketNavigationResp);
 }
 
+/**
+ * Get Chart Data.
+ * @param {string} epic Market epic to load.
+ * @param {string} cst Client auth token.
+ * @param {string} xst Account auth token.
+ * @return {Promise<Object>}
+ */
 export function market(epic, cst, xst) {
   const headers = {
     ...createHeaders(cst, xst),
@@ -150,6 +181,13 @@ export function market(epic, cst, xst) {
           .then(parseMarketResp);
 }
 
+/**
+ * Get Chart Data.
+ * @param {string} epic Market epic to load.
+ * @param {string} cst Client auth token.
+ * @param {string} xst Account auth token.
+ * @return {Promise<Object>}
+ */
 export function chart(epic, cst, xst) {
   const headers = {
     ...createHeaders(cst, xst),
@@ -161,6 +199,12 @@ export function chart(epic, cst, xst) {
           .then(parseChartResp(epic));
 }
 
+/**
+ * Get Positions.
+ * @param {string} cst Client auth token.
+ * @param {string} xst Account auth token.
+ * @return {Promise<Object[]>}
+ */
 export function positions(cst, xst) {
   const headers = {
     ...createHeaders(cst, xst),
@@ -172,6 +216,13 @@ export function positions(cst, xst) {
           .then(parsePositions);
 }
 
+/**
+ * Create Position.
+ * @param {Object} data Trade data.
+ * @param {string} cst Client auth token.
+ * @param {string} xst Account auth token.
+ * @return {Promise<Object>}
+ */
 export function createTrade(data, cst, xst) {
   const url = `${BASE}positions/sprintmarkets`;
 

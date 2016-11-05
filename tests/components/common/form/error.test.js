@@ -1,9 +1,10 @@
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
-import FormError from './error';
+import FormError from '../../../../src/js/components/common/form/error';
 
 describe('<FormError />', () => {
-
   it(`does not render when 'error' prop is not supplied`, () => {
     const wrapper = shallow(<FormError />);
 

@@ -12,7 +12,7 @@ import {
 } from '../../src/js/clients/api';
 import fetchMock from 'fetch-mock';
 
-describe('api calls', function() {
+describe('api client', () => {
   const sessionMatch = /.*\/session/;
   const fastMarketsMatch = /.*\/marketnavigation/;
   const marketMatch = /.*\/markets\//;

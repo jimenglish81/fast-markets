@@ -10,7 +10,7 @@ import confirms from './middlewares/confirms';
 import closePosition from './middlewares/close-position';
 import logout from './middlewares/logout';
 import reducers from './reducers';
-import Session from './session-stores/session';
+import Session from './stores/session';
 import LsClient from './clients/ls-client';
 import MarketSubscription from './subscriptions/market-subscription';
 import BalanceSubscription from './subscriptions/balance-subscription';

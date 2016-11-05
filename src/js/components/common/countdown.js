@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import React, { Component, PropTypes } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 
-const TAU = 2 * Math.PI;
+export const TAU = 2 * Math.PI;
 
 const Countdown = (props) => {
   const {
@@ -25,12 +25,16 @@ const Countdown = (props) => {
   g.append('path')
     .datum({ endAngle: TAU })
     .style('fill', background)
-    .attr('d', arc);
+    .attr('d', arc)
+    .attr('data-countdown-outer', true);
 
+  const angle = percentage * TAU;
   g.append('path')
-    .datum({ endAngle: percentage * TAU })
+    .datum({ endAngle: angle })
     .style('fill', foreground)
-    .attr('d', arc);
+    .attr('d', arc)
+    .attr('data-countdown-inner', true)
+    .attr('data-end-angle', angle);
 
   return node.toReact();
 }

@@ -4,7 +4,7 @@ import React from 'react';
  * Display a loaders.
  * @return {Element}
  */
-const Loader = (props) => {
+const Loader = () => {
   return (
     <div className="loader">
       <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" stroke="#1997c6">
