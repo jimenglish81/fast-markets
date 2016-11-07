@@ -3,6 +3,7 @@ import React from 'react';
 const Success = () => {
   return (
     <svg
+      data-confirm-success
       fill="#1bc98e"
       height="24"
       viewBox="0 0 24 24"

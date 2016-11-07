@@ -4,7 +4,6 @@ import { Router, Route, hashHistory } from 'react-router';
 import routes from '../routes';
 import App from './app';
 
-// try and use browserHistory
 const Root = ({ store }) => {
   return (
       <Provider store={store}>

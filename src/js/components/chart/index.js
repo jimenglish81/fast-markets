@@ -125,10 +125,6 @@ class Chart extends Component {
       .attr('className', 'chart-line')
       .attr('d', line);
 
-    // TODO - add positions, color dependant on winning or losing
-    // width should be baed on position.expiryTime or last timestamp (whicheven shorter)
-    // could be a selectedPsotion if chart gets too budy
-    // hover on line then shows price
     const lastValue = _.get(_.last(data), 'price');
     el.append('line')
        .attr('y1', yScale(lastValue))

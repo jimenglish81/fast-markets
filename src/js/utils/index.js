@@ -8,7 +8,7 @@ import numeral from 'numeral';
  * @param {Function} fn
  * @param {Object} args
  * @param {Number} placeholders
- * @returns {Function}
+ * @return {Function}
  */
 export const applyPartialRight = (fn, args, placeholders=0) => {
   return _.partialRight(fn, ..._.fill(Array(placeholders), _), ...[].concat(args));
@@ -17,7 +17,7 @@ export const applyPartialRight = (fn, args, placeholders=0) => {
 /**
  * Transform Object into URI encoded query string.
  * @param {Object} target Object to transform.
- * @returns {String}
+ * @return {string}
  */
 export const objectToQueryParams = (target) => {
   const encode = encodeURIComponent;
@@ -32,7 +32,7 @@ export const objectToQueryParams = (target) => {
  * @param {boolean} cond Condition to evaluate.
  * @param {Element} node React element to render.
  * @param {Object} [empty=null]? Empty content to render.
- * @returns {Element|String}
+ * @return {Element|String}
  */
 export const conditionalRender = (cond, node, empty=null) => {
   return cond ? node : empty;
@@ -42,7 +42,7 @@ export const conditionalRender = (cond, node, empty=null) => {
  * Generate unique deal reference.
  * @param {string} accountId IG account id.
  * @param {number} timestamp Current DataTime
- * @returns {String}
+ * @return {string}
  */
 export const generateDealReference = (accountId, timestamp=new Date().getTime()) => {
   return `MM-${timestamp}-${accountId}`;
@@ -52,7 +52,7 @@ export const generateDealReference = (accountId, timestamp=new Date().getTime())
  * Format currency with optional symbol.
  * @param {string} value Value to format.
  * @param {number} [currency=''] Currency symbol.
- * @returns {String}
+ * @return {string}
  */
 export const formatCurrency = (value, currency='') => {
   return `${currency}${numeral(value).format('0,0.00')}`;
@@ -60,8 +60,8 @@ export const formatCurrency = (value, currency='') => {
 
 /**
  * Generate HH:MM:SS time string from date string.
- * @param {String} timestamp DataTime string.
- * @returns {String}
+ * @param {string} timestamp DateTime string.
+ * @return {string}
  */
 export const formatTime = (timestamp) => {
   return moment(new Date(timestamp)).format('HH:mm:ss');

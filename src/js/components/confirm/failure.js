@@ -3,6 +3,7 @@ import React from 'react';
 const Failure = () => {
   return (
     <svg
+      data-confirm-failure
       fill="#e64759"
       height="24"
       viewBox="0 0 24 24"

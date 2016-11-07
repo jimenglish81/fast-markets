@@ -1,9 +1,10 @@
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
-import FormGroup from './group';
+import FormGroup from '../../../../src/js/components/common/form/group';
 
 describe('<FormGroup />', () => {
-
   it(`renders expected content iwth 'children' as Array`, () => {
     const children = [(<div key="1">child</div>)];
     const wrapper = shallow(<FormGroup>
