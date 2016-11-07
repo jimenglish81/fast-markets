@@ -10,15 +10,13 @@ function callApi(apiMethod, authenticated, sessionStore) {
     return apiMethod().then((resp) => {
       if (resp) {
         sessionStore.write({
-          cst: resp.cst|| cst,
-          xst: resp.xst || xst,
+          cst: resp.cst,
+          xst: resp.xst,
         });
       }
       return resp;
     });
   }
-
-  return
 }
 
 export const API_CALL = Symbol('apiCall');

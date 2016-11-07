@@ -7,6 +7,6 @@ export const createMockStore = (data) => ({
 export const dispatchWith = (middleware) => (data, action) => {
   let dispatched = null;
   const dispatch = middleware(createMockStore(data))((actionAttempt) => dispatched = actionAttempt);
-  dispatch(action);
-  return dispatched;
+  const result = dispatch(action);
+  return { dispatched, result };
 };
