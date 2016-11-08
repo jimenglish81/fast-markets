@@ -33,4 +33,19 @@ describe('Logger middleware', () => {
     expect(console.log.calledWithMatch(payload)).to.be.true;
     expect(console.groupEnd.calledWithMatch(type)).to.be.true;
   });
+
+  it('ignores action if console.group is not defined', () => {
+    const type = 'ACTION';
+    const payload = 'payload';
+    const action = {
+      type,
+      payload,
+    };
+
+    console.group = null;
+    console.groupEnd = null;
+    dispatchWith(logger)({}, action);
+
+    expect(console.log.calledWithMatch(payload)).to.be.false;
+  });
 });

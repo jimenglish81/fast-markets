@@ -9,8 +9,8 @@ export default ({ dispatch }) => {
   let timeout;
   return (next) => (action) => {
     if (action.type === CONFIRM_RECEIVED || action.type === TRADE_FAILURE) {
-      window.clearTimeout(timeout);
-      timeout = window.setTimeout(() => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
         dispatch(clearConfirm());
       }, 2500);
     }
