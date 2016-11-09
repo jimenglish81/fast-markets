@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { generateDealReference } from '../../utils';
 import { findMarketByEpic } from '../../reducers/markets';
 import { calculatePayout } from '../../reducers/ticket';
@@ -17,7 +18,7 @@ import TicketForm from '../../components/ticket';
 class Ticket extends Component {
   constructor(props) {
     super(props);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = _.throttle(this.onSubmit.bind(this), 500);
   }
 
   onSubmit(direction) {

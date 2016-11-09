@@ -221,6 +221,11 @@ export const positionRecieved = (position: Object):
   payload: position,
 });
 
+/**
+ * Action to represent removing a position.
+ * @param {string} dealId
+ * @return {Object}
+ */
 export const removePosition = (dealId: string):
 { type: string, payload: string } => ({
   type: POSITION_REMOVED,
