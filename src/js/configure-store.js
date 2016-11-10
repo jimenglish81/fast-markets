@@ -12,11 +12,11 @@ import logout from './middlewares/logout';
 import reducers from './reducers';
 import Session from './stores/session';
 import LsClient from './clients/ls-client';
-import MarketSubscription from './subscriptions/market-subscription';
-import BalanceSubscription from './subscriptions/balance-subscription';
-import ChartSubscription from './subscriptions/chart-subscription';
-import TradeSubscription from './subscriptions/trade-subscription';
-import PositionSubscription from './subscriptions/position-subscription';
+import MarketSubscription from './subscriptions/market';
+import BalanceSubscription from './subscriptions/balance';
+import ChartSubscription from './subscriptions/chart';
+import TradeSubscription from './subscriptions/trade';
+import PositionSubscription from './subscriptions/position';
 
 const configureStore = () => {
   const sessionStore = new Session();

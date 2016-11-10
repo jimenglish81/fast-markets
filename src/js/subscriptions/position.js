@@ -1,4 +1,4 @@
-import AbstractSubscription from './abstract-subscription';
+import AbstractSubscription from './abstract';
 
 export default class PositionSubscription extends AbstractSubscription {
 

@@ -10,7 +10,7 @@ import {
   formatTime
 } from '../../src/js/utils/index';
 
-describe('util functions', () => {
+describe('Util functions', () => {
   describe('applyPartialRight', () => {
     it('can apply arguments to the right', () => {
       const fn = (...args) => args;

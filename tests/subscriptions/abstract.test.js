@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import AbstractSubscription from '../../src/js/subscriptions/abstract-subscription';
+import AbstractSubscription from '../../src/js/subscriptions/abstract';
 
 const generateMockLsClient = () => ({
   subscribe: () => null,
